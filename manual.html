@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sapiens Poker Logger - Manual</title>
+<style>
+  :root {
+    --bg: #1a1a2e; --card: #252540; --border: #3a3a5c; --text: #e8e8f0;
+    --dim: #8888aa; --yellow: #f0d830; --pink: #ff69b4; --mint: #2ecc71;
+    --coral: #e74c3c; --gold: #f39c12; --code-bg: #1e1e36; --code-text: #c8c8e0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 12px;font-size:13px}
+  header{background:linear-gradient(135deg,#2a2a10,#3a3010,#2a2a10);padding:4px 12px;text-align:center;border-bottom:2px solid var(--yellow)}
+  header h1{font-size:11px;letter-spacing:.03em;color:#fff}
+  header h1 span{color:var(--yellow)}
+  .wrap{max-width:860px;margin:0 auto;padding:0 14px;overflow-x:hidden}
+  ol{padding-left:20px;margin:3px 0}
+  section{margin-top:2px}
+  h2{font-size:13px;color:#fff;padding-bottom:4px;border-bottom:2px solid var(--yellow);margin-bottom:4px}
+  h2 .num{color:var(--yellow);margin-right:3px;font-weight:800}
+  h3{font-size:12px;color:var(--pink);margin:8px 0 3px;font-weight:700}
+  p{margin:3px 0}
+  code{font-family:"SFMono-Regular",Consolas,monospace;background:var(--code-bg);border:1px solid var(--border);border-radius:3px;padding:1px 4px;font-size:12px;color:var(--yellow);font-weight:600}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px;overflow-x:auto;font-size:12px;line-height:1.45;font-family:"SFMono-Regular",Consolas,monospace;color:var(--code-text);margin:4px 0 8px}
+  pre .cm{color:#6a6a8a} pre .kw{color:var(--yellow);font-weight:700} pre .sec{color:var(--pink);font-weight:bold} pre .val{color:var(--mint);font-weight:700} pre .act{color:var(--gold);font-weight:600}
+  table{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:12.5px;border-radius:6px;overflow:hidden}
+  th,td{border:1px solid var(--border);padding:4px 8px;text-align:left}
+  th{background:linear-gradient(135deg,#2a2a50,#35305a);color:var(--yellow);font-weight:800;white-space:nowrap;font-size:11px}
+  td{background:var(--card)} td code{border:none;background:none;padding:0;color:var(--yellow);font-weight:600}
+  tr:nth-child(even) td{background:#2a2a48}
+  .tag{display:inline-block;font-size:9px;font-weight:800;border-radius:8px;padding:1px 6px;vertical-align:middle;margin-right:2px}
+  .tag.required{background:rgba(231,76,60,.2);color:#ff6b6b;border:1px solid rgba(231,76,60,.4)}
+  .tag.optional{background:rgba(255,105,180,.15);color:var(--pink);border:1px solid rgba(255,105,180,.3)}
+  .tag.new{background:rgba(46,204,113,.15);color:var(--mint);border:1px solid rgba(46,204,113,.3)}
+  .note{border-left:4px solid var(--mint);background:rgba(46,204,113,.08);padding:6px 10px;border-radius:0 6px 6px 0;margin:4px 0;font-size:12.5px}
+  .note.warn{border-left-color:var(--gold);background:rgba(243,156,18,.08)}
+  .note strong{color:#fff}
+  .flow-line{display:flex;align-items:center;gap:6px;margin:6px 0;flex-wrap:wrap;overflow-x:auto}
+  .flow-line .fs{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;white-space:nowrap}
+  .flow-line .fs strong{color:#fff;font-weight:700}
+  .flow-line .fs span{color:var(--dim);margin-left:4px;font-size:11px}
+  .flow-line .fa{color:var(--yellow);font-weight:bold;font-size:14px}
+  .pos-tbl{margin:4px 0 8px}
+  .pos-tbl td:first-child{font-weight:800;color:#fff;width:60px;white-space:nowrap}
+  .pos-tbl td:last-child{font-family:monospace;letter-spacing:.02em;color:var(--dim);font-weight:600}
+  ul{padding-left:16px;margin:3px 0} li{margin:1px 0}
+  details{margin:0}
+  details summary{cursor:pointer;list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::marker{display:none}
+  details summary h2{position:relative;padding-right:24px}
+  details summary h2::after{content:"\25BC";position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:12px;color:var(--yellow);transition:transform .2s}
+  details[open] summary h2::after{transform:translateY(-50%) rotate(180deg)}
+  details>:not(summary){animation:fadeIn .15s ease}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  footer{text-align:center;margin-top:10px;color:var(--dim);font-size:11px}
+  @media(max-width:520px){
+    body{font-size:12.5px;padding:0 0 8px}
+    .wrap{padding:0 8px}
+    header{padding:3px 8px} header h1{font-size:10px}
+    h2{font-size:12px;padding-bottom:3px;margin-bottom:3px}
+    h3{font-size:11px;margin:6px 0 2px}
+    code{font-size:11px;padding:1px 3px}
+    pre{font-size:11px;padding:6px 8px;margin:3px 0 6px;line-height:1.4}
+    table{font-size:12px;margin:3px 0 6px}
+    th,td{padding:3px 5px} th{font-size:10.5px}
+    table.m-card{display:block;border:none}
+    table.m-card thead{display:none} table.m-card tbody{display:block}
+    table.m-card tr{display:block;background:var(--card);border:1px solid var(--border);border-radius:6px;margin:4px 0;padding:5px 8px}
+    table.m-card td{display:block;border:none;padding:1px 0;font-size:12px}
+    table.m-card td:first-child{font-weight:700;color:#fff;margin-bottom:1px}
+    .tag{font-size:8px;padding:1px 5px}
+    .note{padding:5px 8px;font-size:12px;margin:3px 0}
+    .flow-line{gap:4px;margin:4px 0}
+    .flow-line .fs{padding:2px 7px;font-size:11px} .flow-line .fs span{font-size:10px}
+    .flow-line .fa{font-size:12px}
+    .pos-tbl td:first-child{width:50px}
+    ul{padding-left:14px} li{font-size:12px}
+    footer{font-size:10px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sapiens Poker <span>Logger</span> v0.2 - Manual</h1>
+</header>
+
+<div class="wrap">
+
+<!-- ====== カテゴリ: 基本操作 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">基本操作</h3>
+
+<!-- 1 -->
+<section>
+<details>
+  <summary><h2><span class="num">1.</span>概要</h2></summary>
+  <p>Sapiens Poker Loggerは、ポーカーの遠征記録・セッション管理・ハンド履歴をテキスト形式で記録するPWAアプリです。ブラウザだけで動作し、オフラインでも使えます。</p>
+  <div class="flow-line">
+    <div class="fs"><strong>記録を作成</strong> <span>旅のタイトル</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>セッション開始</strong> <span>場所・ブラインド</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>ハンド記録</strong> <span>カード・アクション</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>セッション終了</strong> <span>キャッシュアウト</span></div>
+  </div>
+  <div class="note">
+    <strong>データ保存:</strong> 全データはブラウザのlocalStorageに保存されます。アカウント登録は不要です。ブラウザのデータ削除や端末の故障で記録が失われる場合があるため、CSV ExportやHands Exportで定期的にバックアップを取ることをおすすめします。
+  </div>
+</details>
+</section>
+
+<!-- 2 -->
+<section>
+<details>
+  <summary><h2><span class="num">2.</span>トップページ（記録一覧）</h2></summary>
+  <p>アプリ起動時に表示される画面です。作成した記録（Trip）が一覧で並びます。</p>
+  <h3>画面の構成</h3>
+  <ul>
+    <li><strong>「新しい記録を作成」ボタン</strong> — 新しい遠征・旅の記録を作成</li>
+    <li><strong>記録カード</strong> — 各記録のタイトル・日付・SESSIONS数・P/L・HOURS を表示。タップで中に入る</li>
+    <li><strong>DELボタン</strong> — 各記録の右下にあり、記録を削除（確認ダイアログ付き）</li>
+    <li><strong>App Guide</strong> — アプリの基本的な使い方の簡易ガイド</li>
+  </ul>
+  <h3>フッター</h3>
+  <ul>
+    <li><strong>マニュアル</strong> — このマニュアルを開閉（どの画面からでも利用可能）</li>
+    <li><strong>要望を投稿</strong> — フィードバックフォームを開く</li>
+    <li><strong>SNSアイコン</strong> — X / YouTube / note へのリンク</li>
+  </ul>
+</details>
+</section>
+
+<!-- 3 -->
+<section>
+<details>
+  <summary><h2><span class="num">3.</span>記録（Trip）管理</h2></summary>
+  <p>旅行・遠征単位でセッションをグルーピングできます。</p>
+  <h3>記録の作成</h3>
+  <ol>
+    <li>トップ画面の「新しい記録を作成」をタップ</li>
+    <li>タイトルを入力（例: 2025年11月 台湾ポーカー旅）</li>
+    <li>作成された記録をタップして中に入る</li>
+  </ol>
+  <h3>記録内の機能</h3>
+  <ul>
+    <li>記録単位での累計統計（Total P/L / Sessions / Total Hours / BB/hr）</li>
+    <li>「CSV Export」で収支データを出力（記録内に完了セッションがある場合に表示）</li>
+    <li>「← 記録一覧」で トップ画面に戻る</li>
+  </ul>
+</details>
+</section>
+
+<!-- ====== カテゴリ: セッション ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">セッション</h3>
+
+<!-- 4 -->
+<section>
+<details>
+  <summary><h2><span class="num">4.</span>セッション管理</h2></summary>
+  <h3>セッション開始</h3>
+  <ol>
+    <li>記録内で「New Session」をタップ</li>
+    <li>Location（場所）、Game（NLH/PLO）、SB/BB、Buy-in を入力</li>
+    <li>「Start」でセッション開始。経過時間の計測が始まります</li>
+  </ol>
+  <h3>セッション中の操作</h3>
+  <table class="m-card">
+    <thead><tr><th>ボタン</th><th>機能</th></tr></thead>
+    <tbody>
+    <tr><td><code>Add On</code></td><td>セッションバーのBuy-in表示横のボタン。追加バイインを記録。複数回可能</td></tr>
+    <tr><td><code>End</code></td><td>キャッシュアウト額を入力してセッション終了。収支が自動計算されます</td></tr>
+    <tr><td><code>Hands</code></td><td>保存済みハンドの一覧表示。Export (.txt) で一括出力</td></tr>
+    </tbody>
+  </table>
+  <h3>セッションバー</h3>
+  <p>セッション中は画面上部にセッション情報バーが表示されます。場所・ブラインド・経過時間・Buy-in合計が確認できます。</p>
+  <div class="note">
+    <strong>BB/hr計算:</strong> ブラインドが途中で変わった場合、各フェーズの経過時間で加重平均BBを算出し、正確なBB/hrを計算します。
+  </div>
+</details>
+</section>
+
+<!-- 5 -->
+<section>
+<details>
+  <summary><h2><span class="num">5.</span>セッション詳細の編集</h2></summary>
+  <p>終了済みセッションをタップすると詳細画面が開きます。各項目をタップして直接編集できます。</p>
+  <h3>編集可能な項目</h3>
+  <table class="m-card">
+    <thead><tr><th>項目</th><th>操作</th></tr></thead>
+    <tbody>
+    <tr><td><code>Location</code></td><td>タップ → テキスト入力に切替。入力後に自動保存</td></tr>
+    <tr><td><code>Date</code></td><td>タップ → 日時編集モーダルが開く。開始・終了の日付と時刻を変更可能</td></tr>
+    <tr><td><code>Game</code></td><td>タップ → NLH / PLO のセレクトに切替</td></tr>
+    <tr><td><code>Buy-ins</code></td><td>タップ → 各Buy-in金額を個別に編集できるモーダルが開く</td></tr>
+    <tr><td><code>Cash-out</code></td><td>タップ → 数値入力に切替</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--dim)">P/L・Duration・BB/hr・Hands は自動計算のため直接編集はできません。編集可能な項目には破線アンダーラインが表示されます。</p>
+  <h3>セッションを再開</h3>
+  <p>詳細画面の「セッションを再開」ボタンで、終了したセッションをアクティブ状態に戻せます。経過時間の計測も再開され、ハンドの追加記録やAdd Onが可能になります。</p>
+  <div class="note">
+    <strong>ヒント:</strong> キャッシュアウト額の入力ミスや、ハンドの追記忘れがあった場合に便利です。
+  </div>
+</details>
+</section>
+
+<!-- 6 -->
+<section>
+<details>
+  <summary><h2><span class="num">6.</span>CSV Export</h2></summary>
+  <p>記録内のセッション一覧画面から「CSV Export」ボタンで出力できます。</p>
+  <h3>出力カラム</h3>
+  <table class="m-card">
+    <thead><tr><th>カラム</th><th>内容</th></tr></thead>
+    <tbody>
+    <tr><td><code>Day</code></td><td>日付</td></tr>
+    <tr><td><code>Session#</code></td><td>その日のセッション番号（01, 02...）</td></tr>
+    <tr><td><code>Location</code></td><td>場所</td></tr>
+    <tr><td><code>Game</code></td><td>NLH / PLO</td></tr>
+    <tr><td><code>Blinds</code></td><td>ブラインド（変更ありなら 50/100 → 100/200）</td></tr>
+    <tr><td><code>StartTime / EndTime</code></td><td>開始・終了時刻</td></tr>
+    <tr><td><code>Hours</code></td><td>プレイ時間</td></tr>
+    <tr><td><code>BuyIn / CashOut / P/L</code></td><td>収支情報</td></tr>
+    <tr><td><code>DayCumulativeP/L</code></td><td>その日の累計収支</td></tr>
+    <tr><td><code>TripCumulativeP/L</code></td><td>記録全体の累計収支</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--dim)">Excel / Google Sheets に取り込んで、YouTube動画用の収支グラフ作成などに活用できます。</p>
+</details>
+</section>
+
+<!-- ====== カテゴリ: ハンド記録 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">ハンド記録</h3>
+
+<!-- 7 -->
+<section>
+<details>
+  <summary><h2><span class="num">7.</span>ハンド記録の流れ</h2></summary>
+  <ol>
+    <li>Hand / Blind でハンド番号・ブラインド・Hero情報を入力</li>
+    <li>Cards でHeroカード・ボードカードを選択</li>
+    <li>Players でプレイヤーの着席状況を設定</li>
+    <li>「テンプレート生成」→ アクションを追記 → Save</li>
+  </ol>
+  <div class="flow-line">
+    <div class="fs"><strong>情報入力</strong> <span>Hand / Blind / Cards</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>テンプレート生成</strong> <span>自動フォーマット</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>アクション追記</strong> <span>画面内で編集</span></div>
+    <div class="fa">&rarr;</div>
+    <div class="fs"><strong>Save</strong> <span>セッションに保存</span></div>
+  </div>
+  <div class="note warn">
+    <strong>補足:</strong> ショーダウンやリザルト等の項目は、本ツールが元々ポーカーのプレイシーン映像を構築するためのデータ入力ツールとして設計されているためです。ハンドログとしてのみ使用する場合は省略可能です。
+  </div>
+</details>
+</section>
+
+<!-- 6 -->
+<section>
+<details>
+  <summary><h2><span class="num">8.</span>メモの書き方 — 全体構造</h2></summary>
+<pre>
+<span class="cm"># ① ヘッダー</span>          <span class="cm"># ③ ストリート</span>
+#03                     <span class="sec">---pf</span>
+sb200 bb400 ante400     <span class="sec">---flop 6d 7s 3h</span>
+hero 10 87200 9cJc      <span class="sec">---turn 5s</span>
+8max                    <span class="sec">---river 2s</span>
+btn 9
+                        <span class="cm"># ④ ショーダウン</span>
+<span class="cm"># ② プレイヤー（UTG順）</span>  <span class="sec">---sd</span>
+2 プレイヤーA
+3 プレイヤーB            <span class="cm"># ⑤ リザルト</span>
+...                     <span class="sec">---result</span>
+</pre>
+  <p>テンプレート生成ボタンを押すとこの形式で自動出力されます。アクション部分を追記してください。</p>
+</details>
+</section>
+
+<!-- 7 -->
+<section>
+<details>
+  <summary><h2><span class="num">9.</span>ヘッダー（メタ情報）</h2></summary>
+  <table class="m-card">
+    <thead><tr><th>項目</th><th>書式</th><th>例</th></tr></thead>
+    <tbody>
+    <tr><td>ハンド番号</td><td><code>#番号</code></td><td><code>#03</code></td></tr>
+    <tr><td>ブラインド</td><td><code>sb金額 bb金額</code></td><td><code>sb200 bb400</code></td></tr>
+    <tr><td>アンティ</td><td><code>ante金額</code>（sb行に追記可）</td><td><code>sb200 bb400 ante400</code></td></tr>
+    <tr><td>ヒーロー</td><td><code>hero シート スタック カード</code></td><td><code>hero 10 87200 9cJc</code></td></tr>
+    <tr><td>テーブル人数</td><td><code>数字max</code></td><td><code>8max</code></td></tr>
+    <tr><td>BTN席</td><td><code>btn シート番号</code></td><td><code>btn 9</code></td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--dim)">カード: <code>9cJc</code> / <code>9c Jc</code> どちらも可。<code>10hAs</code> も対応。</p>
+</details>
+</section>
+
+<!-- 8 -->
+<section>
+<details>
+  <summary><h2><span class="num">10.</span>プレイヤー一覧</h2></summary>
+  <p><code>---pf</code> の前に <strong>UTG から時計回り順</strong>で記載。シート番号は実際の座席番号（1〜10、欠番OK）。</p>
+<pre>
+<span class="val">2</span> プレイヤーA  <span class="cm">← UTG</span>    <span class="val">9</span> プレイヤーE  <span class="cm">← BTN</span>
+<span class="val">3</span> プレイヤーB  <span class="cm">← +1</span>     <span class="val">10</span> チンパン    <span class="cm">← SB</span>
+<span class="val">6</span> 白Tニキ     <span class="cm">← LJ</span>     <span class="val">1</span> プレイヤーF  <span class="cm">← BB</span>
+<span class="val">8</span> プレイヤーD  <span class="cm">← CO</span>
+</pre>
+  <p style="color:var(--dim)">ヒーローも一覧に含める。ポジション名は Nmax + 並び順から自動割り当て。</p>
+</details>
+</section>
+
+<!-- 9 -->
+<section>
+<details>
+  <summary><h2><span class="num">11.</span>ポジション自動割り当て</h2></summary>
+  <table class="pos-tbl">
+    <tr><td>10max</td><td>BTN SB BB UTG +1 MP1 MP2 LJ HJ CO</td></tr>
+    <tr><td>9max</td><td>BTN SB BB UTG +1 MP LJ HJ CO</td></tr>
+    <tr><td>8max</td><td>BTN SB BB UTG +1 LJ HJ CO</td></tr>
+    <tr><td>7max</td><td>BTN SB BB UTG +1 HJ CO</td></tr>
+    <tr><td>6max</td><td>BTN SB BB UTG +1 CO</td></tr>
+    <tr><td>5max</td><td>BTN SB BB UTG CO</td></tr>
+    <tr><td>4max</td><td>BTN SB BB UTG</td></tr>
+    <tr><td>3max</td><td>BTN SB BB</td></tr>
+    <tr><td>2max</td><td>BTN BB</td></tr>
+  </table>
+  <p style="color:var(--dim)">一覧の1人目→UTG、2人目→+1 … と順番に対応。</p>
+</details>
+</section>
+
+<!-- 10 -->
+<section>
+<details>
+  <summary><h2><span class="num">12.</span>アクション省略記法</h2></summary>
+  <table>
+    <tr><th>記法</th><th>意味</th><th>金額</th><th>例</th></tr>
+    <tr><td><code>f</code></td><td>fold</td><td>不要</td><td><code>3 f</code></td></tr>
+    <tr><td><code>x</code></td><td>check</td><td>不要</td><td><code>10 x</code></td></tr>
+    <tr><td><code>c</code></td><td>call</td><td>金額を記載</td><td><code>6 c2000</code></td></tr>
+    <tr><td><code>b</code></td><td>bet</td><td>金額を記載</td><td><code>7 b3500</code></td></tr>
+    <tr><td><code>r</code></td><td>raise</td><td>金額を記載</td><td><code>3 r8000</code></td></tr>
+    <tr><td><code>ai</code></td><td>allin</td><td>金額を記載</td><td><code>10 ai24300</code></td></tr>
+    <tr><td><code>str</code></td><td>straddle</td><td>金額を記載</td><td><code>4 str800</code></td></tr>
+  </table>
+  <p><code>シート番号 アクション</code> の形式で、発生順に記述。</p>
+</details>
+</section>
+
+<!-- 11 -->
+<section>
+<details>
+  <summary><h2><span class="num">13.</span>ストリート（pf / flop / turn / river）</h2></summary>
+  <table>
+    <tr><th>セクション</th><th>書式</th><th>ボード</th></tr>
+    <tr><td>プリフロップ</td><td><code>---pf</code></td><td>なし</td></tr>
+    <tr><td>フロップ</td><td><code>---flop カード×3</code></td><td>3枚</td></tr>
+    <tr><td>ターン</td><td><code>---turn カード</code></td><td>1枚</td></tr>
+    <tr><td>リバー</td><td><code>---river カード</code></td><td>1枚</td></tr>
+  </table>
+<pre>
+<span class="sec">---pf</span>               <span class="sec">---turn 5s</span>
+8 f                   10 x
+9 c300                4 b8000
+4 r1500               10 r20000
+10 c1500              4 ai45000
+                      10 c45000
+<span class="sec">---flop 6d 7s 3h</span>
+10 x                  <span class="sec">---river 2s</span>
+4 b3500               <span class="cm">（オールイン済み→空でOK）</span>
+10 c3500
+</pre>
+  <p style="color:var(--dim)">途中で終了した場合、後続ストリートは省略可。</p>
+</details>
+</section>
+
+<!-- 12 -->
+<section>
+<details>
+  <summary><h2><span class="num">14.</span>ショーダウン &amp; リザルト</h2></summary>
+  <h3>ショーダウン <code>---sd</code></h3>
+  <table>
+    <tr><th>書式</th><th>意味</th><th>例</th></tr>
+    <tr><td><code>シート カード1 カード2</code></td><td>ハンド公開</td><td><code>7 Ah 7h</code></td></tr>
+    <tr><td><code>シート show</code></td><td>hero公開</td><td><code>10 show</code></td></tr>
+    <tr><td><code>シート muck</code></td><td>伏せる</td><td><code>2 muck</code></td></tr>
+  </table>
+  <h3>リザルト <code>---result</code></h3>
+  <table>
+    <tr><th>書式</th><th>意味</th><th>例</th></tr>
+    <tr><td><code>シート win</code></td><td>単独勝利（1人のみ）</td><td><code>10 win</code></td></tr>
+    <tr><td><code>シート chop</code></td><td>引き分け（複数行）</td><td><code>4 chop</code></td></tr>
+  </table>
+  <p style="color:var(--dim)">勝者が1人なら win、引き分けなら全員 chop で記録します。</p>
+</details>
+</section>
+
+<!-- 13 -->
+<section>
+<details>
+  <summary><h2><span class="num">15.</span>カード表記</h2></summary>
+  <p><strong>ランク:</strong> <code>2</code>〜<code>9</code> / <code>T</code>or<code>10</code> / <code>J</code> <code>Q</code> <code>K</code> <code>A</code> &nbsp; <strong>スート:</strong> <code>s</code>=♠ <code>h</code>=♥ <code>d</code>=♦ <code>c</code>=♣</p>
+  <p>例: <code>Ah</code> <code>10c</code> <code>Ts</code> <code>2d</code> &mdash; 大文字小文字混在OK</p>
+</details>
+</section>
+
+<!-- 14 -->
+<section>
+<details>
+  <summary><h2><span class="num">16.</span>記入例（フル）</h2></summary>
+<pre>
+<span class="kw">#04</span>
+<span class="kw">sb200 bb400 ante400</span>
+<span class="kw">hero 10 87200 9cJc</span>
+<span class="kw">8max</span>
+<span class="kw">btn 9</span>
+
+<span class="val">2</span> プレイヤーA    <span class="val">8</span> プレイヤーC    <span class="val">10</span> チンパン
+<span class="val">3</span> プレイヤーB    <span class="val">9</span> プレイヤーD    <span class="val">1</span> プレイヤーE
+<span class="val">6</span> 白Tニキ
+
+<span class="sec">---pf</span>
+2 <span class="act">c400</span>   3 <span class="act">r2000</span>  6 <span class="act">c2000</span>  9 <span class="act">c2000</span>  10 <span class="act">c2000</span>  1 <span class="act">c2000</span>  2 <span class="act">c2000</span>
+
+<span class="sec">---flop 3h Jd 8s</span>
+10 <span class="act">x</span>  1 <span class="act">x</span>  2 <span class="act">x</span>  3 <span class="act">x</span>  6 <span class="act">x</span>  9 <span class="act">x</span>
+
+<span class="sec">---turn 10h</span>
+10 <span class="act">b3500</span>  1 <span class="act">f</span>  2 <span class="act">r8000</span>  3 <span class="act">f</span>  6 <span class="act">f</span>  9 <span class="act">c8000</span>  10 <span class="act">c8000</span>
+
+<span class="sec">---river 6d</span>
+10 <span class="act">x</span>  2 <span class="act">b20000</span>  9 <span class="act">c20000</span>  10 <span class="act">f</span>
+
+<span class="sec">---sd</span>
+2 muck   9 muck
+
+<span class="sec">---result</span>
+9 win
+</pre>
+</details>
+</section>
+
+<!-- ====== カテゴリ: 設定・その他 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+
+<!-- 17 -->
+<section>
+<details>
+  <summary><h2><span class="num">17.</span>デフォルト設定</h2></summary>
+  <p>アクティブセッション画面で以下のデフォルト値を保存できます。</p>
+  <table class="m-card">
+    <thead><tr><th>項目</th><th>保存方法</th></tr></thead>
+    <tbody>
+    <tr><td>Hero名 / Stack / Blind</td><td>Hand / Blind セクションの「SAVE」ボタン</td></tr>
+    <tr><td>デフォルト人数</td><td>Players セクションの「SAVE」ボタン</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--dim)">保存した値は次回セッション開始時に自動で反映されます。</p>
+</details>
+</section>
+
+<!-- 16 -->
+<section>
+<details>
+  <summary><h2><span class="num">18.</span>PWA（Progressive Web App）インストール</h2></summary>
+  <p>このアプリはPWA対応です。PWA（Progressive Web App）とは、ウェブサイトをスマホやPCにアプリのようにインストールできる仕組みです。</p>
+  <h3>インストールのメリット</h3>
+  <ul>
+    <li>ホーム画面からワンタップで起動（URLを開く手間なし）</li>
+    <li>ブラウザのアドレスバーやタブが非表示になり、画面を広く使える</li>
+    <li>電波の届かない場所でもオフラインで利用可能</li>
+    <li>アプリストアからのダウンロードは不要で、容量もほとんど使いません</li>
+  </ul>
+  <h3>インストール方法</h3>
+  <ul>
+    <li><strong>iOS:</strong> Safariで開く → 共有ボタン → 「ホーム画面に追加」</li>
+    <li><strong>Android:</strong> Chromeで開く → メニュー → 「アプリをインストール」</li>
+    <li><strong>PC:</strong> Chrome/Edgeのアドレスバー右のインストールアイコン</li>
+  </ul>
+  <h3>安全性について</h3>
+  <p>PWAはGoogle、Microsoft、Appleが推進するウェブ標準技術です。個人情報の収集や外部サーバーへのデータ送信は一切行いません。</p>
+  <ul>
+    <li>本アプリのデータはすべてお使いの端末内（ブラウザのlocalStorage）にのみ保存されます</li>
+    <li>アカウント登録やログインは不要です</li>
+    <li>インターネット接続がなくても動作するため、データが外部に送られることはありません</li>
+    <li>PWA自体はブラウザのブックマークに近い仕組みで、端末の連絡先・写真・位置情報などへのアクセス権限を持ちません</li>
+  </ul>
+  <div class="note">
+    <strong>PWAの採用事例:</strong> X（旧Twitter）、Spotify、Starbucks、Pinterest、Uber など、世界的な大手サービスでもPWA技術が採用されています。安心してご利用ください。
+  </div>
+</details>
+</section>
+
+<section>
+<details>
+  <summary><h2><span class="num">19.</span>要望を投稿</h2></summary>
+  <p>画面下部の「要望を投稿」ボタンから、匿名のフィードバックフォームに移動できます。</p>
+  <ul>
+    <li>「こんな機能がほしい」「ここが使いにくい」など、どんな小さなことでも大歓迎です</li>
+    <li>匿名で送信できますので、お気軽にご意見をお聞かせください</li>
+    <li>いただいたご要望は今後のアップデートの参考にさせていただきます</li>
+  </ul>
+</details>
+</section>
+
+</div>
+
+
+<div id="__heightSentinel" style="height:0;clear:both"></div>
+<script>
+(function(){
+  if(window.self===window.top) return;
+  var sentinel=document.getElementById('__heightSentinel');
+  function reportHeight(){
+    var h=sentinel.offsetTop+20;
+    parent.postMessage({type:'manualHeight',h:h},'*');
+  }
+  document.querySelectorAll('details').forEach(function(d){
+    d.addEventListener('toggle',function(){
+      setTimeout(reportHeight,0);
+      setTimeout(reportHeight,50);
+      setTimeout(reportHeight,200);
+      setTimeout(reportHeight,500);
+    });
+  });
+  if(window.ResizeObserver){
+    new ResizeObserver(function(){reportHeight()}).observe(document.body);
+  }
+  reportHeight();
+  setTimeout(reportHeight,100);
+  setTimeout(reportHeight,500);
+})();
+</script>
+
+</body>
+</html>
