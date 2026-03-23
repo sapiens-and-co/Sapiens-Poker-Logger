@@ -229,7 +229,7 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .guide-box .guide-steps .step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(240,216,48,.15);color:var(--yellow);font-size:10px;font-weight:800;text-align:center;line-height:20px}
 .guide-box .guide-steps .step-text{flex:1}
 .guide-box .guide-steps .step-text strong{color:var(--yellow)}
-.guide-box .guide-steps .step-text .step-sub{display:block;font-size:11px;color:var(--dim);margin-top:2px}
+.guide-box .guide-steps .step-text .step-sub{display:inline;font-size:11px;color:var(--dim);margin-left:4px}
 .guide-section{margin-top:6px}
 .guide-section .guide-section-title{font-size:11px;font-weight:700;color:var(--dim);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.05em}
 .guide-section p{font-size:11px;color:var(--dim);line-height:1.6;margin:3px 0}
@@ -237,12 +237,12 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 /* ===== Footer styles ===== */
 .app-footer{display:flex;align-items:center;justify-content:space-between;padding:6px 16px;margin-top:0;max-width:480px;margin-left:auto;margin-right:auto}
 .app-footer .footer-icons{display:flex;align-items:center;gap:1px}
-.app-footer .footer-icons a:first-of-type{margin-left:10px}
+.app-footer .footer-icons a:first-of-type{margin-left:4px}
 .app-footer .footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;color:var(--dim);text-decoration:none;transition:color .15s}
 .app-footer .footer-icons a:hover,.app-footer .footer-icons a:active{color:var(--yellow)}
 .app-footer .footer-icons a svg{width:16px;height:16px;fill:currentColor}
 .app-footer .footer-copy{font-size:10px;color:var(--dim);letter-spacing:.03em}
-.footer-link-btn{background:linear-gradient(to bottom,#3a3a5c,#2a2a48);border:1px solid var(--border);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:800;cursor:pointer;color:var(--yellow);letter-spacing:.02em;font-family:inherit;line-height:1.3;white-space:nowrap;margin-right:6px}
+.footer-link-btn{background:linear-gradient(to bottom,#3a3a5c,#2a2a48);border:1px solid var(--border);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:800;cursor:pointer;color:var(--yellow);letter-spacing:.02em;font-family:inherit;line-height:1.3;white-space:nowrap;margin-right:3px}
 .footer-link-btn:active{background:rgba(240,216,48,.2)}
 </style>
 </head>
@@ -256,7 +256,7 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 <div class="view" id="viewTrips">
 <div class="wrap">
   <img src="title_image_lv07.png" alt="Sapiens Poker Logger" style="width:100%;border-radius:10px;margin:6px 0;display:block">
-  <p style="font-size:11px;color:var(--dim);line-height:1.6;text-align:center;margin:4px 0 8px">当アプリは、ライブポーカーのハンド履歴や収支を、その場で素早く記録できるアプリです。<br>遠征ごとのプレイ時間やBB/hrを自動集計。登録不要、完全無料、すぐにご利用いただけます。</p>
+  <p style="font-size:11px;color:var(--dim);line-height:1.6;text-align:center;margin:4px 0 8px">当アプリは、ライブポーカーのハンド履歴や収支を、その場で素早く記録できるアプリです。遠征ごとのプレイ時間やBB/hrを自動集計。登録不要、完全無料、すぐにご利用いただけます。</p>
   <button class="new-session-btn" onclick="showNewTripModal()">新しい記録を作成</button>
   <div id="tripsList"></div>
   <div id="tripsGuide"></div>
@@ -909,11 +909,8 @@ function renderTripsList() {
       '</ol>' +
       '</div>' +
       '<div class="guide-box" style="border-color:rgba(240,216,48,.08)">' +
-      '<div class="guide-title">\u51FA\u529B\u30B5\u30F3\u30D7\u30EB</div>' +
-      '<div style="display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 6px;font-size:9px">' +
-      '<span><span style="color:#c8c8e0">\u25A0</span> \u81EA\u52D5\u51FA\u529B</span>' +
-      '<span><span style="color:#5dade2">\u25A0</span> \u624B\u5165\u529B\u90E8\u5206</span>' +
-      '</div>' +
+      '<div class="guide-title" style="display:inline">\u51FA\u529B\u30B5\u30F3\u30D7\u30EB</div>' +
+      '<span style="font-size:9px;margin-left:8px"><span style="color:#c8c8e0">\u25A0</span> \u81EA\u52D5\u51FA\u529B <span style="color:#5dade2">\u25A0</span> \u624B\u5165\u529B\u90E8\u5206</span>' +
       '<pre style="font-size:11px;line-height:1.5;color:#c8c8e0;background:#1e1e36;border:1px solid var(--border);border-radius:6px;padding:8px 10px;margin:0;overflow-x:auto;white-space:pre">' +
       '<span style="color:#f0d830;font-weight:700">#01</span>\n' +
       '<span style="color:#f0d830;font-weight:700">sb50 bb100</span>\n' +
@@ -1958,7 +1955,7 @@ init();
       <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12z"/></svg>
     </a>
     <a href="https://note.com/chimpanpoker" target="_blank" rel="noopener" title="note">
-      <svg viewBox="0 0 493 493"><path d="M139.2 141.7C180.4 141.7 236.8 139.6 277.3 140.7C331.6 142.1 352.1 165.8 352.8 224.2C353.5 257.3 352.8 351.9 352.8 351.9H294C294 269.1 294.3 255.4 294 229.3C293.3 206.3 286.8 195.4 269.1 193.3C250.4 191.2 198 193 198 193V352H139.2V141.7Z"/></svg>
+      <svg viewBox="119 122 254 250"><path d="M139.2 141.7C180.4 141.7 236.8 139.6 277.3 140.7C331.6 142.1 352.1 165.8 352.8 224.2C353.5 257.3 352.8 351.9 352.8 351.9H294C294 269.1 294.3 255.4 294 229.3C293.3 206.3 286.8 195.4 269.1 193.3C250.4 191.2 198 193 198 193V352H139.2V141.7Z"/></svg>
     </a>
   </div>
 </footer>
