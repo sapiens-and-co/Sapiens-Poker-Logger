@@ -248,15 +248,11 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 </head>
 <body>
 
-<header>
-  <h1>Sapiens Poker Logger v0.2</h1>
-</header>
-
 <!-- ===== View 0: Trips List ===== -->
 <div class="view" id="viewTrips">
 <div class="wrap">
-  <img src="title_image_lv07.png" alt="Sapiens Poker Logger" style="width:100%;border-radius:10px;margin:6px 0;display:block">
-  <p style="font-size:11px;color:var(--dim);line-height:1.6;text-align:center;margin:4px 0 8px">当アプリは、ライブポーカーのハンド履歴や収支を、その場で素早く記録できるアプリです。遠征ごとのプレイ時間やBB/hrを自動集計。登録不要、完全無料、すぐにご利用いただけます。</p>
+  <img src="title_image_lv07.png" alt="Sapiens Poker Logger" style="width:100%;border-radius:0;margin:6px 0;display:block">
+  <p style="font-size:11px;color:var(--dim);line-height:1.6;text-align:center;margin:4px 0 8px">当アプリは、ライブポーカーのハンド履歴をその場で素早く記録するためのアプリです。プレイ時間や収支を自動集計。登録不要、完全無料、すぐにご利用可能です。</p>
   <button class="new-session-btn" onclick="showNewTripModal()">新しい記録を作成</button>
   <div id="tripsList"></div>
   <div id="tripsGuide"></div>
@@ -902,10 +898,10 @@ function renderTripsList() {
     el.innerHTML = '<div class="guide-box">' +
       '<div class="guide-title">Quick Start</div>' +
       '<ol class="guide-steps">' +
-      '<li><span class="step-num">1</span><span class="step-text"><strong>記録を作成</strong><span class="step-sub">上の「新しい記録を作成」から旅のタイトルを入力（例: 25年11月台湾旅）</span></span></li>' +
-      '<li><span class="step-num">2</span><span class="step-text"><strong>セッションを開始</strong><span class="step-sub">「New Session」→ 場所・ゲーム・ブラインド・バイインを入力してスタート</span></span></li>' +
-      '<li><span class="step-num">3</span><span class="step-text"><strong>ハンドを記録</strong><span class="step-sub">カードを選択 → テンプレート生成 → アクションを追記してSave</span></span></li>' +
-      '<li><span class="step-num">4</span><span class="step-text"><strong>セッション終了</strong><span class="step-sub">「End」でキャッシュアウト額を入力。収支が自動計算されます</span></span></li>' +
+      '<li><span class="step-num">1</span><span class="step-text"><strong>記録を作成</strong><span class="step-sub">上の「新しい記録を作成」から旅のタイトルを入力</span></span></li>' +
+      '<li><span class="step-num">2</span><span class="step-text"><strong>セッションを開始</strong><span class="step-sub">「New Session」→ ゲーム情報を入力</span></span></li>' +
+      '<li><span class="step-num">3</span><span class="step-text"><strong>ハンドを記録</strong><span class="step-sub">カード選択 → テンプレ生成 → アクション追記</span></span></li>' +
+      '<li><span class="step-num">4</span><span class="step-text"><strong>セッション終了</strong><span class="step-sub">「End」で最終額を入力→収支を自動計算</span></span></li>' +
       '</ol>' +
       '</div>' +
       '<div class="guide-box" style="border-color:rgba(240,216,48,.08)">' +
@@ -922,15 +918,11 @@ function renderTripsList() {
       '<span style="color:#ff69b4;font-weight:700">---pf</span>\n' +
       '<span style="color:#5dade2">3 c100  6 r300  8 f  9 f  10 c300  2 f  3 c300</span>\n' +
       '<span style="color:#ff69b4;font-weight:700">---flop 7d 8s 2c</span>\n' +
-      '<span style="color:#5dade2">10 b500  3 f  6 c500</span>\n' +
-      '<span style="color:#ff69b4;font-weight:700">---turn Jh</span>\n' +
-      '<span style="color:#5dade2">10 b1200  6 f</span>\n' +
+      '<span style="color:#5dade2">10 b500  3 f  6 f</span>\n' +
       '<span style="color:#ff69b4;font-weight:700">---result</span>\n' +
-      '<span style="color:#5dade2">10 win</span>\n' +
-      '<span style="color:#6a6a8a">#\u30E1\u30E2</span>' +
+      '<span style="color:#5dade2">10 win</span>' +
       '</pre>' +
       '<p style="font-size:10px;color:var(--dim);margin-top:6px">\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u751F\u6210\u30DC\u30BF\u30F3\u3092\u62BC\u3059\u3068\u81EA\u52D5\u51FA\u529B\u3055\u308C\u307E\u3059\u3002<span style="color:#5dade2">\u6C34\u8272\u306E\u90E8\u5206</span>\u3092\u624B\u5165\u529B\u3057\u3066Save\u3059\u308B\u3060\u3051\u3067\u30CF\u30F3\u30C9\u8A18\u9332\u304C\u5B8C\u4E86\u3057\u307E\u3059\u3002\u30D7\u30EC\u30A4\u30E4\u30FC\u540D\u306F\u521D\u56DE\u306E\u307F\u5165\u529B\u3059\u308C\u3070\u3001\u4EE5\u964D\u306F\u81EA\u52D5\u3067\u51FA\u529B\u3055\u308C\u307E\u3059\u3002</p>' +
-      '<p style="font-size:9px;color:#6a6a8a;margin-top:2px">\u203B \u5B9F\u969B\u306E\u51FA\u529B\u306B\u8272\u5206\u3051\u306F\u3055\u308C\u307E\u305B\u3093\u3002\u898B\u3084\u3059\u3055\u306E\u305F\u3081\u306E\u8868\u793A\u4F8B\u3067\u3059\u3002</p>' +
       '</div>';
   } else {
     var html = '';
