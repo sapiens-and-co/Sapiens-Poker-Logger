@@ -121,6 +121,20 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .output-text:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 2px rgba(240,216,48,.25)}
 .resize-handle{width:100%;height:28px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;touch-action:none;user-select:none;-webkit-user-select:none}
 .resize-handle span{display:block;width:40px;height:4px;background:var(--border);border-radius:2px}
+.custom-kb{display:none;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 4px;margin:4px 0}
+.custom-kb.show{display:block}
+.kb-row{display:flex;gap:3px;margin:3px 0;justify-content:center}
+.kb-key{flex:1;max-width:38px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.kb-key:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
+.kb-key.wide{flex:1.6;max-width:62px;font-size:11px}
+.kb-key.action{color:var(--yellow)}
+.kb-key.suit-s,.kb-key.suit-c{color:#c8c8e0}
+.kb-key.suit-h{color:#e85050}
+.kb-key.suit-d{color:#5dade2}
+.kb-key.mode-btn{background:rgba(240,216,48,.1);border-color:rgba(240,216,48,.3);color:var(--yellow);font-size:10px;font-weight:800}
+.kb-panel{display:none}
+.kb-panel.active{display:block}
+.kb-mode-indicator{text-align:center;font-size:9px;color:var(--dim);margin-bottom:2px;font-weight:600}
 .copy-row{display:flex;gap:5px;margin-top:4px}
 .copy-row{justify-content:center}
 .action-btn{flex:1;padding:5px 8px;border:none;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#a09018,#b8a820,#a09018);color:#fff}
@@ -343,6 +357,35 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
     <div class="output-label">&#9998; &#x7DE8;&#x96C6;&#x53EF; &mdash; &#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x8FFD;&#x8A18;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</div>
     <textarea class="output-text" id="outputText"></textarea>
     <div class="resize-handle" id="resizeHandle"><span></span></div>
+    <div class="custom-kb" id="customKb">
+      <div class="kb-panel active" id="kbAction">
+        <div class="kb-mode-indicator">ACTION</div>
+        <div class="kb-row">
+          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="x">x</button><button class="kb-key wide action" data-v="ai">ai</button><button class="kb-key wide action" data-v="win">win</button><button class="kb-key" data-v="#">#</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">SP</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
+        </div>
+      </div>
+      <div class="kb-panel" id="kbCard">
+        <div class="kb-mode-indicator">CARD</div>
+        <div class="kb-row">
+          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="K">K</button><button class="kb-key" data-v="Q">Q</button><button class="kb-key" data-v="J">J</button><button class="kb-key" data-v="10">10</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="8">8</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="2">2</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-key wide suit-s" data-v="s">s&spades;</button><button class="kb-key wide suit-h" data-v="h">h&hearts;</button><button class="kb-key wide suit-d" data-v="d">d&diams;</button><button class="kb-key wide suit-c" data-v="c">c&clubs;</button>
+        </div>
+        <div class="kb-row">
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">SP</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="action">ACT</button>
+        </div>
+      </div>
+    </div>
     <div class="copy-row">
       <button class="action-btn" onclick="saveToHandList()">Save</button>
       <button class="action-btn secondary" onclick="discardOutput()">Cancel</button>
@@ -1995,6 +2038,148 @@ init();
   handle.addEventListener('mousedown', onStart);
   handle.addEventListener('touchstart', onStart, {passive:false});
 })();
+
+/* --- Custom Keyboard --- */
+(function(){
+  var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  var kb = document.getElementById('customKb');
+  var ta = document.getElementById('outputText');
+  var panelAction = document.getElementById('kbAction');
+  var panelCard = document.getElementById('kbCard');
+  if(!kb || !ta) return;
+
+  var abcMode = false;
+
+  function showKb(){
+    if(!isTouchDevice) return;
+    kb.classList.add('show');
+    ta.setAttribute('readonly','readonly');
+    abcMode = false;
+    // Reset ABC button style
+    var abcBtn = kb.querySelector('[data-cmd="abc"]');
+    if(abcBtn) abcBtn.style.background = '';
+  }
+  function hideKb(){
+    kb.classList.remove('show');
+    ta.removeAttribute('readonly');
+  }
+
+  // Show KB when outputWrap becomes visible
+  var observer = new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      if(m.target.id === 'outputWrap'){
+        if(m.target.classList.contains('show')){
+          showKb();
+        } else {
+          hideKb();
+        }
+      }
+    });
+  });
+  var ow = document.getElementById('outputWrap');
+  if(ow) observer.observe(ow, {attributes:true, attributeFilter:['class']});
+
+  function insertText(str){
+    var s = ta.selectionStart || 0;
+    var e = ta.selectionEnd || 0;
+    var v = ta.value;
+    ta.value = v.slice(0,s) + str + v.slice(e);
+    var np = s + str.length;
+    ta.setSelectionRange(np, np);
+  }
+
+  function handleKey(btn){
+    var val = btn.getAttribute('data-v');
+    var cmd = btn.getAttribute('data-cmd');
+
+    if(val !== null){
+      if(abcMode){
+        ta.setAttribute('readonly','readonly');
+        abcMode = false;
+        var abcBtn = kb.querySelector('[data-cmd="abc"]');
+        if(abcBtn) abcBtn.style.background = '';
+      }
+      ta.focus();
+      insertText(val);
+      return;
+    }
+    if(!cmd) return;
+
+    var s = ta.selectionStart || 0;
+    switch(cmd){
+      case 'left':
+        ta.focus();
+        if(s > 0){ ta.setSelectionRange(s-1, s-1); }
+        break;
+      case 'right':
+        ta.focus();
+        if(s < ta.value.length){ ta.setSelectionRange(s+1, s+1); }
+        break;
+      case 'bs':
+        ta.focus();
+        if(s > 0){
+          ta.value = ta.value.slice(0, s-1) + ta.value.slice(s);
+          ta.setSelectionRange(s-1, s-1);
+        }
+        break;
+      case 'enter':
+        ta.focus();
+        insertText('\n');
+        break;
+      case 'card':
+        panelAction.classList.remove('active');
+        panelCard.classList.add('active');
+        break;
+      case 'action':
+        panelCard.classList.remove('active');
+        panelAction.classList.add('active');
+        break;
+      case 'abc':
+        if(!abcMode){
+          ta.removeAttribute('readonly');
+          abcMode = true;
+          btn.style.background = 'rgba(240,216,48,.35)';
+          ta.focus();
+        } else {
+          ta.setAttribute('readonly','readonly');
+          abcMode = false;
+          btn.style.background = '';
+        }
+        break;
+    }
+  }
+
+  // Use event delegation on the keyboard container
+  kb.addEventListener('touchstart', function(e){
+    var btn = e.target.closest('.kb-key');
+    if(!btn) return;
+    e.preventDefault();
+    handleKey(btn);
+  }, {passive:false});
+
+  kb.addEventListener('mousedown', function(e){
+    var btn = e.target.closest('.kb-key');
+    if(!btn) return;
+    e.preventDefault();
+    handleKey(btn);
+  });
+
+  // Prevent textarea from showing OS keyboard on touch devices
+  if(isTouchDevice){
+    ta.addEventListener('focus', function(){
+      if(!abcMode){
+        ta.setAttribute('readonly','readonly');
+      }
+    });
+    ta.addEventListener('touchend', function(){
+      if(!abcMode){
+        setTimeout(function(){ ta.setAttribute('readonly','readonly'); }, 10);
+      }
+    });
+  }
+})();
+
+init();
 </script>
 <!-- Manual (global) -->
 <div id="manualWrap" style="display:none;margin-top:6px;border:2px solid rgba(240,216,48,.15);border-radius:7px;overflow:hidden;max-width:480px;margin-left:auto;margin-right:auto">
