@@ -77,11 +77,13 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .picker{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 4px;margin:4px 0;display:none}
 .picker.show{display:block}
 .pk-row{display:flex;gap:3px;margin:3px 0;justify-content:center}
-.rank-btn{flex:1;max-width:38px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pk-row2{justify-content:flex-start}
+.pk-spacer{flex:1}
+.rank-btn{flex:0 0 calc((100% - 27px)/10);height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .rank-btn:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
 .rank-btn.used{opacity:.2;pointer-events:none}
 .rank-btn.sel{background:var(--yellow);color:#1a1a1a;border-color:#d0c020}
-.suit-btn{flex:1;max-width:50px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.suit-btn{flex:0 0 calc((100% - 27px)/10);height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .suit-btn:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
 .suit-btn.used{opacity:.2;pointer-events:none}
 .suit-btn.s-s,.suit-btn.s-c{color:#ffffff}
@@ -130,6 +132,10 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .kb-key.suit-s,.kb-key.suit-c{color:#ffffff}
 .kb-key.suit-h,.kb-key.suit-d{color:#e85050}
 .kb-key.kb-suit{flex:0.8;max-width:32px;font-size:16px}
+.kb-row2{justify-content:flex-start}
+.kb-spacer{flex:1}
+.kb-key.kb-rank-fixed{flex:0 0 calc((100% - 30px)/11);max-width:none}
+.kb-key.kb-suit-wide{flex:0 0 calc((100% - 30px)/8);max-width:none;font-size:16px}
 .kb-key.mode-btn{background:rgba(240,216,48,.1);border-color:rgba(240,216,48,.3);color:var(--yellow);font-size:10px;font-weight:800}
 .kb-panel{display:none}
 .kb-panel.active{display:block}
@@ -359,25 +365,25 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
       <div class="kb-panel active" id="kbAction">
         <div class="kb-mode-indicator">ACTION</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button><button class="kb-key" data-v="#">#</button>
+          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button>
         </div>
         <div class="kb-row">
           <button class="kb-key action" data-v="x">x</button><button class="kb-key" data-v="/">/</button><button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="ai">ai</button><button class="kb-key action" data-v="win">win</button><button class="kb-key action" data-v="chop">chop</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key wide" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key" data-v="#">#</button><button class="kb-key wide" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
         </div>
       </div>
       <div class="kb-panel" id="kbCard">
         <div class="kb-mode-indicator">CARD</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="10">10</button>
+          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="10">10</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button>
+        </div>
+        <div class="kb-row kb-row2">
+          <button class="kb-key kb-rank-fixed" data-v="J">J</button><button class="kb-key kb-rank-fixed" data-v="Q">Q</button><button class="kb-key kb-rank-fixed" data-v="K">K</button><span class="kb-spacer"></span><button class="kb-key suit-s kb-suit-wide" data-v="s">&spades;</button><button class="kb-key suit-c kb-suit-wide" data-v="c">&clubs;</button><button class="kb-key suit-h kb-suit-wide" data-v="h">&hearts;</button><button class="kb-key suit-d kb-suit-wide" data-v="d">&diams;</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-v="J">J</button><button class="kb-key" data-v="Q">Q</button><button class="kb-key" data-v="K">K</button><button class="kb-key suit-s kb-suit" data-v="s">&spades;</button><button class="kb-key suit-c kb-suit" data-v="c">&clubs;</button><button class="kb-key suit-h kb-suit" data-v="h">&hearts;</button><button class="kb-key suit-d kb-suit" data-v="d">&diams;</button><button class="kb-key mode-btn" data-cmd="action">ACT</button>
-        </div>
-        <div class="kb-row">
-          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key wide" data-cmd="enter">&crarr;</button>
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key wide" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="action">ACT</button>
         </div>
       </div>
     </div>
@@ -452,10 +458,11 @@ function buildPicker() {
     var display = r === 'T' ? '10' : r;
     html += '<button class="rank-btn" data-rank="'+r+'" onclick="pickRank(\''+r+'\',this)">'+display+'</button>';
   });
-  html += '</div><div class="pk-row">';
+  html += '</div><div class="pk-row pk-row2">';
   row2Ranks.forEach(function(r) {
     html += '<button class="rank-btn" data-rank="'+r+'" onclick="pickRank(\''+r+'\',this)">'+r+'</button>';
   });
+  html += '<span class="pk-spacer"></span>';
   var suits = [{k:'s',sym:'&spades;'},{k:'c',sym:'&clubs;'},{k:'h',sym:'&hearts;'},{k:'d',sym:'&diams;'}];
   suits.forEach(function(s) {
     html += '<button class="suit-btn s-'+s.k+'" data-suit="'+s.k+'" onclick="pickSuit(\''+s.k+'\')">'+s.sym+'</button>';
@@ -530,14 +537,20 @@ function setTarget(target) {
   selRank = null;
   var picker = document.getElementById('sharedPicker');
   picker.querySelectorAll('.rank-btn').forEach(function(b){b.classList.remove('sel')});
-  document.querySelectorAll('.card-slot').forEach(function(el){el.classList.remove('active-target')});
-  var prefix = target === 'heroCards' ? 'heroSlot' : 'boardSlot';
-  var max = cardData[target].max;
-  for (var i = 0; i < max; i++) {
-    var el = document.getElementById(prefix + i);
-    if (!cardData[target].cards[i]) el.classList.add('active-target');
-  }
+  highlightNextSlot();
   refreshUsed();
+}
+
+function highlightNextSlot() {
+  document.querySelectorAll('.card-slot').forEach(function(el){el.classList.remove('active-target')});
+  var prefix = activeTarget === 'heroCards' ? 'heroSlot' : 'boardSlot';
+  var max = cardData[activeTarget].max;
+  for (var i = 0; i < max; i++) {
+    if (!cardData[activeTarget].cards[i]) {
+      document.getElementById(prefix + i).classList.add('active-target');
+      return;
+    }
+  }
 }
 
 function refreshUsed() {
@@ -561,12 +574,7 @@ function refreshUsed() {
 function renderAllSlots() {
   renderSlotRow('heroCards', 'heroSlot', 2);
   renderSlotRow('boardCards', 'boardSlot', 5);
-  var prefix = activeTarget === 'heroCards' ? 'heroSlot' : 'boardSlot';
-  var max = cardData[activeTarget].max;
-  for (var i = 0; i < max; i++) {
-    var el = document.getElementById(prefix + i);
-    if (!cardData[activeTarget].cards[i]) el.classList.add('active-target');
-  }
+  highlightNextSlot();
 }
 
 function renderSlotRow(target, prefix, count) {
