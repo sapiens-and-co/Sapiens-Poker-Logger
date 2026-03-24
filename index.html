@@ -114,10 +114,10 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .gen-btn:active{transform:scale(.97)}
 
 /* output */
-.output-wrap{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;margin:6px 0;display:none}
+.output-wrap{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;margin:6px 0;display:none}
 .output-wrap.show{display:block}
 .output-label{font-size:10px;color:var(--yellow);font-weight:600;margin-bottom:2px}
-.output-text{width:100%;min-height:580px;border:1px solid var(--border);border-radius:5px;padding:6px;font-size:14px;font-family:"SFMono-Regular",Consolas,monospace;color:var(--text);background:var(--bg);resize:vertical;line-height:1.5;-webkit-user-select:text;user-select:text;-webkit-appearance:none;cursor:text}
+.output-text{width:100%;box-sizing:border-box;min-height:580px;border:1px solid var(--border);border-radius:5px;padding:6px;font-size:14px;font-family:"SFMono-Regular",Consolas,monospace;color:var(--text);background:var(--bg);resize:vertical;line-height:1.5;-webkit-user-select:text;user-select:text;-webkit-appearance:none;cursor:text}
 .output-text:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 2px rgba(240,216,48,.25)}
 .resize-handle{width:100%;height:28px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;touch-action:none;user-select:none;-webkit-user-select:none}
 .resize-handle span{display:block;width:40px;height:4px;background:var(--border);border-radius:2px}
@@ -1938,11 +1938,18 @@ init();
   var handle = document.getElementById('resizeHandle');
   var ta = document.getElementById('outputText');
   if(!handle || !ta) return;
-  var startY, startH;
+  var startY, startH, scrollOffset, rafId, dragging;
+  var EDGE = 60, MAX_SPEED = 12;
+  function autoScroll(){
+    if(!dragging) return;
+    rafId = requestAnimationFrame(autoScroll);
+  }
   function onStart(e){
     var ev = e.touches ? e.touches[0] : e;
     startY = ev.clientY;
     startH = ta.offsetHeight;
+    scrollOffset = 0;
+    dragging = true;
     ta.style.minHeight = '100px';
     document.addEventListener('mousemove', onMove, {passive:false});
     document.addEventListener('mouseup', onEnd);
@@ -1952,11 +1959,26 @@ init();
   }
   function onMove(e){
     var ev = e.touches ? e.touches[0] : e;
-    var newH = Math.max(100, startH + (ev.clientY - startY));
+    var clientY = ev.clientY;
+    var vh = window.innerHeight;
+    var distBottom = vh - clientY;
+    var distTop = clientY;
+    if(distBottom < EDGE){
+      var speed = Math.round(MAX_SPEED * (1 - distBottom / EDGE));
+      window.scrollBy(0, speed);
+      scrollOffset += speed;
+    } else if(distTop < EDGE){
+      var speed = Math.round(MAX_SPEED * (1 - distTop / EDGE));
+      window.scrollBy(0, -speed);
+      scrollOffset -= speed;
+    }
+    var newH = Math.max(100, startH + (clientY - startY) + scrollOffset);
     ta.style.height = newH + 'px';
     e.preventDefault();
   }
   function onEnd(){
+    dragging = false;
+    if(rafId) cancelAnimationFrame(rafId);
     document.removeEventListener('mousemove', onMove);
     document.removeEventListener('mouseup', onEnd);
     document.removeEventListener('touchmove', onMove);
