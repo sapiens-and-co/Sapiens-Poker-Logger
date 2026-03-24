@@ -23,9 +23,9 @@
 <title>Sapiens Poker Logger v0.2</title>
 <style>
 :root {
-  --bg:#eff6f8; --card:#eff6f8; --border:#063b63; --text:#144d75;
+  --bg:#eff6f8; --card:#eff6f8; --border:#144d75; --text:#144d75;
   --accent:#144d75; --dim:#144d75;
-  --accent-bg:rgba(6,59,99,.10); --accent-border:rgba(6,59,99,.35);
+  --accent-bg:rgba(6,59,99,.10); --accent-border:rgba(20,77,117,.35);
   --std:rgba(6,59,99,.10);
   --highlight:rgba(240,216,48,.35);
 }
@@ -2951,7 +2951,7 @@ document.addEventListener('click', function(e){
       <div id="cpSampleHeader" style="border-radius:5px;padding:8px 12px;text-align:center;font-weight:800;font-size:14px">Sapiens Poker Logger</div>
       <!-- Journey card expanded -->
       <div id="cpSampleCard" style="border:1px solid;border-radius:5px;padding:8px 10px;margin:4px 0">
-        <div style="font-weight:800;font-size:14px">2026.03.taipei <span style="float:right;font-weight:700;font-size:11px">2026/03/25</span></div>
+        <div style="font-weight:800;font-size:14px">2026.03.Manila <span style="float:right;font-weight:700;font-size:11px">2026/03/25</span></div>
         <div style="font-size:10px;font-weight:700;letter-spacing:.06em;margin-top:3px"><span>SESSIONS</span> <span style="font-size:13px;font-weight:800">4</span> <span style="margin-left:8px">PROFIT/LOSS</span> <span style="font-size:13px;font-weight:800">+261,020</span> <span style="margin-left:8px">HOURS</span> <span style="font-size:13px;font-weight:800">3.4</span></div>
         <!-- Sessions label -->
         <div style="font-size:10px;font-weight:700;letter-spacing:.08em;margin-top:8px">SESSIONS</div>
@@ -2994,7 +2994,7 @@ document.addEventListener('click', function(e){
             <div id="cpSwatch-std" style="width:52px;height:52px;border-radius:50%;border:2px solid"></div>
             <input type="color" id="cpInput-std" style="position:absolute;top:0;left:0;width:52px;height:52px;opacity:0;cursor:pointer" onchange="onCpChange('std',this.value)" oninput="onCpChange('std',this.value)">
           </div>
-          <div style="font-size:9px;font-weight:700;margin-top:3px">STANDARD</div>
+          <div style="font-size:9px;font-weight:700;margin-top:3px">基調色</div>
           <div id="cpHex-std" style="font-family:monospace;font-size:11px;font-weight:700"></div>
         </div>
         <div style="text-align:center">
@@ -3002,7 +3002,7 @@ document.addEventListener('click', function(e){
             <div id="cpSwatch-fill" style="width:52px;height:52px;border-radius:50%;border:2px solid"></div>
             <input type="color" id="cpInput-fill" style="position:absolute;top:0;left:0;width:52px;height:52px;opacity:0;cursor:pointer" onchange="onCpChange('fill',this.value)" oninput="onCpChange('fill',this.value)">
           </div>
-          <div style="font-size:9px;font-weight:700;margin-top:3px">FILL</div>
+          <div style="font-size:9px;font-weight:700;margin-top:3px">中間色</div>
           <div id="cpHex-fill" style="font-family:monospace;font-size:11px;font-weight:700"></div>
         </div>
         <div style="text-align:center">
@@ -3010,7 +3010,7 @@ document.addEventListener('click', function(e){
             <div id="cpSwatch-bg" style="width:52px;height:52px;border-radius:50%;border:2px solid"></div>
             <input type="color" id="cpInput-bg" style="position:absolute;top:0;left:0;width:52px;height:52px;opacity:0;cursor:pointer" onchange="onCpChange('bg',this.value)" oninput="onCpChange('bg',this.value)">
           </div>
-          <div style="font-size:9px;font-weight:700;margin-top:3px">BG</div>
+          <div style="font-size:9px;font-weight:700;margin-top:3px">背景色</div>
           <div id="cpHex-bg" style="font-family:monospace;font-size:11px;font-weight:700"></div>
         </div>
       </div>
@@ -3053,9 +3053,9 @@ function applyColorVars(std, fill, bg) {
   root.setProperty('--text', std);
   root.setProperty('--accent', std);
   root.setProperty('--dim', std);
-  root.setProperty('--border', fill);
+  root.setProperty('--border', std);
   root.setProperty('--accent-bg', hexToRgba(fill, .10));
-  root.setProperty('--accent-border', hexToRgba(fill, .35));
+  root.setProperty('--accent-border', hexToRgba(std, .35));
   root.setProperty('--std', hexToRgba(fill, .10));
 }
 
@@ -3066,23 +3066,24 @@ function updateCpPreview(std, fill, bg) {
   // Header
   var h = document.getElementById('cpSampleHeader');
   h.style.background = std; h.style.color = bg;
-  // Cards (bg border)
-  ['cpSampleCard','cpSampleSess'].forEach(function(id){
-    var c = document.getElementById(id);
-    if(c){c.style.borderColor = fill; c.style.color = std; c.style.background = bg;}
-  });
-  // Detail box (bg border)
+  // Journey card (tint fill, std border)
+  var jc = document.getElementById('cpSampleCard');
+  if(jc){jc.style.borderColor = std; jc.style.color = std; jc.style.background = tint;}
+  // Session card (bg, std border)
+  var sc = document.getElementById('cpSampleSess');
+  if(sc){sc.style.borderColor = std; sc.style.color = std; sc.style.background = bg;}
+  // Detail box (bg, std border)
   var det = document.getElementById('cpSampleDetail');
-  if(det){det.style.borderColor = fill; det.style.color = std; det.style.background = bg;}
-  // Hand items (tint fill)
+  if(det){det.style.borderColor = std; det.style.color = std; det.style.background = bg;}
+  // Hand items (tint fill, std border)
   ['cpSampleHand1','cpSampleHand2'].forEach(function(id){
     var c = document.getElementById(id);
-    if(c){c.style.borderColor = fill; c.style.color = std; c.style.background = tint;}
+    if(c){c.style.borderColor = std; c.style.color = std; c.style.background = tint;}
   });
-  // Edit buttons on hands (bg fill)
+  // Edit buttons on hands (bg fill, std border)
   ['cpSampleEditBtn','cpSampleEditBtn2'].forEach(function(id){
     var b = document.getElementById(id);
-    if(b){b.style.borderColor = fill; b.style.color = std; b.style.background = bg;}
+    if(b){b.style.borderColor = std; b.style.color = std; b.style.background = bg;}
   });
   // Primary buttons
   ['cpSampleBtn','cpSampleActBtn'].forEach(function(id){
@@ -3091,16 +3092,16 @@ function updateCpPreview(std, fill, bg) {
   });
   // Secondary buttons
   var ab2 = document.getElementById('cpSampleActBtn2');
-  if(ab2){ab2.style.borderColor = fill; ab2.style.color = std; ab2.style.background = 'transparent';}
+  if(ab2){ab2.style.borderColor = std; ab2.style.color = std; ab2.style.background = 'transparent';}
   // Controls area
   var ctrl = document.getElementById('cpControls');
-  ctrl.style.background = bg; ctrl.style.borderColor = fill; ctrl.style.color = std;
+  ctrl.style.background = bg; ctrl.style.borderColor = std; ctrl.style.color = std;
   // Action buttons
   var ab = document.getElementById('cpApplyBtn');
   if(ab){ab.style.background = std; ab.style.color = bg;}
   ['cpResetBtn','cpCloseBtn'].forEach(function(id){
     var b = document.getElementById(id);
-    if(b){b.style.background = 'transparent'; b.style.borderColor = fill; b.style.color = std;}
+    if(b){b.style.background = 'transparent'; b.style.borderColor = std; b.style.color = std;}
   });
 }
 

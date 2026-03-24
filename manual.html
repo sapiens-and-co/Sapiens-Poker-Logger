@@ -85,7 +85,7 @@
 <body>
 
 <header>
-  <h1>Sapiens Poker <span>Logger</span> v0.2 - Manual</h1>
+  <h1>Sapiens Poker <span>Logger</span> v0.3 - Manual</h1>
 </header>
 
 <div class="wrap">
@@ -116,20 +116,20 @@
 <!-- 2 -->
 <section>
 <details>
-  <summary><h2><span class="num">2.</span>トップページ（記録一覧）</h2></summary>
-  <p>アプリ起動時に表示される画面です。作成した記録（Trip）が一覧で並びます。</p>
+  <summary><h2><span class="num">2.</span>トップページ（アコーディオン一覧）</h2></summary>
+  <p>アプリ起動時に表示される画面です。作成した記録（Journey）がアコーディオン形式で一覧表示されます。</p>
   <h3>画面の構成</h3>
   <ul>
-    <li><strong>「新しい記録を作成」ボタン</strong> — 新しい遠征・旅の記録を作成</li>
-    <li><strong>記録カード</strong> — 各記録のタイトル・日付・SESSIONS数・P/L・HOURS を表示。タップで中に入る</li>
-    <li><strong>DELボタン</strong> — 各記録の右下にあり、記録を削除（確認ダイアログ付き）</li>
-    <li><strong>App Guide</strong> — アプリの基本的な使い方の簡易ガイド</li>
+    <li><strong>Journeyカード</strong> — 各記録のタイトル・日付・SESSIONS数・PROFIT/LOSS・HOURS を表示。タップで展開し、セッション一覧がインラインで表示される（画面遷移なし）</li>
+    <li><strong>Quick Start &amp; Output Sample</strong> — アプリの基本的な使い方と出力サンプルが1つのボックスにまとめて表示。Journeyが存在する場合はガイドが折りたたまれ、▶ インジケーターをタップで展開可能</li>
   </ul>
   <h3>フッター</h3>
   <ul>
-    <li><strong>マニュアル</strong> — このマニュアルを開閉（どの画面からでも利用可能）</li>
-    <li><strong>要望を投稿</strong> — フィードバックフォームを開く</li>
-    <li><strong>SNSアイコン</strong> — X / YouTube / note へのリンク</li>
+    <li><strong>Start New Journey</strong> — 新しい遠征・旅の記録を作成</li>
+    <li><strong>Manual</strong> — このマニュアルを新しいタブで開く</li>
+    <li><strong>Feedback</strong> — フィードバックフォームを開く</li>
+    <li><strong>X アイコン</strong> — X（旧Twitter）へのリンク</li>
+    <li><strong>カラーパレットアイコン</strong> — カラーカスタマイズ画面を開く（セクション24参照）</li>
   </ul>
 </details>
 </section>
@@ -137,19 +137,25 @@
 <!-- 3 -->
 <section>
 <details>
-  <summary><h2><span class="num">3.</span>記録（Trip）管理</h2></summary>
-  <p>旅行・遠征単位でセッションをグルーピングできます。</p>
-  <h3>記録の作成</h3>
-  <ol>
-    <li>トップ画面の「新しい記録を作成」をタップ</li>
-    <li>タイトルを入力（例: 2025年11月 台湾ポーカー旅）</li>
-    <li>作成された記録をタップして中に入る</li>
-  </ol>
-  <h3>記録内の機能</h3>
+  <summary><h2><span class="num">3.</span>Journey / セッション統合管理</h2></summary>
+  <p>Journey・セッション・ハンドはすべてトップページのアコーディオンで階層的に管理されます。別画面への遷移はありません。</p>
+  <h3>Journeyの展開</h3>
   <ul>
-    <li>記録単位での累計統計（Total P/L / Sessions / Total Hours / BB/hr）</li>
-    <li>「CSV Export」で収支データを出力（記録内に完了セッションがある場合に表示）</li>
-    <li>「← 記録一覧」で トップ画面に戻る</li>
+    <li>Journeyカードをタップすると展開され、「SESSIONS」ラベルの下にセッション一覧が表示される</li>
+    <li>Journeyカードには タイトル・日付・SESSIONS数・PROFIT/LOSS・HOURS が表示される</li>
+    <li>Journey内の統計情報（Total P/L / Sessions / Total Hours / BB/hr）も確認可能</li>
+  </ul>
+  <h3>セッションの展開</h3>
+  <ul>
+    <li>セッション項目をタップすると展開され、詳細統計・ハンド一覧が表示される</li>
+    <li>各セッションには 日付・場所・ゲーム情報・ハンド数・P/L が表示される</li>
+    <li>展開したセッション内に「HANDS」ラベルとハンド項目、「Add Hand」「Export」ボタンが表示される</li>
+  </ul>
+  <h3>Journey内のボタン</h3>
+  <ul>
+    <li><strong>New Session</strong> — 展開したJourney内に表示。新しいセッションを開始</li>
+    <li><strong>Edit ボタン</strong> — Journey下部に表示。タップでJourney編集モーダルが開く（削除機能もモーダル内に含まれる）</li>
+    <li><strong>CSV Export</strong> — 記録内に完了セッションがある場合に表示</li>
   </ul>
 </details>
 </section>
@@ -163,7 +169,7 @@
   <summary><h2><span class="num">4.</span>セッション管理</h2></summary>
   <h3>セッション開始</h3>
   <ol>
-    <li>記録内で「New Session」をタップ</li>
+    <li>Journey内で「New Session」をタップ</li>
     <li>Location（場所）、Game（NLH/PLO）、SB/BB、Buy-in を入力</li>
     <li>「Start」でセッション開始。経過時間の計測が始まります</li>
   </ol>
@@ -173,7 +179,8 @@
     <tbody>
     <tr><td><code>Add On</code></td><td>セッションバーのBuy-in表示横のボタン。追加バイインを記録。複数回可能</td></tr>
     <tr><td><code>End</code></td><td>キャッシュアウト額を入力してセッション終了。収支が自動計算されます</td></tr>
-    <tr><td><code>Hands</code></td><td>保存済みハンドの一覧表示。Export (.txt) で一括出力</td></tr>
+    <tr><td><code>Add Hand</code></td><td>新しいハンドを記録。セッション展開内に表示</td></tr>
+    <tr><td><code>Export</code></td><td>保存済みハンドを .txt で一括出力</td></tr>
     </tbody>
   </table>
   <h3>セッションバー</h3>
@@ -188,13 +195,14 @@
 <section>
 <details>
   <summary><h2><span class="num">5.</span>セッション詳細の編集</h2></summary>
-  <p>終了済みセッションをタップすると詳細画面が開きます。各項目をタップして直接編集できます。</p>
+  <p>セッションを展開すると詳細情報が表示されます。Editボタンから各項目を編集できます。</p>
   <h3>編集可能な項目</h3>
   <table class="m-card">
     <thead><tr><th>項目</th><th>操作</th></tr></thead>
     <tbody>
     <tr><td><code>Location</code></td><td>タップ → テキスト入力に切替。入力後に自動保存</td></tr>
-    <tr><td><code>Date</code></td><td>タップ → 日時編集モーダルが開く。開始・終了の日付と時刻を変更可能</td></tr>
+    <tr><td><code>Date</code></td><td>日付入力フィールドで変更可能</td></tr>
+    <tr><td><code>Start/End Time</code></td><td>時刻はホイール/スワイプ対応の数値入力（時・分）で編集可能</td></tr>
     <tr><td><code>Game</code></td><td>タップ → NLH / PLO のセレクトに切替</td></tr>
     <tr><td><code>Buy-ins</code></td><td>タップ → 各Buy-in金額を個別に編集できるモーダルが開く</td></tr>
     <tr><td><code>Cash-out</code></td><td>タップ → 数値入力に切替</td></tr>
@@ -212,8 +220,25 @@
 <!-- 6 -->
 <section>
 <details>
-  <summary><h2><span class="num">6.</span>CSV Export</h2></summary>
-  <p>記録内のセッション一覧画面から「CSV Export」ボタンで出力できます。</p>
+  <summary><h2><span class="num">6.</span>Editボタンと削除</h2></summary>
+  <p>各項目の編集・削除は「Edit」ボタンを通じて行います。</p>
+  <h3>Edit ボタンの配置</h3>
+  <ul>
+    <li><strong>Journey</strong> — 展開したJourney下部のEditボタン → 編集モーダルが開く。モーダル内に削除機能も含まれる</li>
+    <li><strong>ハンド項目</strong> — 各ハンドにEditボタンが表示される。タップでハンド編集画面が開く</li>
+    <li><strong>アクティブセッション内のハンド</strong> — 同様にEditボタンで編集可能</li>
+  </ul>
+  <div class="note">
+    <strong>ポイント:</strong> 従来のDELボタンは廃止され、削除機能はすべてEditモーダル/画面内に統合されました。誤操作による削除を防止します。
+  </div>
+</details>
+</section>
+
+<!-- 7 -->
+<section>
+<details>
+  <summary><h2><span class="num">7.</span>CSV Export</h2></summary>
+  <p>Journey内のセッション一覧から「CSV Export」ボタンで出力できます。</p>
   <h3>出力カラム</h3>
   <table class="m-card">
     <thead><tr><th>カラム</th><th>内容</th></tr></thead>
@@ -230,17 +255,17 @@
     <tr><td><code>TripCumulativeP/L</code></td><td>記録全体の累計収支</td></tr>
     </tbody>
   </table>
-  <p style="color:var(--dim)">Excel / Google Sheets に取り込んで、YouTube動画用の収支グラフ作成などに活用できます。</p>
+  <p style="color:var(--dim)">Excel / Google Sheets に取り込んで、収支グラフ作成などに活用できます。</p>
 </details>
 </section>
 
 <!-- ====== カテゴリ: ハンド記録 ====== -->
 <h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">ハンド記録</h3>
 
-<!-- 7 -->
+<!-- 8 -->
 <section>
 <details>
-  <summary><h2><span class="num">7.</span>ハンド記録の流れ</h2></summary>
+  <summary><h2><span class="num">8.</span>ハンド記録の流れ</h2></summary>
   <ol>
     <li>Hand / Blind でハンド番号・ブラインド・Hero情報を入力</li>
     <li>Cards でHeroカード・ボードカードを選択</li>
@@ -262,10 +287,10 @@
 </details>
 </section>
 
-<!-- 6 -->
+<!-- 9 -->
 <section>
 <details>
-  <summary><h2><span class="num">8.</span>メモの書き方 — 全体構造</h2></summary>
+  <summary><h2><span class="num">9.</span>メモの書き方 — 全体構造</h2></summary>
 <pre>
 <span class="cm"># ① ヘッダー</span>          <span class="cm"># ③ ストリート</span>
 #03                     <span class="sec">---pf</span>
@@ -286,10 +311,10 @@ btn 9
 </details>
 </section>
 
-<!-- 7 -->
+<!-- 10 -->
 <section>
 <details>
-  <summary><h2><span class="num">9.</span>ヘッダー（メタ情報）</h2></summary>
+  <summary><h2><span class="num">10.</span>ヘッダー（メタ情報）</h2></summary>
   <table class="m-card">
     <thead><tr><th>項目</th><th>書式</th><th>例</th></tr></thead>
     <tbody>
@@ -305,10 +330,10 @@ btn 9
 </details>
 </section>
 
-<!-- 8 -->
+<!-- 11 -->
 <section>
 <details>
-  <summary><h2><span class="num">10.</span>プレイヤー一覧</h2></summary>
+  <summary><h2><span class="num">11.</span>プレイヤー一覧</h2></summary>
   <p><code>---pf</code> の前に <strong>UTG から時計回り順</strong>で記載。シート番号は実際の座席番号（1〜10、欠番OK）。</p>
 <pre>
 <span class="val">2</span> プレイヤーA  <span class="cm">← UTG</span>    <span class="val">9</span> プレイヤーE  <span class="cm">← BTN</span>
@@ -320,10 +345,10 @@ btn 9
 </details>
 </section>
 
-<!-- 9 -->
+<!-- 12 -->
 <section>
 <details>
-  <summary><h2><span class="num">11.</span>ポジション自動割り当て</h2></summary>
+  <summary><h2><span class="num">12.</span>ポジション自動割り当て</h2></summary>
   <table class="pos-tbl">
     <tr><td>10max</td><td>BTN SB BB UTG +1 MP1 MP2 LJ HJ CO</td></tr>
     <tr><td>9max</td><td>BTN SB BB UTG +1 MP LJ HJ CO</td></tr>
@@ -339,10 +364,10 @@ btn 9
 </details>
 </section>
 
-<!-- 10 -->
+<!-- 13 -->
 <section>
 <details>
-  <summary><h2><span class="num">12.</span>アクション省略記法</h2></summary>
+  <summary><h2><span class="num">13.</span>アクション省略記法</h2></summary>
   <table>
     <tr><th>記法</th><th>意味</th><th>金額</th><th>例</th></tr>
     <tr><td><code>f</code></td><td>fold</td><td>不要</td><td><code>3 f</code></td></tr>
@@ -357,10 +382,10 @@ btn 9
 </details>
 </section>
 
-<!-- 11 -->
+<!-- 14 -->
 <section>
 <details>
-  <summary><h2><span class="num">13.</span>ストリート（pf / flop / turn / river）</h2></summary>
+  <summary><h2><span class="num">14.</span>ストリート（pf / flop / turn / river）</h2></summary>
   <table>
     <tr><th>セクション</th><th>書式</th><th>ボード</th></tr>
     <tr><td>プリフロップ</td><td><code>---pf</code></td><td>なし</td></tr>
@@ -384,10 +409,10 @@ btn 9
 </details>
 </section>
 
-<!-- 12 -->
+<!-- 15 -->
 <section>
 <details>
-  <summary><h2><span class="num">14.</span>ショーダウン &amp; リザルト</h2></summary>
+  <summary><h2><span class="num">15.</span>ショーダウン &amp; リザルト</h2></summary>
   <h3>ショーダウン <code>---sd</code></h3>
   <table>
     <tr><th>書式</th><th>意味</th><th>例</th></tr>
@@ -405,19 +430,19 @@ btn 9
 </details>
 </section>
 
-<!-- 13 -->
+<!-- 16 -->
 <section>
 <details>
-  <summary><h2><span class="num">15.</span>カード表記</h2></summary>
-  <p><strong>ランク:</strong> <code>2</code>〜<code>9</code> / <code>T</code>or<code>10</code> / <code>J</code> <code>Q</code> <code>K</code> <code>A</code> &nbsp; <strong>スート:</strong> <code>s</code>=♠ <code>h</code>=♥ <code>d</code>=♦ <code>c</code>=♣</p>
+  <summary><h2><span class="num">16.</span>カード表記</h2></summary>
+  <p><strong>ランク:</strong> <code>2</code>〜<code>9</code> / <code>T</code>or<code>10</code> / <code>J</code> <code>Q</code> <code>K</code> <code>A</code> &nbsp; <strong>スート:</strong> <code>s</code>=&#9824; <code>h</code>=&#9829; <code>d</code>=&#9830; <code>c</code>=&#9827;</p>
   <p>例: <code>Ah</code> <code>10c</code> <code>Ts</code> <code>2d</code> &mdash; 大文字小文字混在OK</p>
 </details>
 </section>
 
-<!-- 14 -->
+<!-- 17 -->
 <section>
 <details>
-  <summary><h2><span class="num">16.</span>記入例（フル）</h2></summary>
+  <summary><h2><span class="num">17.</span>記入例（フル）</h2></summary>
 <pre>
 <span class="kw">#04</span>
 <span class="kw">sb200 bb400 ante400</span>
@@ -453,11 +478,11 @@ btn 9
 <!-- ====== カテゴリ: カスタムキーボード & 入力支援 ====== -->
 <h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">カスタムキーボード &amp; 入力支援</h3>
 
-<!-- 17 -->
+<!-- 18 -->
 <section>
 <details>
-  <summary><h2><span class="num">17.</span>カスタムキーボード <span class="tag new">NEW</span></h2></summary>
-  <p>ハンド記録の編集画面では、ポーカー専用のカスタムキーボードが表示されます。3つのモードを切り替えて効率的に入力できます。</p>
+  <summary><h2><span class="num">18.</span>カスタムキーボード</h2></summary>
+  <p>ハンド記録の編集画面では、ポーカー専用のカスタムキーボードが表示されます。<code>CARD/ACT</code>トグルボタンでカードモードとアクションモードを切り替えて効率的に入力できます。トグルボタンには現在のモードが表示されます。</p>
   <h3>Action Mode（アクションモード）</h3>
   <p>デフォルトのモードです。ハンドのアクションを素早く入力するためのキーが並びます。</p>
   <table class="m-card">
@@ -486,16 +511,23 @@ btn 9
 
   <h3>ABC Mode（ABCモード）</h3>
   <p><code>ABC</code>キーで切り替わります。OS標準のソフトキーボードが表示され、日本語入力やプレイヤー名などの自由テキストを入力できます。</p>
+
+  <h3>キーボードレイアウト</h3>
+  <ul>
+    <li>全キーは固定幅（標準36px、ワイドキー52px）でレイアウトされます</li>
+    <li>ボタンは最大幅500pxで中央揃え</li>
+    <li>Save、Cancel、CARD、ABCボタンは誤タップ防止のためスペースが確保されています</li>
+  </ul>
   <div class="note">
     <strong>ヒント:</strong> プレイヤー名を日本語で入力したい場合はABCモードに切り替えてください。入力が終わったらACTIONモードに戻すことで、再びポーカー専用キーボードが使えます。
   </div>
 </details>
 </section>
 
-<!-- 18 -->
+<!-- 19 -->
 <section>
 <details>
-  <summary><h2><span class="num">18.</span>オートスペース挿入 <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">19.</span>オートスペース挿入</h2></summary>
   <p>アクションモードで数字を入力した後にアクションキー（<code>c</code> <code>r</code> <code>b</code> <code>f</code> <code>x</code> <code>ai</code> <code>win</code> <code>chop</code>）を押すと、数字とアクションの間にスペースが自動挿入されます。</p>
   <h3>例</h3>
   <p><code>10</code> → <code>c</code> と押すと → <code>10 c</code> と入力されます。金額が続く場合は <code>10</code> → <code>c</code> → <code>2000</code> で <code>10 c2000</code> となります。</p>
@@ -505,10 +537,10 @@ btn 9
 </details>
 </section>
 
-<!-- 19 -->
+<!-- 20 -->
 <section>
 <details>
-  <summary><h2><span class="num">19.</span>フルスクリーンエディタ <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">20.</span>フルスクリーンエディタ</h2></summary>
   <p>「テンプレート生成」ボタンを押すと、画面全体を使ったフルスクリーンのテキストエディタが開きます。カスタムキーボードと組み合わせて、ハンドのアクションを快適に記録できます。</p>
   <ul>
     <li>テキストエリアが画面全体に広がり、長いハンド記録でも見やすい</li>
@@ -518,10 +550,10 @@ btn 9
 </details>
 </section>
 
-<!-- 20 -->
+<!-- 21 -->
 <section>
 <details>
-  <summary><h2><span class="num">20.</span>リサイズハンドル <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">21.</span>リサイズハンドル</h2></summary>
   <p>テキストエリアの下部にドラッグハンドルが表示されます。モバイル端末でこのハンドルをドラッグすることで、テキストエリアの高さを自由に調整できます。</p>
   <div class="note">
     <strong>ヒント:</strong> ハンド記録が長くなった場合に、テキストエリアを広げて全体を見渡せるようにすると便利です。
@@ -529,10 +561,10 @@ btn 9
 </details>
 </section>
 
-<!-- 21 -->
+<!-- 22 -->
 <section>
 <details>
-  <summary><h2><span class="num">21.</span>カードピッカーキーボード <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">22.</span>カードピッカーキーボード</h2></summary>
   <p>ヒーローカード（Hero Cards）やコミュニティボード（Flop / Turn / River）のカード入力欄では、専用のカードピッカーキーボードが表示されます。カスタムキーボードと同じスタイルの統一されたUIで、ランクとスートをタップしてカードを入力できます。</p>
   <h3>操作方法</h3>
   <ol>
@@ -544,18 +576,11 @@ btn 9
 </details>
 </section>
 
-<!-- 22 -->
-<section>
-<details>
-  <summary><h2><span class="num">22.</span>カードスロットのハイライト <span class="tag new">NEW</span></h2></summary>
-  <p>カード入力時、現在選択中のカードスロットが黄色の枠線とグロー効果でハイライト表示されます。これにより、どのスロットにカードが入力されるかが一目で分かります。</p>
-</details>
-</section>
-
 <!-- 23 -->
 <section>
 <details>
-  <summary><h2><span class="num">23.</span>任意順序のカード入力 <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">23.</span>カードスロットのハイライト &amp; 任意順序入力</h2></summary>
+  <p>カード入力時、現在選択中のカードスロットがハイライト表示されます。これにより、どのスロットにカードが入力されるかが一目で分かります。</p>
   <p>ヒーローカードとコミュニティボードのカードスロットは、任意の順序で入力できます。左から順番に入力する必要はなく、好きなスロットをタップして先に入力することが可能です。</p>
   <div class="note">
     <strong>例:</strong> フロップの3枚目だけ先に入力したり、ヒーローカードの2枚目から入力したりできます。
@@ -563,13 +588,81 @@ btn 9
 </details>
 </section>
 
-<!-- ====== カテゴリ: 設定・その他 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+<!-- ====== カテゴリ: カラーカスタマイズ ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">カラーカスタマイズ</h3>
 
 <!-- 24 -->
 <section>
 <details>
-  <summary><h2><span class="num">24.</span>デフォルト設定</h2></summary>
+  <summary><h2><span class="num">24.</span>カラーカスタマイズ <span class="tag new">NEW</span></h2></summary>
+  <p>フッターのカラーパレットアイコンをタップすると、フルスクリーンのカラーカスタマイズ画面が開きます。アプリ全体の配色を自由に変更できます。</p>
+  <h3>画面の構成</h3>
+  <ul>
+    <li><strong>上半分: ライブプレビュー</strong> — Journey・セッション・ハンドのサンプルが表示され、色の変更がリアルタイムで反映される</li>
+    <li><strong>下半分: カラーピッカー</strong> — 3つのカラー設定スライダーが表示される</li>
+  </ul>
+  <h3>3つのカラー設定</h3>
+  <table class="m-card">
+    <thead><tr><th>カラー</th><th>用途</th><th>デフォルト</th></tr></thead>
+    <tbody>
+    <tr><td><code>STANDARD</code></td><td>テキスト・ボーダー・アクセントカラー</td><td><code>#144d75</code></td></tr>
+    <tr><td><code>FILL</code></td><td>ヘッダー・ボタン・強調背景</td><td><code>#063b63</code></td></tr>
+    <tr><td><code>BG</code></td><td>ページ全体の背景色</td><td><code>#eff6f8</code></td></tr>
+    </tbody>
+  </table>
+  <h3>お気に入り（FAV）</h3>
+  <ul>
+    <li>5つのお気に入りプリセットスロットが用意されています</li>
+    <li>現在の配色をスロットに保存可能</li>
+    <li>スロットをタップで配色を読み込み</li>
+    <li>スロットの <code>×</code> ボタンで削除</li>
+    <li>使用中のスロットに上書き保存する場合は確認ダイアログが表示されます</li>
+  </ul>
+  <h3>操作ボタン</h3>
+  <ul>
+    <li><strong>Apply</strong> — 選択した配色を適用し、localStorageに保存（ページリロード後も維持）</li>
+    <li><strong>Reset</strong> — デフォルトカラーに戻す</li>
+    <li><strong>Close</strong> — 変更を適用せずに閉じる</li>
+  </ul>
+</details>
+</section>
+
+<!-- ====== カテゴリ: デザインシステム ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">デザインシステム</h3>
+
+<!-- 25 -->
+<section>
+<details>
+  <summary><h2><span class="num">25.</span>2トーンカラースキーム</h2></summary>
+  <p>アプリはStandard・Fill・Backgroundの3色をベースとした2トーンカラースキームを採用しています。</p>
+  <h3>CSS変数</h3>
+  <table class="m-card">
+    <thead><tr><th>変数</th><th>役割</th></tr></thead>
+    <tbody>
+    <tr><td><code>--accent</code></td><td>メインのアクセントカラー（Standard色）</td></tr>
+    <tr><td><code>--border</code></td><td>ボーダー色（Fill色）</td></tr>
+    <tr><td><code>--bg</code></td><td>背景色（BG色）</td></tr>
+    <tr><td><code>--std</code></td><td>Fill色の10%ティント。ハンド項目の背景などに使用</td></tr>
+    <tr><td><code>--accent-bg</code></td><td>Fill色の10%透過。フォーカス時のハイライトに使用</td></tr>
+    </tbody>
+  </table>
+  <h3>カラールール</h3>
+  <ul>
+    <li>白色は使用せず、背景色（transparent / var(--bg)）を使用</li>
+    <li>グレーテキストは使用せず、すべてのテキストにStandard色を使用</li>
+    <li>ハンド項目は <code>var(--std)</code>（10%ティント）の背景</li>
+    <li>Editボタン: ティント背景上では <code>var(--bg)</code>、背景色上では <code>var(--std)</code> を使用</li>
+  </ul>
+</details>
+</section>
+
+<!-- ====== カテゴリ: 設定・その他 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+
+<!-- 26 -->
+<section>
+<details>
+  <summary><h2><span class="num">26.</span>デフォルト設定</h2></summary>
   <p>アクティブセッション画面で以下のデフォルト値を保存できます。</p>
   <table class="m-card">
     <thead><tr><th>項目</th><th>保存方法</th></tr></thead>
@@ -582,10 +675,10 @@ btn 9
 </details>
 </section>
 
-<!-- 16 -->
+<!-- 27 -->
 <section>
 <details>
-  <summary><h2><span class="num">25.</span>PWA（Progressive Web App）インストール</h2></summary>
+  <summary><h2><span class="num">27.</span>PWA（Progressive Web App）インストール</h2></summary>
   <p>このアプリはPWA対応です。PWA（Progressive Web App）とは、ウェブサイトをスマホやPCにアプリのようにインストールできる仕組みです。</p>
   <h3>インストールのメリット</h3>
   <ul>
@@ -614,10 +707,11 @@ btn 9
 </details>
 </section>
 
+<!-- 28 -->
 <section>
 <details>
-  <summary><h2><span class="num">26.</span>要望を投稿</h2></summary>
-  <p>画面下部の「要望を投稿」ボタンから、匿名のフィードバックフォームに移動できます。</p>
+  <summary><h2><span class="num">28.</span>要望を投稿</h2></summary>
+  <p>フッターの「Feedback」ボタンから、匿名のフィードバックフォームに移動できます。</p>
   <ul>
     <li>「こんな機能がほしい」「ここが使いにくい」など、どんな小さなことでも大歓迎です</li>
     <li>匿名で送信できますので、お気軽にご意見をお聞かせください</li>
