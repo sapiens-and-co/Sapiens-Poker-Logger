@@ -232,7 +232,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .modal-btn-row{display:flex;gap:6px;margin-top:12px}
 .modal-btn-row .action-btn{flex:1}
 
-.new-session-btn{display:block;padding:6px 16px;border:none;border-radius:5px;font-size:12px;font-weight:800;color:var(--bg);cursor:pointer;background:var(--accent);box-shadow:none;letter-spacing:.04em;margin:0 auto;width:fit-content}
+.new-session-btn{display:block;padding:5px 12px;border:none;border-radius:5px;font-size:11px;font-weight:800;color:var(--bg);cursor:pointer;background:var(--accent);box-shadow:none;letter-spacing:.04em;margin:0;width:fit-content}
 .new-session-btn:active{transform:scale(.97)}
 
 .detail-back{background:none;border:1px solid var(--border);border-radius:5px;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;padding:4px 12px;margin-bottom:6px}
@@ -311,11 +311,11 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .guide-section p{font-size:11px;color:var(--dim);line-height:1.6;margin:3px 0}
 
 /* ===== Footer styles ===== */
-.bottom-bar{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 0 0;flex-wrap:wrap}
-.bottom-icon{display:flex;align-items:center;justify-content:center;width:26px;height:26px;color:var(--text);text-decoration:none;transition:opacity .15s}
+.bottom-bar{display:flex;align-items:center;justify-content:center;gap:4px;padding:10px 0 0;flex-wrap:nowrap}
+.bottom-icon{display:flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--text);text-decoration:none;transition:opacity .15s}
 .bottom-icon:hover,.bottom-icon:active{opacity:.6}
-.bottom-icon svg{width:14px;height:14px;fill:currentColor}
-.footer-link-btn{background:transparent;border:1px solid var(--accent);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:800;cursor:pointer;color:var(--accent);letter-spacing:.02em;font-family:inherit;line-height:1.3;white-space:nowrap;margin-right:3px}
+.bottom-icon svg{width:13px;height:13px;fill:currentColor}
+.footer-link-btn{background:transparent;border:1px solid var(--accent);border-radius:4px;padding:3px 8px;font-size:10px;font-weight:800;cursor:pointer;color:var(--accent);letter-spacing:.02em;font-family:inherit;line-height:1.3;white-space:nowrap}
 .footer-link-btn:active{background:var(--accent-bg)}
 </style>
 </head>
@@ -1206,11 +1206,11 @@ function renderTripsList() {
 
 function buildGuideHtml(collapsed) {
   var h = '<div class="guide-box"' + (collapsed ? ' onclick="toggleGuide(this)" style="cursor:pointer"' : '') + '>';
-  h += '<div class="guide-title">' + (collapsed ? '&#9654; ' : '') + 'Quick Start &amp; Output Sample</div>';
+  h += '<div class="guide-title">' + (collapsed ? '&#9654; ' : '') + 'First Guide</div>';
   h += '<div class="guide-body' + (collapsed ? ' collapsed' : '') + '" style="' + (collapsed ? 'max-height:0' : '') + '">';
-  h += '<p style="font-size:11px;color:var(--dim);line-height:1.5;margin:0 0 6px">\u5F53\u30A2\u30D7\u30EA\u306F\u3001\u30E9\u30A4\u30D6\u30DD\u30FC\u30AB\u30FC\u306E\u30CF\u30F3\u30C9\u5C65\u6B74\u3092\u305D\u306E\u5834\u3067\u7D20\u65E9\u304F\u8A18\u9332\u3059\u308B\u305F\u3081\u306E\u30A2\u30D7\u30EA\u3067\u3059\u3002\u30D7\u30EC\u30A4\u6642\u9593\u3084\u53CE\u652F\u3092\u81EA\u52D5\u96C6\u8A08\u3002\u767B\u9332\u4E0D\u8981\u3001\u5B8C\u5168\u7121\u6599\u3001\u3059\u3050\u306B\u3054\u5229\u7528\u53EF\u80FD\u3067\u3059\u3002</p>';
+  h += '<p style="font-size:11px;color:var(--dim);line-height:1.5;margin:0 0 6px">\u30E9\u30A4\u30D6\u30DD\u30FC\u30AB\u30FC\u306E\u30CF\u30F3\u30C9\u5C65\u6B74\u3092\u7D20\u65E9\u304F\u8A18\u9332\u3059\u308B\u305F\u3081\u306E\u30A2\u30D7\u30EA\u3067\u3059\u3002\u30D7\u30EC\u30A4\u6642\u9593\u3084\u53CE\u652F\u3092\u81EA\u52D5\u96C6\u8A08\u3002\u767B\u9332\u4E0D\u8981\u3001\u5B8C\u5168\u7121\u6599\u3067\u5229\u7528\u53EF\u80FD\u3002</p>';
   h += '<ol class="guide-steps">';
-  h += '<li><span class="step-num">1</span><span class="step-text"><strong>\u8A18\u9332\u3092\u4F5C\u6210</strong><span class="step-sub">\u4E0A\u306E\u300CStart New Journey\u300D\u304B\u3089\u65C5\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u5165\u529B</span></span></li>';
+  h += '<li><span class="step-num">1</span><span class="step-text"><strong>\u8A18\u9332\u3092\u4F5C\u6210</strong><span class="step-sub">\u300CStart New Journey\u300D\u2192\u65C5\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u5165\u529B</span></span></li>';
   h += '<li><span class="step-num">2</span><span class="step-text"><strong>\u30BB\u30C3\u30B7\u30E7\u30F3\u3092\u958B\u59CB</strong><span class="step-sub">\u300CNew Session\u300D\u2192 \u30B2\u30FC\u30E0\u60C5\u5831\u3092\u5165\u529B</span></span></li>';
   h += '<li><span class="step-num">3</span><span class="step-text"><strong>\u30CF\u30F3\u30C9\u3092\u8A18\u9332</strong><span class="step-sub">\u30AB\u30FC\u30C9\u9078\u629E \u2192 \u30C6\u30F3\u30D7\u30EC\u751F\u6210 \u2192 \u30A2\u30AF\u30B7\u30E7\u30F3\u8FFD\u8A18</span></span></li>';
   h += '<li><span class="step-num">4</span><span class="step-text"><strong>\u30BB\u30C3\u30B7\u30E7\u30F3\u7D42\u4E86</strong><span class="step-sub">\u300CEnd\u300D\u3067\u6700\u7D42\u984D\u3092\u5165\u529B\u2192\u53CE\u652F\u3092\u81EA\u52D5\u8A08\u7B97</span></span></li>';
@@ -1232,13 +1232,13 @@ function toggleGuide(el) {
     body.style.display = 'block';
     body.style.maxHeight = body.scrollHeight + 'px';
     body.classList.remove('collapsed');
-    title.innerHTML = '&#9660; Quick Start &amp; Output Sample';
+    title.innerHTML = '&#9660; First Guide';
   } else {
     body.style.maxHeight = body.scrollHeight + 'px';
     requestAnimationFrame(function(){
       body.classList.add('collapsed');
     });
-    title.innerHTML = '&#9654; Quick Start &amp; Output Sample';
+    title.innerHTML = '&#9654; First Guide';
   }
 }
 
