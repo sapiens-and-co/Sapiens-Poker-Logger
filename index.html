@@ -117,8 +117,10 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .output-wrap{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px;margin:6px 0;display:none}
 .output-wrap.show{display:block}
 .output-label{font-size:10px;color:var(--yellow);font-weight:600;margin-bottom:2px}
-.output-text{width:100%;min-height:360px;border:1px solid var(--border);border-radius:5px;padding:6px;font-size:14px;font-family:"SFMono-Regular",Consolas,monospace;color:var(--text);background:var(--bg);resize:vertical;line-height:1.5;-webkit-user-select:text;user-select:text;-webkit-appearance:none;cursor:text}
+.output-text{width:100%;min-height:620px;border:1px solid var(--border);border-radius:5px;padding:6px;font-size:14px;font-family:"SFMono-Regular",Consolas,monospace;color:var(--text);background:var(--bg);resize:vertical;line-height:1.5;-webkit-user-select:text;user-select:text;-webkit-appearance:none;cursor:text}
 .output-text:focus{outline:none;border-color:var(--yellow);box-shadow:0 0 0 2px rgba(240,216,48,.25)}
+.resize-handle{width:100%;height:28px;display:flex;align-items:center;justify-content:center;cursor:ns-resize;touch-action:none;user-select:none;-webkit-user-select:none}
+.resize-handle span{display:block;width:40px;height:4px;background:var(--border);border-radius:2px}
 .copy-row{display:flex;gap:5px;margin-top:4px}
 .copy-row{justify-content:center}
 .action-btn{flex:1;padding:5px 8px;border:none;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#a09018,#b8a820,#a09018);color:#fff}
@@ -340,6 +342,7 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
   <div class="output-wrap" id="outputWrap">
     <div class="output-label">&#9998; &#x7DE8;&#x96C6;&#x53EF; &mdash; &#x30A2;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x8FFD;&#x8A18;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;</div>
     <textarea class="output-text" id="outputText"></textarea>
+    <div class="resize-handle" id="resizeHandle"><span></span></div>
     <div class="copy-row">
       <button class="action-btn" onclick="saveToHandList()">Save</button>
       <button class="action-btn secondary" onclick="discardOutput()">Cancel</button>
@@ -1930,6 +1933,37 @@ function init() {
 }
 
 init();
+
+(function(){
+  var handle = document.getElementById('resizeHandle');
+  var ta = document.getElementById('outputText');
+  if(!handle || !ta) return;
+  var startY, startH;
+  function onStart(e){
+    var ev = e.touches ? e.touches[0] : e;
+    startY = ev.clientY;
+    startH = ta.offsetHeight;
+    document.addEventListener('mousemove', onMove, {passive:false});
+    document.addEventListener('mouseup', onEnd);
+    document.addEventListener('touchmove', onMove, {passive:false});
+    document.addEventListener('touchend', onEnd);
+    e.preventDefault();
+  }
+  function onMove(e){
+    var ev = e.touches ? e.touches[0] : e;
+    var newH = Math.max(100, startH + (ev.clientY - startY));
+    ta.style.height = newH + 'px';
+    e.preventDefault();
+  }
+  function onEnd(){
+    document.removeEventListener('mousemove', onMove);
+    document.removeEventListener('mouseup', onEnd);
+    document.removeEventListener('touchmove', onMove);
+    document.removeEventListener('touchend', onEnd);
+  }
+  handle.addEventListener('mousedown', onStart);
+  handle.addEventListener('touchstart', onStart, {passive:false});
+})();
 </script>
 <!-- Manual (global) -->
 <div id="manualWrap" style="display:none;margin-top:6px;border:2px solid rgba(240,216,48,.15);border-radius:7px;overflow:hidden;max-width:480px;margin-left:auto;margin-right:auto">
