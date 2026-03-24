@@ -450,13 +450,126 @@ btn 9
 </details>
 </section>
 
-<!-- ====== カテゴリ: 設定・その他 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+<!-- ====== カテゴリ: カスタムキーボード & 入力支援 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">カスタムキーボード &amp; 入力支援</h3>
 
 <!-- 17 -->
 <section>
 <details>
-  <summary><h2><span class="num">17.</span>デフォルト設定</h2></summary>
+  <summary><h2><span class="num">17.</span>カスタムキーボード <span class="tag new">NEW</span></h2></summary>
+  <p>ハンド記録の編集画面では、ポーカー専用のカスタムキーボードが表示されます。3つのモードを切り替えて効率的に入力できます。</p>
+  <h3>Action Mode（アクションモード）</h3>
+  <p>デフォルトのモードです。ハンドのアクションを素早く入力するためのキーが並びます。</p>
+  <table class="m-card">
+    <thead><tr><th>キー種別</th><th>キー</th></tr></thead>
+    <tbody>
+    <tr><td>数字</td><td><code>0</code>〜<code>9</code></td></tr>
+    <tr><td>記号</td><td><code>#</code> <code>/</code></td></tr>
+    <tr><td>アクション</td><td><code>x</code>(check) <code>c</code>(call) <code>b</code>(bet) <code>r</code>(raise) <code>f</code>(fold) <code>ai</code>(allin) <code>win</code> <code>chop</code></td></tr>
+    <tr><td>ナビゲーション</td><td><code>←</code> <code>→</code>（カーソル移動）</td></tr>
+    <tr><td>編集</td><td><code>␣</code>(スペース) <code>⌫</code>(バックスペース) <code>↵</code>(改行)</td></tr>
+    <tr><td>モード切替</td><td><code>CARD</code>（カードモードへ） <code>ABC</code>（ABCモードへ）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Card Mode（カードモード）</h3>
+  <p><code>CARD</code>キーで切り替わります。カードのランクとスートを入力するためのモードです。</p>
+  <table class="m-card">
+    <thead><tr><th>キー種別</th><th>キー</th></tr></thead>
+    <tbody>
+    <tr><td>ランク</td><td><code>A</code> <code>2</code>〜<code>10</code> <code>J</code> <code>Q</code> <code>K</code></td></tr>
+    <tr><td>スート</td><td><code>♠</code>(s) <code>♣</code>(c) <code>♥</code>(h) <code>♦</code>(d)</td></tr>
+    <tr><td>ナビゲーション・編集</td><td><code>←</code> <code>→</code> <code>␣</code> <code>⌫</code> <code>↵</code></td></tr>
+    <tr><td>モード切替</td><td><code>ACT</code>（アクションモードに戻る）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>ABC Mode（ABCモード）</h3>
+  <p><code>ABC</code>キーで切り替わります。OS標準のソフトキーボードが表示され、日本語入力やプレイヤー名などの自由テキストを入力できます。</p>
+  <div class="note">
+    <strong>ヒント:</strong> プレイヤー名を日本語で入力したい場合はABCモードに切り替えてください。入力が終わったらACTIONモードに戻すことで、再びポーカー専用キーボードが使えます。
+  </div>
+</details>
+</section>
+
+<!-- 18 -->
+<section>
+<details>
+  <summary><h2><span class="num">18.</span>オートスペース挿入 <span class="tag new">NEW</span></h2></summary>
+  <p>アクションモードで数字を入力した後にアクションキー（<code>c</code> <code>r</code> <code>b</code> <code>f</code> <code>x</code> <code>ai</code> <code>win</code> <code>chop</code>）を押すと、数字とアクションの間にスペースが自動挿入されます。</p>
+  <h3>例</h3>
+  <p><code>10</code> → <code>c</code> と押すと → <code>10 c</code> と入力されます。金額が続く場合は <code>10</code> → <code>c</code> → <code>2000</code> で <code>10 c2000</code> となります。</p>
+  <div class="note">
+    <strong>ヒント:</strong> シート番号の後にいちいちスペースキーを押す必要がなくなり、入力スピードが大幅に向上します。
+  </div>
+</details>
+</section>
+
+<!-- 19 -->
+<section>
+<details>
+  <summary><h2><span class="num">19.</span>フルスクリーンエディタ <span class="tag new">NEW</span></h2></summary>
+  <p>「テンプレート生成」ボタンを押すと、画面全体を使ったフルスクリーンのテキストエディタが開きます。カスタムキーボードと組み合わせて、ハンドのアクションを快適に記録できます。</p>
+  <ul>
+    <li>テキストエリアが画面全体に広がり、長いハンド記録でも見やすい</li>
+    <li>カスタムキーボードが画面下部に固定表示される</li>
+    <li>編集完了後は「Save」でセッションに保存</li>
+  </ul>
+</details>
+</section>
+
+<!-- 20 -->
+<section>
+<details>
+  <summary><h2><span class="num">20.</span>リサイズハンドル <span class="tag new">NEW</span></h2></summary>
+  <p>テキストエリアの下部にドラッグハンドルが表示されます。モバイル端末でこのハンドルをドラッグすることで、テキストエリアの高さを自由に調整できます。</p>
+  <div class="note">
+    <strong>ヒント:</strong> ハンド記録が長くなった場合に、テキストエリアを広げて全体を見渡せるようにすると便利です。
+  </div>
+</details>
+</section>
+
+<!-- 21 -->
+<section>
+<details>
+  <summary><h2><span class="num">21.</span>カードピッカーキーボード <span class="tag new">NEW</span></h2></summary>
+  <p>ヒーローカード（Hero Cards）やコミュニティボード（Flop / Turn / River）のカード入力欄では、専用のカードピッカーキーボードが表示されます。カスタムキーボードと同じスタイルの統一されたUIで、ランクとスートをタップしてカードを入力できます。</p>
+  <h3>操作方法</h3>
+  <ol>
+    <li>カード入力スロットをタップして選択</li>
+    <li>カードピッカーでランク（A, 2〜10, J, Q, K）を選択</li>
+    <li>スート（♠ ♣ ♥ ♦）を選択</li>
+    <li>カードが自動的にスロットに反映される</li>
+  </ol>
+</details>
+</section>
+
+<!-- 22 -->
+<section>
+<details>
+  <summary><h2><span class="num">22.</span>カードスロットのハイライト <span class="tag new">NEW</span></h2></summary>
+  <p>カード入力時、現在選択中のカードスロットが黄色の枠線とグロー効果でハイライト表示されます。これにより、どのスロットにカードが入力されるかが一目で分かります。</p>
+</details>
+</section>
+
+<!-- 23 -->
+<section>
+<details>
+  <summary><h2><span class="num">23.</span>任意順序のカード入力 <span class="tag new">NEW</span></h2></summary>
+  <p>ヒーローカードとコミュニティボードのカードスロットは、任意の順序で入力できます。左から順番に入力する必要はなく、好きなスロットをタップして先に入力することが可能です。</p>
+  <div class="note">
+    <strong>例:</strong> フロップの3枚目だけ先に入力したり、ヒーローカードの2枚目から入力したりできます。
+  </div>
+</details>
+</section>
+
+<!-- ====== カテゴリ: 設定・その他 ====== -->
+<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+
+<!-- 24 -->
+<section>
+<details>
+  <summary><h2><span class="num">24.</span>デフォルト設定</h2></summary>
   <p>アクティブセッション画面で以下のデフォルト値を保存できます。</p>
   <table class="m-card">
     <thead><tr><th>項目</th><th>保存方法</th></tr></thead>
@@ -472,7 +585,7 @@ btn 9
 <!-- 16 -->
 <section>
 <details>
-  <summary><h2><span class="num">18.</span>PWA（Progressive Web App）インストール</h2></summary>
+  <summary><h2><span class="num">25.</span>PWA（Progressive Web App）インストール</h2></summary>
   <p>このアプリはPWA対応です。PWA（Progressive Web App）とは、ウェブサイトをスマホやPCにアプリのようにインストールできる仕組みです。</p>
   <h3>インストールのメリット</h3>
   <ul>
@@ -503,7 +616,7 @@ btn 9
 
 <section>
 <details>
-  <summary><h2><span class="num">19.</span>要望を投稿</h2></summary>
+  <summary><h2><span class="num">26.</span>要望を投稿</h2></summary>
   <p>画面下部の「要望を投稿」ボタンから、匿名のフィードバックフォームに移動できます。</p>
   <ul>
     <li>「こんな機能がほしい」「ここが使いにくい」など、どんな小さなことでも大歓迎です</li>
