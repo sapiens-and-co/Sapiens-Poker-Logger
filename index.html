@@ -142,6 +142,10 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .kb-panel.active{display:block}
 .kb-mode-indicator{text-align:center;font-size:9px;color:var(--dim);margin-bottom:2px;font-weight:600}
 .copy-row{display:flex;gap:5px;padding:6px 12px;flex-shrink:0;justify-content:center}
+.kb-bottom-row{justify-content:flex-start;padding:4px 4px;gap:3px;align-items:stretch}
+.kb-save-btn{flex:none !important;padding:6px 12px !important;font-size:11px !important;min-height:32px}
+.kb-bottom-mode{margin-left:auto;min-height:32px !important;font-size:10px !important}
+.kb-bottom-mode + .kb-bottom-mode{margin-left:0}
 .action-btn{flex:1;padding:5px 8px;border:none;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,#a09018,#b8a820,#a09018);color:#fff}
 .action-btn:active{transform:scale(.97)}
 .action-btn.secondary{background:linear-gradient(to bottom,#3a3a5c,#2a2a48);border:1px solid rgba(240,216,48,.2);color:var(--yellow)}
@@ -369,10 +373,10 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
           <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button><button class="kb-key wide kb-icon" data-cmd="bs">&larr;&#x232B;</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key action" data-v="x">x</button><button class="kb-key" data-v="/">/</button><button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="ai">ai</button><button class="kb-key action" data-v="win">win</button><button class="kb-key action" data-v="chop">chop</button>
+          <button class="kb-key action" data-v="x">x</button><button class="kb-key" data-v="/">/</button><button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="ai">ai</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key" data-v="#">#</button><button class="kb-key wide kb-icon" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key" data-v="#">#</button><button class="kb-key action" data-v="win">win</button><button class="kb-key action" data-v="chop">chop</button><button class="kb-key wide kb-icon" data-cmd="enter">&crarr;</button>
         </div>
       </div>
       <div class="kb-panel" id="kbCard">
@@ -388,9 +392,11 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
         </div>
       </div>
     </div>
-    <div class="copy-row">
-      <button class="action-btn" onclick="saveToHandList()">Save</button>
-      <button class="action-btn secondary" onclick="discardOutput()">Cancel</button>
+    <div class="copy-row kb-bottom-row">
+      <button class="action-btn kb-save-btn" onclick="saveToHandList()">Save</button>
+      <button class="action-btn secondary kb-save-btn" onclick="discardOutput()">Cancel</button>
+      <button class="kb-key wide mode-btn kb-bottom-mode" data-cmd="card">CARD</button>
+      <button class="kb-key wide mode-btn kb-bottom-mode" data-cmd="abc">ABC</button>
     </div>
   </div>
   <div class="hands-panel" id="handsPanel">
@@ -609,7 +615,6 @@ function refreshUsed() {
 function renderAllSlots() {
   renderSlotRow('heroCards', 'heroSlot', 2);
   renderSlotRow('boardCards', 'boardSlot', 5);
-  highlightNextSlot();
 }
 
 function renderSlotRow(target, prefix, count) {
@@ -829,6 +834,7 @@ function generate() {
   activeTarget = 'heroCards';
   selRank = null;
   renderAllSlots();
+  highlightNextSlot();
   refreshUsed();
   var picker = document.getElementById('sharedPicker');
   picker.querySelectorAll('.rank-btn').forEach(function(b){b.classList.remove('sel')});
@@ -2008,6 +2014,7 @@ function init() {
   migrateData();
   buildPicker();
   renderAllSlots();
+  highlightNextSlot();
   buildPlayerList();
   highlightHeroSeat();
 
@@ -2155,9 +2162,9 @@ init();
         if(abcBtn) abcBtn.style.background = '';
       }
       ta.focus();
-      // Auto-insert space: when action key follows a digit
-      var actions = ['c','r','b','f','x','ai'];
-      if(actions.indexOf(val) !== -1){
+      // Auto-insert space: when action key follows a digit (action panel only)
+      var actions = ['c','r','b','f','x','ai','win','chop'];
+      if(panelAction.classList.contains('active') && actions.indexOf(val) !== -1){
         var s = ta.selectionStart || 0;
         if(s > 0){
           var prev = ta.value.charAt(s - 1);
@@ -2229,6 +2236,23 @@ init();
     e.preventDefault();
     handleKey(btn);
   });
+
+  // Also handle CARD/ABC buttons in the bottom row (outside kb container)
+  var bottomRow = document.querySelector('.kb-bottom-row');
+  if(bottomRow){
+    bottomRow.addEventListener('touchstart', function(e){
+      var btn = e.target.closest('.kb-key');
+      if(!btn) return;
+      e.preventDefault();
+      handleKey(btn);
+    }, {passive:false});
+    bottomRow.addEventListener('mousedown', function(e){
+      var btn = e.target.closest('.kb-key');
+      if(!btn) return;
+      e.preventDefault();
+      handleKey(btn);
+    });
+  }
 })();
 
 init();
