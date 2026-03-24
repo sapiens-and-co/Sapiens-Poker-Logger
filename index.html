@@ -73,19 +73,18 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .card-slot.filled .x{display:block}
 
 /* card picker */
-.picker{background:#1e1e36;border:1px solid var(--border);border-radius:6px;padding:4px 5px;margin:4px 0}
-.picker-label{font-size:9px;color:var(--dim);margin-bottom:1px;font-weight:600}
-.rank-row,.suit-row{display:flex;flex-wrap:wrap;gap:2px;margin:1px 0}
-.rank-btn,.suit-btn{border:1px solid var(--border);border-radius:4px;padding:4px 0;font-size:14px;font-weight:700;font-family:monospace;cursor:pointer;text-align:center;background:var(--card);color:var(--text);transition:all .12s}
-.rank-btn{flex:0 0 calc((100% - 8px)/5);min-width:0;padding:6px 0;font-size:16px}
-.rank-btn.t-btn{font-size:14px}
-.suit-btn{flex:1;padding:6px 0;font-size:22px}
-.rank-btn:active,.suit-btn:active{transform:scale(.93)}
+.picker{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 4px;margin:4px 0;display:none}
+.picker.show{display:block}
+.pk-row{display:flex;gap:3px;margin:3px 0;justify-content:center}
+.rank-btn{flex:1;max-width:38px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.rank-btn:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
 .rank-btn.used{opacity:.2;pointer-events:none}
-.suit-btn.used{opacity:.2;pointer-events:none}
 .rank-btn.sel{background:var(--yellow);color:#1a1a1a;border-color:#d0c020}
-.suit-s{color:#e0e0e0}.suit-h{color:#ff4060}.suit-d{color:#ff4060}.suit-c{color:#e0e0e0}
-.suit-btn.s-s{border-color:#888}.suit-btn.s-h{border-color:#ff4060}.suit-btn.s-d{border-color:#ff4060}.suit-btn.s-c{border-color:#888}
+.suit-btn{flex:1;max-width:50px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--bg);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.suit-btn:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
+.suit-btn.used{opacity:.2;pointer-events:none}
+.suit-btn.s-s,.suit-btn.s-c{color:#ffffff}
+.suit-btn.s-h,.suit-btn.s-d{color:#e85050}
 
 /* player list */
 .pl-row{display:flex;gap:3px;margin:2px 0;align-items:center}
@@ -127,9 +126,8 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
 .kb-key:active{background:rgba(240,216,48,.2);border-color:var(--yellow)}
 .kb-key.wide{flex:1.6;max-width:62px;font-size:11px}
 .kb-key.action{color:var(--yellow)}
-.kb-key.suit-s,.kb-key.suit-c{color:#c8c8e0}
-.kb-key.suit-h{color:#e85050}
-.kb-key.suit-d{color:#5dade2}
+.kb-key.suit-s,.kb-key.suit-c{color:#ffffff}
+.kb-key.suit-h,.kb-key.suit-d{color:#e85050}
 .kb-key.mode-btn{background:rgba(240,216,48,.1);border-color:rgba(240,216,48,.3);color:var(--yellow);font-size:10px;font-weight:800}
 .kb-panel{display:none}
 .kb-panel.active{display:block}
@@ -359,28 +357,28 @@ header h1{font-size:12px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.5);letter-
       <div class="kb-panel active" id="kbAction">
         <div class="kb-mode-indicator">ACTION</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button>
+          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button><button class="kb-key" data-v="#">#</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="x">x</button><button class="kb-key wide action" data-v="ai">ai</button><button class="kb-key wide action" data-v="win">win</button><button class="kb-key" data-v="#">#</button>
+          <button class="kb-key action" data-v="x">x</button><button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="ai">ai</button><button class="kb-key action" data-v="win">win</button><button class="kb-key action" data-v="chop">chop</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">SP</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="card">CARD</button><button class="kb-key wide mode-btn" data-cmd="abc">ABC</button>
         </div>
       </div>
       <div class="kb-panel" id="kbCard">
         <div class="kb-mode-indicator">CARD</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="K">K</button><button class="kb-key" data-v="Q">Q</button><button class="kb-key" data-v="J">J</button><button class="kb-key" data-v="10">10</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="8">8</button>
+          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="2">2</button>
+          <button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="10">10</button><button class="kb-key" data-v="J">J</button><button class="kb-key" data-v="Q">Q</button><button class="kb-key" data-v="K">K</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key wide suit-s" data-v="s">s&spades;</button><button class="kb-key wide suit-h" data-v="h">h&hearts;</button><button class="kb-key wide suit-d" data-v="d">d&diams;</button><button class="kb-key wide suit-c" data-v="c">c&clubs;</button>
+          <button class="kb-key wide suit-s" data-v="s">&spades;</button><button class="kb-key wide suit-c" data-v="c">&clubs;</button><button class="kb-key wide suit-h" data-v="h">&hearts;</button><button class="kb-key wide suit-d" data-v="d">&diams;</button>
         </div>
         <div class="kb-row">
-          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">SP</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="action">ACT</button>
+          <button class="kb-key" data-cmd="left">&larr;</button><button class="kb-key" data-cmd="right">&rarr;</button><button class="kb-key wide" data-v=" ">&#x2423;</button><button class="kb-key wide" data-cmd="bs">&larr;&#x232B;</button><button class="kb-key" data-cmd="enter">&crarr;</button><button class="kb-key wide mode-btn" data-cmd="action">ACT</button>
         </div>
       </div>
     </div>
@@ -448,19 +446,20 @@ var FEEDBACK_URL = 'https://forms.gle/XDw4C5kKdToUyaW5A';
 // ===== Picker (from v1) =====
 function buildPicker() {
   var picker = document.getElementById('sharedPicker');
-  var html = '<div class="picker-label">Rank</div>';
-  RANK_ROWS.forEach(function(row) {
-    html += '<div class="rank-row">';
-    row.forEach(function(r) {
-      var cls = r === 'T' ? 'rank-btn t-btn' : 'rank-btn';
-      var display = r === 'T' ? '10' : r;
-      html += '<button class="'+cls+'" data-rank="'+r+'" onclick="pickRank(\''+r+'\',this)">'+display+'</button>';
-    });
-    html += '</div>';
+  var row1Ranks = ['A','2','3','4','5','6','7','8','9','T'];
+  var row2Ranks = ['J','Q','K'];
+  var html = '<div class="pk-row">';
+  row1Ranks.forEach(function(r) {
+    var display = r === 'T' ? '10' : r;
+    html += '<button class="rank-btn" data-rank="'+r+'" onclick="pickRank(\''+r+'\',this)">'+display+'</button>';
   });
-  html += '<div class="picker-label" style="margin-top:3px">Suit</div><div class="suit-row">';
-  SUITS.forEach(function(s) {
-    html += '<button class="suit-btn s-'+s.k+' '+s.cls+'" data-suit="'+s.k+'" onclick="pickSuit(\''+s.k+'\')">'+s.sym+'</button>';
+  html += '</div><div class="pk-row">';
+  row2Ranks.forEach(function(r) {
+    html += '<button class="rank-btn" data-rank="'+r+'" onclick="pickRank(\''+r+'\',this)">'+r+'</button>';
+  });
+  var suits = [{k:'s',sym:'&spades;'},{k:'c',sym:'&clubs;'},{k:'h',sym:'&hearts;'},{k:'d',sym:'&diams;'}];
+  suits.forEach(function(s) {
+    html += '<button class="suit-btn s-'+s.k+'" data-suit="'+s.k+'" onclick="pickSuit(\''+s.k+'\')">'+s.sym+'</button>';
   });
   html += '</div>';
   picker.innerHTML = html;
@@ -516,6 +515,15 @@ function onSlotClick(e, target, idx) {
   } else {
     setTarget(target);
   }
+  showPicker();
+}
+
+function showPicker(){
+  document.getElementById('sharedPicker').classList.add('show');
+}
+function hidePicker(){
+  document.getElementById('sharedPicker').classList.remove('show');
+  document.querySelectorAll('.card-slot').forEach(function(el){el.classList.remove('active-target')});
 }
 
 function setTarget(target) {
@@ -2171,6 +2179,14 @@ init();
 })();
 
 init();
+
+// Hide picker when tapping outside card slots / picker
+document.addEventListener('click', function(e){
+  var picker = document.getElementById('sharedPicker');
+  if(!picker) return;
+  if(e.target.closest('.picker') || e.target.closest('.card-slot')) return;
+  hidePicker();
+});
 </script>
 <!-- Manual (global) -->
 <div id="manualWrap" style="display:none;margin-top:6px;border:2px solid rgba(240,216,48,.15);border-radius:7px;overflow:hidden;max-width:480px;margin-left:auto;margin-right:auto">
