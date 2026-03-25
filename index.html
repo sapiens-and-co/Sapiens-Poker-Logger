@@ -134,7 +134,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .kb-row{display:flex;gap:3px;margin:3px 0;justify-content:center;max-width:500px;margin-left:auto;margin-right:auto}
 .kb-key{flex:0 0 36px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--card);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .kb-key:active{background:var(--accent-bg);border-color:var(--accent)}
-.kb-key.narrow{flex:0 0 30px;font-size:13px}
+.kb-key.narrow{flex:0 0 26px;font-size:12px}
 .kb-key.wide{flex:0 0 52px;font-size:11px}
 .kb-key.kb-icon{font-size:18px}
 .kb-key.action{color:var(--accent)}
@@ -266,7 +266,10 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .trip-expand .te-stat-label{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
 .trip-expand .te-stat-value{font-size:13px;font-weight:800;margin-top:1px}
 .trip-expand .te-session{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:6px 8px;margin:4px 0;overflow:hidden}
-.te-session .te-session-header{display:flex;flex-wrap:wrap;align-items:center;gap:6px;cursor:pointer}
+.te-session .te-session-header{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.sess-toggle-indicator{font-size:10px;color:var(--dim);font-weight:700;flex-shrink:0;display:flex;align-items:center;gap:2px}
+.sess-toggle-arrow{font-size:9px}
+.te-session.sess-expanded .sess-toggle-indicator{color:var(--accent)}
 .te-session-detail{max-height:0;overflow:hidden;opacity:0;transition:max-height .25s ease,opacity .25s ease}
 .te-session.sess-expanded .te-session-detail{margin-top:6px;border-top:1px solid var(--border);padding-top:6px}
 .te-session.sess-expanded{border-color:var(--accent)}
@@ -277,7 +280,11 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .trip-expand .te-session .si-pl{font-size:13px;font-weight:800;text-align:right;min-width:60px}
 .trip-expand .te-actions{display:flex;gap:6px;align-items:center;width:100%;justify-content:space-between;margin-top:3px}
 .trip-item .trip-title{font-size:14px;font-weight:800;color:var(--text)}
-.trip-item .trip-date{font-size:10px;color:var(--dim);font-weight:600;flex-shrink:0}
+.trip-item .trip-date{font-size:10px;color:var(--dim);font-weight:600;margin-left:6px}
+.trip-toggle-indicator{font-size:10px;color:var(--dim);font-weight:700;flex-shrink:0;display:flex;align-items:center;gap:2px}
+.trip-toggle-arrow{font-size:9px}
+.trip-item.expanded .trip-toggle-indicator .trip-toggle-arrow{display:inline}
+.trip-item.expanded .trip-toggle-indicator{color:var(--accent)}
 .trip-item .trip-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
 .trip-item .trip-stat{text-align:center}
 .trip-item .trip-stat-label{font-size:9px;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
@@ -301,12 +308,12 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .guide-body.collapsed{max-height:0 !important;opacity:0;padding:0;margin:0}
 .guide-box .guide-title{font-size:13px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:.03em}
 .guide-box .guide-steps{list-style:none;padding:0;margin:0}
-.guide-box .guide-steps li{font-size:12px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;line-height:1.4}
+.guide-box .guide-steps li{font-size:12px;color:var(--text);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;line-height:1.4;min-height:32px;box-sizing:border-box}
 .guide-box .guide-steps li:last-child{border-bottom:none}
 .guide-box .guide-steps .step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--bg);color:var(--text);font-size:10px;font-weight:800;text-align:center;line-height:20px}
-.guide-box .guide-steps .step-text{flex:1}
+.guide-box .guide-steps .step-text{flex:1;display:flex;align-items:center;flex-wrap:wrap}
 .guide-box .guide-steps .step-text strong{color:var(--accent)}
-.guide-box .guide-steps .step-text .step-sub{display:inline;font-size:11px;color:var(--dim);margin-left:4px}
+.guide-box .guide-steps .step-text .step-sub{font-size:11px;color:var(--dim);margin-left:4px}
 .guide-section{margin-top:6px}
 .guide-section .guide-section-title{font-size:11px;font-weight:700;color:var(--dim);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.05em}
 .guide-section p{font-size:11px;color:var(--dim);line-height:1.6;margin:3px 0}
@@ -1198,7 +1205,7 @@ function renderTripsList() {
       var plClass = ts.totalProfit >= 0 ? 'positive' : 'negative';
       var plStr = ts.completedCount > 0 ? formatCurrency(ts.totalProfit) : '--';
       html += '<div class="trip-item" id="trip-' + t.id + '" onclick="toggleTrip(\'' + t.id + '\')" style="cursor:pointer">';
-      html += '<div class="trip-header-row"><div class="trip-title">' + escHtml(t.title) + '</div><div class="trip-date">' + formatDateShort(t.createdAt) + '</div></div>';
+      html += '<div class="trip-header-row"><div class="trip-title">' + escHtml(t.title) + ' <span class="trip-date">' + formatDateShort(t.createdAt) + '</span></div><div class="trip-toggle-indicator"><span class="trip-toggle-arrow">&#9654;</span> Open</div></div>';
       html += '<div class="trip-info-row">';
       html += '<div class="trip-stat-inline"><span class="trip-stat-label">Sessions</span> <span class="trip-stat-value">' + ts.sessionCount + '</span></div>';
       html += '<div class="trip-stat-inline"><span class="trip-stat-label">Profit/Loss</span> <span class="trip-stat-value ' + plClass + '">' + plStr + '</span></div>';
@@ -1265,7 +1272,6 @@ function openTrip(id) {
 function collapseTrip(item) {
   var exp = item.querySelector('.trip-expand');
   if (!exp) { item.classList.remove('expanded'); return; }
-  // Set explicit height so transition works (none -> 0 won't animate)
   exp.style.transition = 'none';
   exp.style.maxHeight = exp.scrollHeight + 'px';
   void exp.offsetHeight;
@@ -1273,9 +1279,13 @@ function collapseTrip(item) {
   exp.style.maxHeight = '0px';
   exp.style.opacity = '0';
   item.classList.remove('expanded');
+  var ind = item.querySelector('.trip-toggle-indicator');
+  if (ind) ind.innerHTML = '<span class="trip-toggle-arrow">&#9654;</span> Open';
 }
 function expandTrip(el, id) {
   el.classList.add('expanded');
+  var ind = el.querySelector('.trip-toggle-indicator');
+  if (ind) ind.innerHTML = '<span class="trip-toggle-arrow">&#9660;</span> Close';
   currentTripId = id;
   renderTripExpand(id);
   var expand = document.getElementById('tripExpand-' + id);
@@ -1318,9 +1328,13 @@ function collapseSession(item) {
   det.style.maxHeight = '0px';
   det.style.opacity = '0';
   item.classList.remove('sess-expanded');
+  var ind = item.querySelector('.sess-toggle-indicator');
+  if (ind) ind.innerHTML = '<span class="sess-toggle-arrow">&#9654;</span> Open';
 }
 function expandSession(el, sessionId, tripId) {
   el.classList.add('sess-expanded');
+  var ind = el.querySelector('.sess-toggle-indicator');
+  if (ind) ind.innerHTML = '<span class="sess-toggle-arrow">&#9660;</span> Close';
   renderSessionExpand(sessionId, tripId);
   var det = document.getElementById('sessDetail-' + sessionId);
   if (!det) return;
@@ -1419,6 +1433,8 @@ function returnToTripSession(tripId, sessId, handIdx) {
     var tripEl = document.getElementById('trip-' + tripId);
     if (tripEl && !tripEl.classList.contains('expanded')) {
       tripEl.classList.add('expanded');
+      var tInd = tripEl.querySelector('.trip-toggle-indicator');
+      if (tInd) tInd.innerHTML = '<span class="trip-toggle-arrow">&#9660;</span> Close';
       currentTripId = tripId;
       renderTripExpand(tripId);
       var expand = document.getElementById('tripExpand-' + tripId);
@@ -1427,6 +1443,8 @@ function returnToTripSession(tripId, sessId, handIdx) {
     var sessEl = document.getElementById('sess-' + sessId);
     if (sessEl && !sessEl.classList.contains('sess-expanded')) {
       sessEl.classList.add('sess-expanded');
+      var sInd = sessEl.querySelector('.sess-toggle-indicator');
+      if (sInd) sInd.innerHTML = '<span class="sess-toggle-arrow">&#9660;</span> Close';
       renderSessionExpand(sessId, tripId);
       var det = document.getElementById('sessDetail-' + sessId);
       if (det) { det.style.maxHeight = 'none'; det.style.opacity = '1'; det.style.transition = 'none'; }
@@ -1521,16 +1539,17 @@ function renderTripExpand(tripId) {
       var splClass = sst.profit >= 0 ? 'positive' : 'negative';
       var durStr = Math.floor(sst.durationMin / 60) + 'h ' + (sst.durationMin % 60) + 'm';
       var statusLabel = s.status === 'active' ? ' [Active]' : '';
-      html += '<div class="te-session" id="sess-' + s.id + '">';
-      html += '<div class="te-session-header" onclick="toggleSession(\'' + s.id + '\',\'' + tripId + '\')">';
+      html += '<div class="te-session" id="sess-' + s.id + '" onclick="toggleSession(\'' + s.id + '\',\'' + tripId + '\')" style="cursor:pointer">';
+      html += '<div class="te-session-header">';
       html += '<div class="si-info">';
       html += '<div class="si-date">' + formatDateShort(s.startTime) + statusLabel + '</div>';
       html += '<div class="si-loc">' + escHtml(s.location || 'No Location') + '</div>';
       html += '<div class="si-meta">' + escHtml(s.gameType) + ' ' + getBlindsLabel(s) + ' | ' + durStr + ' | ' + sst.handCount + ' hands</div>';
       html += '</div>';
       html += '<div class="si-pl ' + splClass + '">' + (s.status === 'completed' ? formatCurrency(sst.profit) : '--') + '</div>';
+      html += '<div class="sess-toggle-indicator"><span class="sess-toggle-arrow">&#9654;</span> Open</div>';
       html += '</div>';
-      html += '<div class="te-session-detail" id="sessDetail-' + s.id + '"></div>';
+      html += '<div class="te-session-detail" id="sessDetail-' + s.id + '" onclick="event.stopPropagation()"></div>';
       html += '</div>';
     }
   }
@@ -1663,8 +1682,14 @@ function doEditSession(sessionId, tripId) {
   if (newEnd) s.endTime = newEnd;
   saveData();
   hideModal();
-  renderTripExpand(tripId);
   renderTripsList();
+  // Re-expand the trip and session after DOM rebuild
+  var el = document.getElementById('trip-' + tripId);
+  if (el && !el.classList.contains('expanded')) {
+    expandTrip(el, tripId);
+  } else {
+    renderTripExpand(tripId);
+  }
 }
 
 function editTripField(tripId, field, el) {
@@ -3225,16 +3250,16 @@ function renderFavSlots() {
     var fav = cpFavs[i];
     if (fav) {
       html += '<div style="display:flex;flex-direction:column;align-items:center;gap:1px">';
-      html += '<div onclick="loadFav('+i+')" style="display:flex;gap:2px;cursor:pointer;padding:3px;border:1px solid;border-radius:5px">';
+      html += '<div onclick="loadFav('+i+')" style="display:flex;gap:1px;cursor:pointer;padding:2px;border:1px solid;border-radius:4px">';
       var favOp = (fav.fillOpacity || 10) / 100;
-      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+fav.std+'"></div>';
-      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+hexToRgba(fav.fill, favOp)+';border:1px solid '+fav.fill+'"></div>';
-      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+fav.bg+';border:1px solid '+fav.fill+'"></div>';
+      html += '<div style="width:13px;height:13px;border-radius:50%;background:'+fav.std+'"></div>';
+      html += '<div style="width:13px;height:13px;border-radius:50%;background:'+hexToRgba(fav.fill, favOp)+';border:1px solid '+fav.fill+'"></div>';
+      html += '<div style="width:13px;height:13px;border-radius:50%;background:'+fav.bg+';border:1px solid '+fav.fill+'"></div>';
       html += '</div>';
-      html += '<span onclick="event.stopPropagation();deleteFav('+i+')" style="font-size:12px;cursor:pointer;opacity:.7;line-height:1;padding:1px 3px">\u00d7</span>';
+      html += '<span onclick="event.stopPropagation();deleteFav('+i+')" style="font-size:10px;cursor:pointer;opacity:.7;line-height:1;padding:1px 2px">\u00d7</span>';
       html += '</div>';
     } else {
-      html += '<div onclick="saveFavAt('+i+')" style="width:58px;height:26px;border:1px dashed;border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;opacity:.5">empty</div>';
+      html += '<div onclick="saveFavAt('+i+')" style="width:47px;height:21px;border:1px dashed;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:8px;opacity:.5">empty</div>';
     }
   }
   document.getElementById('cpFavSlots').innerHTML = html;
