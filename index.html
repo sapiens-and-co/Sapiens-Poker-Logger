@@ -134,6 +134,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .kb-row{display:flex;gap:3px;margin:3px 0;justify-content:center;max-width:500px;margin-left:auto;margin-right:auto}
 .kb-key{flex:0 0 36px;height:36px;border:1px solid var(--border);border-radius:5px;background:var(--card);color:var(--text);font-size:13px;font-weight:700;font-family:inherit;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .kb-key:active{background:var(--accent-bg);border-color:var(--accent)}
+.kb-key.narrow{flex:0 0 30px;font-size:13px}
 .kb-key.wide{flex:0 0 52px;font-size:11px}
 .kb-key.kb-icon{font-size:18px}
 .kb-key.action{color:var(--accent)}
@@ -300,7 +301,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .guide-body.collapsed{max-height:0 !important;opacity:0;padding:0;margin:0}
 .guide-box .guide-title{font-size:13px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:.03em}
 .guide-box .guide-steps{list-style:none;padding:0;margin:0}
-.guide-box .guide-steps li{font-size:12px;color:var(--text);padding:3px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.guide-box .guide-steps li{font-size:12px;color:var(--text);padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;align-items:center;line-height:1.4}
 .guide-box .guide-steps li:last-child{border-bottom:none}
 .guide-box .guide-steps .step-num{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--bg);color:var(--text);font-size:10px;font-weight:800;text-align:center;line-height:20px}
 .guide-box .guide-steps .step-text{flex:1}
@@ -434,7 +435,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
       <div class="kb-panel active" id="kbAction">
         <div class="kb-mode-indicator">ACTION</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="1">1</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="0">0</button><button class="kb-key wide kb-icon" data-cmd="bs">&larr;&#x232B;</button>
+          <button class="kb-key narrow" data-v="1">1</button><button class="kb-key narrow" data-v="2">2</button><button class="kb-key narrow" data-v="3">3</button><button class="kb-key narrow" data-v="4">4</button><button class="kb-key narrow" data-v="5">5</button><button class="kb-key narrow" data-v="6">6</button><button class="kb-key narrow" data-v="7">7</button><button class="kb-key narrow" data-v="8">8</button><button class="kb-key narrow" data-v="9">9</button><button class="kb-key narrow" data-v="0">0</button><button class="kb-key wide kb-icon" data-cmd="bs">&larr;&#x232B;</button>
         </div>
         <div class="kb-row">
           <button class="kb-key action" data-v="x">x</button><button class="kb-key" data-v="/">/</button><button class="kb-key action" data-v="c">c</button><button class="kb-key action" data-v="b">b</button><button class="kb-key action" data-v="r">r</button><button class="kb-key action" data-v="f">f</button><button class="kb-key action" data-v="ai">ai</button>
@@ -446,7 +447,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
       <div class="kb-panel" id="kbCard">
         <div class="kb-mode-indicator">CARD</div>
         <div class="kb-row">
-          <button class="kb-key" data-v="A">A</button><button class="kb-key" data-v="2">2</button><button class="kb-key" data-v="3">3</button><button class="kb-key" data-v="4">4</button><button class="kb-key" data-v="5">5</button><button class="kb-key" data-v="6">6</button><button class="kb-key" data-v="7">7</button><button class="kb-key" data-v="8">8</button><button class="kb-key" data-v="9">9</button><button class="kb-key" data-v="10">10</button><button class="kb-key wide kb-icon" data-cmd="bs">&larr;&#x232B;</button>
+          <button class="kb-key narrow" data-v="A">A</button><button class="kb-key narrow" data-v="2">2</button><button class="kb-key narrow" data-v="3">3</button><button class="kb-key narrow" data-v="4">4</button><button class="kb-key narrow" data-v="5">5</button><button class="kb-key narrow" data-v="6">6</button><button class="kb-key narrow" data-v="7">7</button><button class="kb-key narrow" data-v="8">8</button><button class="kb-key narrow" data-v="9">9</button><button class="kb-key narrow" data-v="10">10</button><button class="kb-key wide kb-icon" data-cmd="bs">&larr;&#x232B;</button>
         </div>
         <div class="kb-row kb-row2">
           <button class="kb-key kb-rank-fixed" data-v="J">J</button><button class="kb-key kb-rank-fixed" data-v="Q">Q</button><button class="kb-key kb-rank-fixed" data-v="K">K</button><span class="kb-spacer"></span><button class="kb-key suit-s kb-suit-wide" data-v="s">&spades;</button><button class="kb-key suit-c kb-suit-wide" data-v="c">&clubs;</button><button class="kb-key suit-h kb-suit-wide" data-v="h">&hearts;</button><button class="kb-key suit-d kb-suit-wide" data-v="d">&diams;</button>
@@ -1105,6 +1106,10 @@ function loadTrips() {
   } catch(e) {
     trips = [];
   }
+  // Sort newest first
+  trips.sort(function(a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
 }
 
 function persistTrips() {
@@ -1206,6 +1211,12 @@ function renderTripsList() {
   }
 
   guideEl.innerHTML = trips.length > 0 ? guideHtml : '';
+
+  // Auto-expand the newest journey (first in the list)
+  if (trips.length > 0 && !document.querySelector('.trip-item.expanded')) {
+    var newest = document.getElementById('trip-' + trips[0].id);
+    if (newest) expandTrip(newest, trips[0].id);
+  }
 }
 
 function buildGuideHtml(collapsed) {
@@ -3045,9 +3056,9 @@ var cpFillOpacity = 10;
 var cpFavs = JSON.parse(localStorage.getItem('pokerLoggerFavs') || '[]');
 var CP_DEFAULT_FAVS = [
   {std:'#144d75', fill:'#063b63', bg:'#eff6f8', fillOpacity:10},
-  {std:'#2d6a4f', fill:'#1b4332', bg:'#f0f7f4', fillOpacity:12},
-  {std:'#7b2d8b', fill:'#4a1259', bg:'#f8f0fa', fillOpacity:10},
-  {std:'#c45e2c', fill:'#8b3a1a', bg:'#fdf5f0', fillOpacity:15}
+  {std:'#00d801', fill:'#00e100', bg:'#000000', fillOpacity:20},
+  {std:'#ff0901', fill:'#ffbe00', bg:'#85eeff', fillOpacity:20},
+  {std:'#ebebeb', fill:'#ffffff', bg:'#000000', fillOpacity:10}
 ];
 if (!cpFavs.length || cpFavs.every(function(f){return !f})) {
   cpFavs = CP_DEFAULT_FAVS.slice();
@@ -3213,17 +3224,17 @@ function renderFavSlots() {
   for (var i = 0; i < 5; i++) {
     var fav = cpFavs[i];
     if (fav) {
-      html += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px">';
-      html += '<div onclick="loadFav('+i+')" style="display:flex;gap:3px;cursor:pointer;padding:5px;border:1px solid;border-radius:6px">';
+      html += '<div style="display:flex;flex-direction:column;align-items:center;gap:1px">';
+      html += '<div onclick="loadFav('+i+')" style="display:flex;gap:2px;cursor:pointer;padding:3px;border:1px solid;border-radius:5px">';
       var favOp = (fav.fillOpacity || 10) / 100;
-      html += '<div style="width:20px;height:20px;border-radius:50%;background:'+fav.std+'"></div>';
-      html += '<div style="width:20px;height:20px;border-radius:50%;background:'+hexToRgba(fav.fill, favOp)+';border:1px solid '+fav.fill+'"></div>';
-      html += '<div style="width:20px;height:20px;border-radius:50%;background:'+fav.bg+';border:1px solid '+fav.fill+'"></div>';
+      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+fav.std+'"></div>';
+      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+hexToRgba(fav.fill, favOp)+';border:1px solid '+fav.fill+'"></div>';
+      html += '<div style="width:16px;height:16px;border-radius:50%;background:'+fav.bg+';border:1px solid '+fav.fill+'"></div>';
       html += '</div>';
-      html += '<span onclick="event.stopPropagation();deleteFav('+i+')" style="font-size:14px;cursor:pointer;opacity:.7;line-height:1;padding:2px 4px">\u00d7</span>';
+      html += '<span onclick="event.stopPropagation();deleteFav('+i+')" style="font-size:12px;cursor:pointer;opacity:.7;line-height:1;padding:1px 3px">\u00d7</span>';
       html += '</div>';
     } else {
-      html += '<div onclick="saveFavAt('+i+')" style="width:72px;height:32px;border:1px dashed;border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;opacity:.5">empty</div>';
+      html += '<div onclick="saveFavAt('+i+')" style="width:58px;height:26px;border:1px dashed;border-radius:5px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:9px;opacity:.5">empty</div>';
     }
   }
   document.getElementById('cpFavSlots').innerHTML = html;
