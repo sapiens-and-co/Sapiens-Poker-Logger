@@ -234,7 +234,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .modal-btn-row .action-btn{flex:1}
 
 @keyframes blink-guide{0%,100%{opacity:1}50%{opacity:0}}
-.start-guide{font-size:10px;color:var(--accent);text-align:center;padding:8px 0 0;animation:blink-guide 4s ease-in-out infinite;letter-spacing:.03em;font-weight:700}
+.start-guide{font-size:10px;color:var(--accent);text-align:center;animation:blink-guide 4s ease-in-out infinite;letter-spacing:.03em;font-weight:700;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);white-space:nowrap;margin-bottom:4px}
 .new-session-btn{display:block;padding:10px 16px;border:none;border-radius:5px;font-size:11px;font-weight:800;color:var(--bg);cursor:pointer;background:var(--accent);box-shadow:none;letter-spacing:.04em;margin:0;width:fit-content}
 .new-session-btn:active{transform:scale(.97)}
 
@@ -326,7 +326,7 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
 .guide-section p{font-size:11px;color:var(--dim);line-height:1.6;margin:3px 0}
 
 /* ===== Footer styles ===== */
-.bottom-bar{display:flex;align-items:center;justify-content:center;gap:4px;padding:10px 0 0;flex-wrap:nowrap}
+.bottom-bar{display:flex;align-items:center;justify-content:center;gap:4px;padding:24px 0 0;flex-wrap:nowrap}
 .bottom-icon{display:flex;align-items:center;justify-content:center;width:22px;height:22px;color:var(--text);text-decoration:none;transition:opacity .15s}
 .bottom-icon:hover,.bottom-icon:active{opacity:.6}
 .bottom-icon svg{width:13px;height:13px;fill:currentColor}
@@ -352,8 +352,8 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
   </div>
   <div id="tripsList"></div>
   <div id="tripsGuide"></div>
-  <div id="bottomWrap" style="display:flex;flex-direction:column;align-items:center"><div id="startGuide" class="start-guide" style="display:none">↓まずはここからスタート↓</div><div class="bottom-bar" id="bottomBar">
-    <button class="new-session-btn" onclick="showNewTripModal()">Start New Journey</button>
+  <div class="bottom-bar" id="bottomBar">
+    <div style="position:relative;display:inline-block"><div id="startGuide" class="start-guide" style="display:none">↓まずはここからスタート↓</div><button class="new-session-btn" onclick="showNewTripModal()">Start New Journey</button></div>
     <button class="footer-link-btn" onclick="window.open('manual.html','_blank')">Manual</button>
     <button class="footer-link-btn" onclick="openFeedback()">Feedback</button>
     <a href="https://x.com/sapiens_and_co" target="_blank" rel="noopener" title="X (Twitter)" class="bottom-icon">
@@ -363,7 +363,6 @@ header h1{font-size:12px;color:var(--bg);letter-spacing:.03em}
       <svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10a2.5 2.5 0 0 0 2.5-2.5c0-.61-.23-1.21-.64-1.67A.528.528 0 0 1 14.3 17c.27 0 .5.24.5.5a2.5 2.5 0 0 0 2.5 2.5c3.31 0 6-2.69 6-6 0-4.96-4.49-9-11-9zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
     </span>
   </div>
-</div>
 </div>
 </div>
 
