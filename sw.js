@@ -1,5 +1,5 @@
 // Service Worker for Sapiens Poker Logger v0.3 PWA
-const CACHE_NAME = 'sapiens-poker-logger-v03-v1';
+const CACHE_NAME = 'sapiens-poker-logger-v0461';
 const ASSETS = [
   './',
   './index.html',
