@@ -1,5 +1,5 @@
 // Service Worker for Sapiens Poker Logger v0.3 PWA
-const CACHE_NAME = 'sapiens-poker-logger-v0461';
+const CACHE_NAME = 'sapiens-poker-logger-v0462';
 const ASSETS = [
   './',
   './index.html',
@@ -7,8 +7,9 @@ const ASSETS = [
   './icon-512.png',
   './icon-192-maskable.png',
   './icon-512-maskable.png',
-  './manifest.json',
-  './title_image_lv07.png'
+  './favicon-64.png',
+  './apple-touch-icon.png',
+  './manifest.json'
 ];
 
 self.addEventListener('install', e => {
