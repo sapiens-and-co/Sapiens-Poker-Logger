@@ -1110,6 +1110,10 @@ function loadTrips() {
 function persistTrips() {
   localStorage.setItem('pokerTrips_v1', JSON.stringify(trips));
 }
+function saveData() {
+  persistSessions();
+  persistTrips();
+}
 
 function getTrip(id) {
   for (var i = 0; i < trips.length; i++) {
@@ -2988,7 +2992,7 @@ document.addEventListener('click', function(e){
   <div id="cpControls" style="flex:0 0 auto;padding:12px 16px 20px;border-top:1px solid">
     <div style="max-width:480px;margin:0 auto">
       <!-- Color pickers row -->
-      <div style="display:flex;justify-content:center;gap:16px;margin-bottom:10px">
+      <div style="display:flex;justify-content:center;gap:16px;margin-bottom:6px">
         <div style="text-align:center">
           <div style="position:relative;width:52px;height:52px;margin:0 auto">
             <div id="cpSwatch-std" style="width:52px;height:52px;border-radius:50%;border:2px solid"></div>
@@ -3014,6 +3018,12 @@ document.addEventListener('click', function(e){
           <div id="cpHex-bg" style="font-family:monospace;font-size:11px;font-weight:700"></div>
         </div>
       </div>
+      <!-- Fill opacity slider -->
+      <div style="display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:10px;max-width:280px;margin-left:auto;margin-right:auto">
+        <span style="font-size:9px;font-weight:700;white-space:nowrap">中間色 透明度</span>
+        <input type="range" id="cpFillOpacity" min="5" max="100" value="10" style="flex:1;height:4px;accent-color:currentColor;cursor:pointer" oninput="onFillOpacityChange(this.value)">
+        <span id="cpFillOpacityVal" style="font-family:monospace;font-size:11px;font-weight:700;min-width:32px;text-align:right">10%</span>
+      </div>
       <!-- Favorites -->
       <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px;justify-content:center;flex-wrap:wrap">
         <div style="font-size:9px;font-weight:700;letter-spacing:.06em">FAV</div>
@@ -3029,9 +3039,20 @@ document.addEventListener('click', function(e){
   </div>
 </div>
 <script>
-var CP_DEFAULTS = {std:'#144d75', fill:'#063b63', bg:'#eff6f8'};
+var CP_DEFAULTS = {std:'#144d75', fill:'#063b63', bg:'#eff6f8', fillOpacity:10};
 var cpBackup = null;
+var cpFillOpacity = 10;
 var cpFavs = JSON.parse(localStorage.getItem('pokerLoggerFavs') || '[]');
+var CP_DEFAULT_FAVS = [
+  {std:'#144d75', fill:'#063b63', bg:'#eff6f8', fillOpacity:10},
+  {std:'#2d6a4f', fill:'#1b4332', bg:'#f0f7f4', fillOpacity:12},
+  {std:'#7b2d8b', fill:'#4a1259', bg:'#f8f0fa', fillOpacity:10},
+  {std:'#c45e2c', fill:'#8b3a1a', bg:'#fdf5f0', fillOpacity:15}
+];
+if (!cpFavs.length || cpFavs.every(function(f){return !f})) {
+  cpFavs = CP_DEFAULT_FAVS.slice();
+  localStorage.setItem('pokerLoggerFavs', JSON.stringify(cpFavs));
+}
 
 function hexToRgba(hex, a) {
   var r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
@@ -3046,7 +3067,9 @@ function rgbToHex(c) {
   return '#' + ((1<<24)+(parseInt(m[0])<<16)+(parseInt(m[1])<<8)+parseInt(m[2])).toString(16).slice(1);
 }
 
-function applyColorVars(std, fill, bg) {
+function applyColorVars(std, fill, bg, opacity) {
+  if (typeof opacity === 'number') cpFillOpacity = opacity;
+  var op = cpFillOpacity / 100;
   var root = document.documentElement.style;
   root.setProperty('--bg', bg);
   root.setProperty('--card', bg);
@@ -3054,13 +3077,13 @@ function applyColorVars(std, fill, bg) {
   root.setProperty('--accent', std);
   root.setProperty('--dim', std);
   root.setProperty('--border', std);
-  root.setProperty('--accent-bg', hexToRgba(fill, .10));
+  root.setProperty('--accent-bg', hexToRgba(fill, op));
   root.setProperty('--accent-border', hexToRgba(std, .35));
-  root.setProperty('--std', hexToRgba(fill, .10));
+  root.setProperty('--std', hexToRgba(fill, op));
 }
 
 function updateCpPreview(std, fill, bg) {
-  var tint = hexToRgba(fill, .10);
+  var tint = hexToRgba(fill, cpFillOpacity / 100);
   // Preview bg
   document.getElementById('cpPreview').style.background = bg;
   // Header
@@ -3112,7 +3135,9 @@ function openColorPanel() {
     fill: rgbToHex(cs.getPropertyValue('--border').trim()),
     bg: rgbToHex(cs.getPropertyValue('--bg').trim())
   };
-  cpBackup = {std:cur.std, fill:cur.fill, bg:cur.bg};
+  cpBackup = {std:cur.std, fill:cur.fill, bg:cur.bg, fillOpacity:cpFillOpacity};
+  document.getElementById('cpFillOpacity').value = cpFillOpacity;
+  document.getElementById('cpFillOpacityVal').textContent = cpFillOpacity + '%';
   document.getElementById('cpInput-std').value = cur.std;
   document.getElementById('cpInput-fill').value = cur.fill;
   document.getElementById('cpInput-bg').value = cur.bg;
@@ -3137,18 +3162,29 @@ function onCpChange(key, val) {
   updateCpPreview(std, fill, bg);
 }
 
+function onFillOpacityChange(val) {
+  cpFillOpacity = parseInt(val);
+  document.getElementById('cpFillOpacityVal').textContent = cpFillOpacity + '%';
+  var std = document.getElementById('cpInput-std').value;
+  var fill = document.getElementById('cpInput-fill').value;
+  var bg = document.getElementById('cpInput-bg').value;
+  applyColorVars(std, fill, bg);
+  updateCpPreview(std, fill, bg);
+}
+
 function applyColors() {
   var std = document.getElementById('cpInput-std').value;
   var fill = document.getElementById('cpInput-fill').value;
   var bg = document.getElementById('cpInput-bg').value;
-  localStorage.setItem('pokerLoggerColors', JSON.stringify({std:std, fill:fill, bg:bg}));
+  localStorage.setItem('pokerLoggerColors', JSON.stringify({std:std, fill:fill, bg:bg, fillOpacity:cpFillOpacity}));
   cpBackup = null;
   document.getElementById('colorPanel').style.display = 'none';
   showToast('Colors saved');
 }
 
 function resetColors() {
-  applyColorVars(CP_DEFAULTS.std, CP_DEFAULTS.fill, CP_DEFAULTS.bg);
+  cpFillOpacity = CP_DEFAULTS.fillOpacity;
+  applyColorVars(CP_DEFAULTS.std, CP_DEFAULTS.fill, CP_DEFAULTS.bg, cpFillOpacity);
   localStorage.removeItem('pokerLoggerColors');
   var keys = ['std','fill','bg'];
   keys.forEach(function(k){
@@ -3156,12 +3192,17 @@ function resetColors() {
     document.getElementById('cpSwatch-'+k).style.background = CP_DEFAULTS[k];
     document.getElementById('cpHex-'+k).textContent = CP_DEFAULTS[k];
   });
+  document.getElementById('cpFillOpacity').value = cpFillOpacity;
+  document.getElementById('cpFillOpacityVal').textContent = cpFillOpacity + '%';
   updateCpPreview(CP_DEFAULTS.std, CP_DEFAULTS.fill, CP_DEFAULTS.bg);
   showToast('Reset to defaults');
 }
 
 function closeColorPanel() {
-  if (cpBackup) applyColorVars(cpBackup.std, cpBackup.fill, cpBackup.bg);
+  if (cpBackup) {
+    cpFillOpacity = cpBackup.fillOpacity || 10;
+    applyColorVars(cpBackup.std, cpBackup.fill, cpBackup.bg, cpFillOpacity);
+  }
   cpBackup = null;
   document.getElementById('colorPanel').style.display = 'none';
 }
@@ -3174,8 +3215,9 @@ function renderFavSlots() {
     if (fav) {
       html += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px">';
       html += '<div onclick="loadFav('+i+')" style="display:flex;gap:3px;cursor:pointer;padding:5px;border:1px solid;border-radius:6px">';
+      var favOp = (fav.fillOpacity || 10) / 100;
       html += '<div style="width:20px;height:20px;border-radius:50%;background:'+fav.std+'"></div>';
-      html += '<div style="width:20px;height:20px;border-radius:50%;background:'+fav.fill+'"></div>';
+      html += '<div style="width:20px;height:20px;border-radius:50%;background:'+hexToRgba(fav.fill, favOp)+';border:1px solid '+fav.fill+'"></div>';
       html += '<div style="width:20px;height:20px;border-radius:50%;background:'+fav.bg+';border:1px solid '+fav.fill+'"></div>';
       html += '</div>';
       html += '<span onclick="event.stopPropagation();deleteFav('+i+')" style="font-size:14px;cursor:pointer;opacity:.7;line-height:1;padding:2px 4px">\u00d7</span>';
@@ -3192,7 +3234,7 @@ function saveFavAt(idx) {
   var fill = document.getElementById('cpInput-fill').value;
   var bg = document.getElementById('cpInput-bg').value;
   if (cpFavs[idx] && !confirm('Fav ' + (idx+1) + ' \u3092\u4E0A\u66F8\u304D\u3057\u307E\u3059\u304B\uFF1F')) return;
-  cpFavs[idx] = {std:std, fill:fill, bg:bg};
+  cpFavs[idx] = {std:std, fill:fill, bg:bg, fillOpacity:cpFillOpacity};
   localStorage.setItem('pokerLoggerFavs', JSON.stringify(cpFavs));
   renderFavSlots();
   showToast('Saved to Fav ' + (idx+1));
@@ -3209,6 +3251,7 @@ function deleteFav(idx) {
 function loadFav(idx) {
   var fav = cpFavs[idx];
   if (!fav) return;
+  cpFillOpacity = fav.fillOpacity || 10;
   document.getElementById('cpInput-std').value = fav.std;
   document.getElementById('cpInput-fill').value = fav.fill;
   document.getElementById('cpInput-bg').value = fav.bg;
@@ -3218,7 +3261,9 @@ function loadFav(idx) {
   document.getElementById('cpHex-std').textContent = fav.std;
   document.getElementById('cpHex-fill').textContent = fav.fill;
   document.getElementById('cpHex-bg').textContent = fav.bg;
-  applyColorVars(fav.std, fav.fill, fav.bg);
+  document.getElementById('cpFillOpacity').value = cpFillOpacity;
+  document.getElementById('cpFillOpacityVal').textContent = cpFillOpacity + '%';
+  applyColorVars(fav.std, fav.fill, fav.bg, cpFillOpacity);
   updateCpPreview(fav.std, fav.fill, fav.bg);
 }
 
@@ -3228,7 +3273,10 @@ function loadFav(idx) {
   if (saved) {
     try {
       var c = JSON.parse(saved);
-      if (c.std && c.fill && c.bg) applyColorVars(c.std, c.fill, c.bg);
+      if (c.std && c.fill && c.bg) {
+        if (typeof c.fillOpacity === 'number') cpFillOpacity = c.fillOpacity;
+        applyColorVars(c.std, c.fill, c.bg, cpFillOpacity);
+      }
     } catch(e){}
   }
 })();

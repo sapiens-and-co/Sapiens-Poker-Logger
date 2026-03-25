@@ -11,41 +11,41 @@
     --coral: #e74c3c; --gold: #f39c12; --code-bg: #1e1e36; --code-text: #c8c8e0;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 12px;font-size:13px}
-  header{background:linear-gradient(135deg,#2a2a10,#3a3010,#2a2a10);padding:4px 12px;text-align:center;border-bottom:2px solid var(--yellow)}
-  header h1{font-size:11px;letter-spacing:.03em;color:#fff}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:13px;padding:0 0 60px}
+  header{background:linear-gradient(135deg,#2a2a10,#3a3010,#2a2a10);padding:10px 16px;text-align:center;border-bottom:2px solid var(--yellow);position:sticky;top:0;z-index:100}
+  header h1{font-size:12px;letter-spacing:.03em;color:#fff}
   header h1 span{color:var(--yellow)}
-  .wrap{max-width:860px;margin:0 auto;padding:0 14px;overflow-x:hidden}
-  ol{padding-left:20px;margin:3px 0}
-  section{margin-top:2px}
-  h2{font-size:13px;color:#fff;padding-bottom:4px;border-bottom:2px solid var(--yellow);margin-bottom:4px}
-  h2 .num{color:var(--yellow);margin-right:3px;font-weight:800}
-  h3{font-size:12px;color:var(--pink);margin:8px 0 3px;font-weight:700}
-  p{margin:3px 0}
-  code{font-family:"SFMono-Regular",Consolas,monospace;background:var(--code-bg);border:1px solid var(--border);border-radius:3px;padding:1px 4px;font-size:12px;color:var(--yellow);font-weight:600}
-  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:8px 10px;overflow-x:auto;font-size:12px;line-height:1.45;font-family:"SFMono-Regular",Consolas,monospace;color:var(--code-text);margin:4px 0 8px}
+  .close-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:6px;cursor:pointer;text-decoration:none;transition:background .15s}
+  .close-btn:hover{background:rgba(255,255,255,.22)}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 20px;overflow-x:hidden}
+  ol{padding-left:20px;margin:6px 0}
+  section{margin-top:6px}
+  h2{font-size:14px;color:#fff;padding-bottom:6px;border-bottom:2px solid var(--yellow);margin-bottom:8px}
+  h2 .num{color:var(--yellow);margin-right:4px;font-weight:800}
+  h3{font-size:12.5px;color:var(--pink);margin:12px 0 6px;font-weight:700}
+  p{margin:6px 0}
+  code{font-family:"SFMono-Regular",Consolas,monospace;background:var(--code-bg);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-size:12px;color:var(--yellow);font-weight:600}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:10px 12px;overflow-x:auto;font-size:12px;line-height:1.5;font-family:"SFMono-Regular",Consolas,monospace;color:var(--code-text);margin:8px 0 12px}
   pre .cm{color:#6a6a8a} pre .kw{color:var(--yellow);font-weight:700} pre .sec{color:var(--pink);font-weight:bold} pre .val{color:var(--mint);font-weight:700} pre .act{color:var(--gold);font-weight:600}
-  table{width:100%;border-collapse:collapse;margin:4px 0 8px;font-size:12.5px;border-radius:6px;overflow:hidden}
-  th,td{border:1px solid var(--border);padding:4px 8px;text-align:left}
+  table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:12.5px;border-radius:6px;overflow:hidden}
+  th,td{border:1px solid var(--border);padding:6px 10px;text-align:left}
   th{background:linear-gradient(135deg,#2a2a50,#35305a);color:var(--yellow);font-weight:800;white-space:nowrap;font-size:11px}
   td{background:var(--card)} td code{border:none;background:none;padding:0;color:var(--yellow);font-weight:600}
   tr:nth-child(even) td{background:#2a2a48}
   .tag{display:inline-block;font-size:9px;font-weight:800;border-radius:8px;padding:1px 6px;vertical-align:middle;margin-right:2px}
-  .tag.required{background:rgba(231,76,60,.2);color:#ff6b6b;border:1px solid rgba(231,76,60,.4)}
-  .tag.optional{background:rgba(255,105,180,.15);color:var(--pink);border:1px solid rgba(255,105,180,.3)}
   .tag.new{background:rgba(46,204,113,.15);color:var(--mint);border:1px solid rgba(46,204,113,.3)}
-  .note{border-left:4px solid var(--mint);background:rgba(46,204,113,.08);padding:6px 10px;border-radius:0 6px 6px 0;margin:4px 0;font-size:12.5px}
+  .note{border-left:4px solid var(--mint);background:rgba(46,204,113,.08);padding:8px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:12.5px}
   .note.warn{border-left-color:var(--gold);background:rgba(243,156,18,.08)}
   .note strong{color:#fff}
-  .flow-line{display:flex;align-items:center;gap:6px;margin:6px 0;flex-wrap:wrap;overflow-x:auto}
-  .flow-line .fs{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:12px;white-space:nowrap}
+  .flow-line{display:flex;align-items:center;gap:8px;margin:10px 0;flex-wrap:wrap;overflow-x:auto}
+  .flow-line .fs{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-size:12px;white-space:nowrap}
   .flow-line .fs strong{color:#fff;font-weight:700}
   .flow-line .fs span{color:var(--dim);margin-left:4px;font-size:11px}
   .flow-line .fa{color:var(--yellow);font-weight:bold;font-size:14px}
-  .pos-tbl{margin:4px 0 8px}
+  .pos-tbl{margin:8px 0 12px}
   .pos-tbl td:first-child{font-weight:800;color:#fff;width:60px;white-space:nowrap}
   .pos-tbl td:last-child{font-family:monospace;letter-spacing:.02em;color:var(--dim);font-weight:600}
-  ul{padding-left:16px;margin:3px 0} li{margin:1px 0}
+  ul{padding-left:18px;margin:6px 0} li{margin:3px 0}
   details{margin:0}
   details summary{cursor:pointer;list-style:none}
   details summary::-webkit-details-marker{display:none}
@@ -55,51 +55,57 @@
   details[open] summary h2::after{transform:translateY(-50%) rotate(180deg)}
   details>:not(summary){animation:fadeIn .15s ease}
   @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-  footer{text-align:center;margin-top:10px;color:var(--dim);font-size:11px}
+  .cat-label{color:var(--yellow);margin:20px 0 8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:4px;font-weight:700}
+  footer{text-align:center;margin-top:20px;padding:12px 0;color:var(--dim);font-size:11px;border-top:1px solid var(--border)}
+  .back-to-top{position:fixed;bottom:16px;right:16px;background:var(--yellow);color:#1a1a2e;border:none;width:40px;height:40px;border-radius:50%;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);z-index:100;display:none;align-items:center;justify-content:center;transition:opacity .2s}
+  .back-to-top:hover{opacity:.85}
   @media(max-width:520px){
-    body{font-size:12.5px;padding:0 0 8px}
-    .wrap{padding:0 8px}
-    header{padding:3px 8px} header h1{font-size:10px}
-    h2{font-size:12px;padding-bottom:3px;margin-bottom:3px}
-    h3{font-size:11px;margin:6px 0 2px}
+    body{font-size:12.5px;line-height:1.65;padding:0 0 50px}
+    .wrap{padding:12px 14px}
+    header{padding:8px 12px} header h1{font-size:10px}
+    .close-btn{font-size:10px;padding:3px 10px}
+    h2{font-size:13px;padding-bottom:4px;margin-bottom:6px}
+    h3{font-size:11.5px;margin:10px 0 4px}
     code{font-size:11px;padding:1px 3px}
-    pre{font-size:11px;padding:6px 8px;margin:3px 0 6px;line-height:1.4}
-    table{font-size:12px;margin:3px 0 6px}
-    th,td{padding:3px 5px} th{font-size:10.5px}
+    pre{font-size:11px;padding:8px 10px;margin:6px 0 10px;line-height:1.45}
+    table{font-size:12px;margin:6px 0 10px}
+    th,td{padding:5px 7px} th{font-size:10.5px}
     table.m-card{display:block;border:none}
     table.m-card thead{display:none} table.m-card tbody{display:block}
-    table.m-card tr{display:block;background:var(--card);border:1px solid var(--border);border-radius:6px;margin:4px 0;padding:5px 8px}
-    table.m-card td{display:block;border:none;padding:1px 0;font-size:12px}
-    table.m-card td:first-child{font-weight:700;color:#fff;margin-bottom:1px}
+    table.m-card tr{display:block;background:var(--card);border:1px solid var(--border);border-radius:6px;margin:6px 0;padding:6px 10px}
+    table.m-card td{display:block;border:none;padding:2px 0;font-size:12px}
+    table.m-card td:first-child{font-weight:700;color:#fff;margin-bottom:2px}
     .tag{font-size:8px;padding:1px 5px}
-    .note{padding:5px 8px;font-size:12px;margin:3px 0}
-    .flow-line{gap:4px;margin:4px 0}
-    .flow-line .fs{padding:2px 7px;font-size:11px} .flow-line .fs span{font-size:10px}
+    .note{padding:6px 10px;font-size:12px;margin:6px 0}
+    .flow-line{gap:5px;margin:8px 0}
+    .flow-line .fs{padding:4px 8px;font-size:11px} .flow-line .fs span{font-size:10px}
     .flow-line .fa{font-size:12px}
     .pos-tbl td:first-child{width:50px}
-    ul{padding-left:14px} li{font-size:12px}
+    ul{padding-left:15px} li{font-size:12px}
     footer{font-size:10px}
+    .cat-label{margin:16px 0 6px}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Sapiens Poker <span>Logger</span> v0.3 - Manual</h1>
+  <h1>Sapiens Poker <span>Logger</span> - Manual</h1>
+  <a class="close-btn" href="javascript:window.close()" onclick="if(!window.close()){history.back()}">Close</a>
 </header>
 
 <div class="wrap">
 
 <!-- ====== カテゴリ: 基本操作 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">基本操作</h3>
+<h3 class="cat-label">基本操作</h3>
 
 <!-- 1 -->
 <section>
-<details>
+<details open>
   <summary><h2><span class="num">1.</span>概要</h2></summary>
   <p>Sapiens Poker Loggerは、ポーカーの遠征記録・セッション管理・ハンド履歴をテキスト形式で記録するPWAアプリです。ブラウザだけで動作し、オフラインでも使えます。</p>
   <div class="flow-line">
-    <div class="fs"><strong>記録を作成</strong> <span>旅のタイトル</span></div>
+    <div class="fs"><strong>Journey作成</strong> <span>旅のタイトル</span></div>
     <div class="fa">&rarr;</div>
     <div class="fs"><strong>セッション開始</strong> <span>場所・ブラインド</span></div>
     <div class="fa">&rarr;</div>
@@ -116,20 +122,26 @@
 <!-- 2 -->
 <section>
 <details>
-  <summary><h2><span class="num">2.</span>トップページ（アコーディオン一覧）</h2></summary>
-  <p>アプリ起動時に表示される画面です。作成した記録（Journey）がアコーディオン形式で一覧表示されます。</p>
-  <h3>画面の構成</h3>
+  <summary><h2><span class="num">2.</span>トップページ</h2></summary>
+  <p>アプリ起動時に表示される画面です。作成したJourneyがアコーディオン形式で一覧表示されます。</p>
+  <h3>Journeyカード</h3>
   <ul>
-    <li><strong>Journeyカード</strong> — 各記録のタイトル・日付・SESSIONS数・PROFIT/LOSS・HOURS を表示。タップで展開し、セッション一覧がインラインで表示される（画面遷移なし）</li>
-    <li><strong>Quick Start &amp; Output Sample</strong> — アプリの基本的な使い方と出力サンプルが1つのボックスにまとめて表示。Journeyが存在する場合はガイドが折りたたまれ、▶ インジケーターをタップで展開可能</li>
+    <li>各Journeyのタイトル・日付・統計情報を表示</li>
+    <li>タップで展開し、セッション一覧がインラインで表示される（画面遷移なし）</li>
+    <li>展開時にはJourney内の統計（Total P/L / Sessions / Total Hours / BB/hr）も確認可能</li>
+  </ul>
+  <h3>ガイドボックス</h3>
+  <ul>
+    <li>Journeyが存在しない場合は展開状態で表示。基本的な使い方と出力サンプルが表示される</li>
+    <li>Journeyが存在する場合は折りたたまれ、タップで展開可能</li>
   </ul>
   <h3>フッター</h3>
   <ul>
     <li><strong>Start New Journey</strong> — 新しい遠征・旅の記録を作成</li>
-    <li><strong>Manual</strong> — このマニュアルを新しいタブで開く</li>
+    <li><strong>Manual</strong> — このマニュアルを別タブで開く</li>
     <li><strong>Feedback</strong> — フィードバックフォームを開く</li>
     <li><strong>X アイコン</strong> — X（旧Twitter）へのリンク</li>
-    <li><strong>カラーパレットアイコン</strong> — カラーカスタマイズ画面を開く（セクション24参照）</li>
+    <li><strong>カラーパレットアイコン</strong> — カラーカスタマイズ画面を開く（セクション22参照）</li>
   </ul>
 </details>
 </section>
@@ -137,31 +149,30 @@
 <!-- 3 -->
 <section>
 <details>
-  <summary><h2><span class="num">3.</span>Journey / セッション統合管理</h2></summary>
-  <p>Journey・セッション・ハンドはすべてトップページのアコーディオンで階層的に管理されます。別画面への遷移はありません。</p>
+  <summary><h2><span class="num">3.</span>Journey・セッション・ハンドの階層管理</h2></summary>
+  <p>Journey・セッション・ハンドはすべてトップページのアコーディオンで階層的に管理されます。</p>
   <h3>Journeyの展開</h3>
   <ul>
-    <li>Journeyカードをタップすると展開され、「SESSIONS」ラベルの下にセッション一覧が表示される</li>
-    <li>Journeyカードには タイトル・日付・SESSIONS数・PROFIT/LOSS・HOURS が表示される</li>
-    <li>Journey内の統計情報（Total P/L / Sessions / Total Hours / BB/hr）も確認可能</li>
+    <li>Journeyカードをタップすると展開され、セッション一覧が表示される</li>
+    <li>Journey内の統計情報（Total P/L / Sessions / Total Hours / BB/hr）を確認可能</li>
   </ul>
   <h3>セッションの展開</h3>
   <ul>
     <li>セッション項目をタップすると展開され、詳細統計・ハンド一覧が表示される</li>
-    <li>各セッションには 日付・場所・ゲーム情報・ハンド数・P/L が表示される</li>
-    <li>展開したセッション内に「HANDS」ラベルとハンド項目、「Add Hand」「Export」ボタンが表示される</li>
+    <li>各セッションには日付・場所・ゲーム情報・ハンド数・P/Lが表示される</li>
+    <li>展開したセッション内にハンド一覧・「Add Hand」「Export」ボタンが表示される</li>
   </ul>
   <h3>Journey内のボタン</h3>
   <ul>
     <li><strong>New Session</strong> — 展開したJourney内に表示。新しいセッションを開始</li>
-    <li><strong>Edit ボタン</strong> — Journey下部に表示。タップでJourney編集モーダルが開く（削除機能もモーダル内に含まれる）</li>
-    <li><strong>CSV Export</strong> — 記録内に完了セッションがある場合に表示</li>
+    <li><strong>Edit</strong> — Journey右上に表示。タップでJourney編集モーダルが開く（タイトル・日付の変更、削除が可能）</li>
+    <li><strong>CSV Export</strong> — 完了セッションがある場合に表示</li>
   </ul>
 </details>
 </section>
 
 <!-- ====== カテゴリ: セッション ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">セッション</h3>
+<h3 class="cat-label">セッション</h3>
 
 <!-- 4 -->
 <section>
@@ -170,17 +181,25 @@
   <h3>セッション開始</h3>
   <ol>
     <li>Journey内で「New Session」をタップ</li>
-    <li>Location（場所）、Game（NLH/PLO）、SB/BB、Buy-in を入力</li>
+    <li>Location（場所）、Game Type、SB/BB、Buy-in を入力</li>
     <li>「Start」でセッション開始。経過時間の計測が始まります</li>
   </ol>
+  <h3>Game Type（ゲーム種別）</h3>
+  <p>以下の5種類から選択できます:</p>
+  <ul>
+    <li><code>NLH</code> — No Limit Hold'em（デフォルト）</li>
+    <li><code>PLO</code> — Pot Limit Omaha</li>
+    <li><code>PLO5</code> — Pot Limit Omaha 5-card</li>
+    <li><code>Limit</code> — Fixed Limit</li>
+    <li><code>Mixed</code> — Mixed Game</li>
+  </ul>
   <h3>セッション中の操作</h3>
   <table class="m-card">
     <thead><tr><th>ボタン</th><th>機能</th></tr></thead>
     <tbody>
-    <tr><td><code>Add On</code></td><td>セッションバーのBuy-in表示横のボタン。追加バイインを記録。複数回可能</td></tr>
+    <tr><td><code>Add</code></td><td>セッションバーのBuy-in表示横のボタン。追加バイインを記録。複数回可能</td></tr>
     <tr><td><code>End</code></td><td>キャッシュアウト額を入力してセッション終了。収支が自動計算されます</td></tr>
-    <tr><td><code>Add Hand</code></td><td>新しいハンドを記録。セッション展開内に表示</td></tr>
-    <tr><td><code>Export</code></td><td>保存済みハンドを .txt で一括出力</td></tr>
+    <tr><td><code>Hands</code></td><td>ハンド一覧パネルの表示/非表示を切り替え。バッジに保存済みハンド数が表示される</td></tr>
     </tbody>
   </table>
   <h3>セッションバー</h3>
@@ -194,42 +213,58 @@
 <!-- 5 -->
 <section>
 <details>
-  <summary><h2><span class="num">5.</span>セッション詳細の編集</h2></summary>
-  <p>セッションを展開すると詳細情報が表示されます。Editボタンから各項目を編集できます。</p>
-  <h3>編集可能な項目</h3>
+  <summary><h2><span class="num">5.</span>セッションの編集</h2></summary>
+  <p>セッションの編集方法は2つあります。</p>
+  <h3>1. Editモーダル（セッション展開時）</h3>
+  <p>セッション展開内の「Edit」ボタンをタップすると編集モーダルが開きます。</p>
   <table class="m-card">
     <thead><tr><th>項目</th><th>操作</th></tr></thead>
     <tbody>
-    <tr><td><code>Location</code></td><td>タップ → テキスト入力に切替。入力後に自動保存</td></tr>
-    <tr><td><code>Date</code></td><td>日付入力フィールドで変更可能</td></tr>
-    <tr><td><code>Start/End Time</code></td><td>時刻はホイール/スワイプ対応の数値入力（時・分）で編集可能</td></tr>
-    <tr><td><code>Game</code></td><td>タップ → NLH / PLO のセレクトに切替</td></tr>
+    <tr><td><code>Location</code></td><td>テキスト入力で変更</td></tr>
+    <tr><td><code>Start/End 日時</code></td><td>日付ピッカーと時・分の数値入力（ホイール/スワイプ対応）で編集</td></tr>
+    <tr><td><code>Game Type</code></td><td>ドロップダウンで変更（NLH / PLO / PLO5 / Limit / Mixed）</td></tr>
+    <tr><td><code>SB / BB</code></td><td>数値入力で変更</td></tr>
+    </tbody>
+  </table>
+  <p>モーダル下部の「Delete This Session」ボタンでセッション削除も可能です。</p>
+
+  <h3>2. インライン編集（セッション詳細画面）</h3>
+  <p>セッション詳細画面では、破線アンダーラインの付いた項目をタップして直接編集できます。</p>
+  <table class="m-card">
+    <thead><tr><th>項目</th><th>操作</th></tr></thead>
+    <tbody>
+    <tr><td><code>Location</code></td><td>タップ → テキスト入力に切替。Enter または フォーカスアウトで保存</td></tr>
+    <tr><td><code>Date</code></td><td>タップ → 日時編集モーダルが開く</td></tr>
+    <tr><td><code>Game</code></td><td>タップ → テキスト入力に切替</td></tr>
     <tr><td><code>Buy-ins</code></td><td>タップ → 各Buy-in金額を個別に編集できるモーダルが開く</td></tr>
     <tr><td><code>Cash-out</code></td><td>タップ → 数値入力に切替</td></tr>
     </tbody>
   </table>
-  <p style="color:var(--dim)">P/L・Duration・BB/hr・Hands は自動計算のため直接編集はできません。編集可能な項目には破線アンダーラインが表示されます。</p>
+  <p style="color:var(--dim)">P/L・Duration・BB/hr・Hands は自動計算のため直接編集はできません。</p>
+
   <h3>セッションを再開</h3>
   <p>詳細画面の「セッションを再開」ボタンで、終了したセッションをアクティブ状態に戻せます。経過時間の計測も再開され、ハンドの追加記録やAdd Onが可能になります。</p>
-  <div class="note">
-    <strong>ヒント:</strong> キャッシュアウト額の入力ミスや、ハンドの追記忘れがあった場合に便利です。
-  </div>
 </details>
 </section>
 
 <!-- 6 -->
 <section>
 <details>
-  <summary><h2><span class="num">6.</span>Editボタンと削除</h2></summary>
-  <p>各項目の編集・削除は「Edit」ボタンを通じて行います。</p>
+  <summary><h2><span class="num">6.</span>編集・削除の操作</h2></summary>
   <h3>Edit ボタンの配置</h3>
   <ul>
-    <li><strong>Journey</strong> — 展開したJourney下部のEditボタン → 編集モーダルが開く。モーダル内に削除機能も含まれる</li>
-    <li><strong>ハンド項目</strong> — 各ハンドにEditボタンが表示される。タップでハンド編集画面が開く</li>
-    <li><strong>アクティブセッション内のハンド</strong> — 同様にEditボタンで編集可能</li>
+    <li><strong>Journey</strong> — 展開したJourney内の右上「Edit」ボタン → 編集モーダル（タイトル・日付変更、削除）</li>
+    <li><strong>セッション</strong> — セッション展開内の右上「Edit」ボタン → 編集モーダル（Location・日時・Game Type・SB/BB変更、削除）</li>
+    <li><strong>ハンド</strong> — 各ハンド項目の「Edit」ボタン → ハンド編集画面が開く</li>
   </ul>
-  <div class="note">
-    <strong>ポイント:</strong> 従来のDELボタンは廃止され、削除機能はすべてEditモーダル/画面内に統合されました。誤操作による削除を防止します。
+  <h3>削除</h3>
+  <ul>
+    <li><strong>Journey削除</strong> — Journey編集モーダル内の「Delete This Journey」ボタン</li>
+    <li><strong>セッション削除</strong> — セッション編集モーダル内の「Delete This Session」ボタン、またはセッション項目の「DEL」ボタン</li>
+    <li><strong>セッション詳細画面</strong> — 画面下部の「Delete Session」ボタン</li>
+  </ul>
+  <div class="note warn">
+    <strong>注意:</strong> 削除は確認ダイアログが表示されます。削除後のデータ復元はできません。
   </div>
 </details>
 </section>
@@ -246,13 +281,13 @@
     <tr><td><code>Day</code></td><td>日付</td></tr>
     <tr><td><code>Session#</code></td><td>その日のセッション番号（01, 02...）</td></tr>
     <tr><td><code>Location</code></td><td>場所</td></tr>
-    <tr><td><code>Game</code></td><td>NLH / PLO</td></tr>
+    <tr><td><code>Game</code></td><td>ゲーム種別</td></tr>
     <tr><td><code>Blinds</code></td><td>ブラインド（変更ありなら 50/100 → 100/200）</td></tr>
     <tr><td><code>StartTime / EndTime</code></td><td>開始・終了時刻</td></tr>
     <tr><td><code>Hours</code></td><td>プレイ時間</td></tr>
     <tr><td><code>BuyIn / CashOut / P/L</code></td><td>収支情報</td></tr>
     <tr><td><code>DayCumulativeP/L</code></td><td>その日の累計収支</td></tr>
-    <tr><td><code>TripCumulativeP/L</code></td><td>記録全体の累計収支</td></tr>
+    <tr><td><code>TripCumulativeP/L</code></td><td>Journey全体の累計収支</td></tr>
     </tbody>
   </table>
   <p style="color:var(--dim)">Excel / Google Sheets に取り込んで、収支グラフ作成などに活用できます。</p>
@@ -260,27 +295,61 @@
 </section>
 
 <!-- ====== カテゴリ: ハンド記録 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">ハンド記録</h3>
+<h3 class="cat-label">ハンド記録</h3>
 
 <!-- 8 -->
 <section>
 <details>
   <summary><h2><span class="num">8.</span>ハンド記録の流れ</h2></summary>
   <ol>
-    <li>Hand / Blind でハンド番号・ブラインド・Hero情報を入力</li>
-    <li>Cards でHeroカード・ボードカードを選択</li>
-    <li>Players でプレイヤーの着席状況を設定</li>
-    <li>「テンプレート生成」→ アクションを追記 → Save</li>
+    <li>Hand / Blind セクションでハンド番号・ブラインド・Hero情報を入力</li>
+    <li>Cards セクションでHeroカード・ボードカードを選択</li>
+    <li>Players セクションでプレイヤーの着席状況を設定</li>
+    <li>「テンプレート生成」ボタンでフルスクリーンエディタが開く</li>
+    <li>アクションを追記して「Save」で保存</li>
   </ol>
   <div class="flow-line">
     <div class="fs"><strong>情報入力</strong> <span>Hand / Blind / Cards</span></div>
     <div class="fa">&rarr;</div>
     <div class="fs"><strong>テンプレート生成</strong> <span>自動フォーマット</span></div>
     <div class="fa">&rarr;</div>
-    <div class="fs"><strong>アクション追記</strong> <span>画面内で編集</span></div>
+    <div class="fs"><strong>アクション追記</strong> <span>エディタで編集</span></div>
     <div class="fa">&rarr;</div>
     <div class="fs"><strong>Save</strong> <span>セッションに保存</span></div>
   </div>
+
+  <h3>Hand / Blind セクション</h3>
+  <table class="m-card">
+    <thead><tr><th>項目</th><th>説明</th></tr></thead>
+    <tbody>
+    <tr><td><code>Hand #</code></td><td>ハンド番号（1〜99）。Save後に自動インクリメント</td></tr>
+    <tr><td><code>SB / BB</code></td><td>ブラインド金額</td></tr>
+    <tr><td><code>Ante</code></td><td>アンティ金額（0で省略）</td></tr>
+    <tr><td><code>Blind Preset</code></td><td>よく使うブラインドを一覧から選択（15種類: 1/2, 1/3, 2/3, 2/5, 5/5, 10/20, 25/50, 50/100, 100/200, 200/300, 200/400, 200/500, 300/500, 400/800, 500/1000）</td></tr>
+    <tr><td><code>Hero Name</code></td><td>Heroの名前</td></tr>
+    <tr><td><code>Stack</code></td><td>Heroのスタック金額</td></tr>
+    <tr><td><code>SAVE</code></td><td>Blind / Hero / Stack のデフォルト値を保存</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Cards セクション</h3>
+  <ul>
+    <li><strong>Hero Cards</strong> — 2枚のカードスロット。タップでカードピッカーが開く</li>
+    <li><strong>Board Cards</strong> — Flop 3枚 + Turn 1枚 + River 1枚の計5スロット</li>
+    <li>入力済みスロットの「×」ボタンでカードを除去</li>
+    <li>スロットは任意の順序で入力可能</li>
+  </ul>
+
+  <h3>Players セクション</h3>
+  <ul>
+    <li>各シート（1〜9）にプレイヤー名を入力</li>
+    <li><strong>D ボタン</strong> — タップでそのシートをBTN（ディーラー）に設定</li>
+    <li><strong>シート番号</strong> — タップでそのシートをHeroに設定（反転表示になる）</li>
+    <li><strong>× ボタン</strong> — シートの有効/無効を切替（無効シートはテンプレートから除外）</li>
+    <li>ポジション名（UTG, MP, CO, BTN, SB, BB等）は人数に応じて自動割り当て</li>
+    <li><strong>SAVE</strong> — デフォルト人数を保存</li>
+  </ul>
+
   <div class="note warn">
     <strong>補足:</strong> ショーダウンやリザルト等の項目は、本ツールが元々ポーカーのプレイシーン映像を構築するためのデータ入力ツールとして設計されているためです。ハンドログとしてのみ使用する場合は省略可能です。
   </div>
@@ -306,7 +375,7 @@ btn 9
 </pre>
   <p>テンプレート生成ボタンを押すとこの形式で自動出力されます。アクション部分を追記してください。</p>
   <div class="note warn">
-    <strong>補足:</strong> 本ツールは、ポーカーのプレイシーン映像を構築するためのデータ入力ツールとして設計されているため、アクション表記にポジションではなく座席番号を用います。各ストリートにおいて、アクション順にシート番号とアクション内容を記載していくスタイルを想定しています。
+    <strong>補足:</strong> 本ツールは、ポーカーのプレイシーン映像を構築するためのデータ入力ツールとして設計されているため、アクション表記にポジションではなく座席番号を用います。
   </div>
 </details>
 </section>
@@ -476,15 +545,16 @@ btn 9
 </section>
 
 <!-- ====== カテゴリ: カスタムキーボード & 入力支援 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">カスタムキーボード &amp; 入力支援</h3>
+<h3 class="cat-label">カスタムキーボード &amp; 入力支援</h3>
 
 <!-- 18 -->
 <section>
 <details>
   <summary><h2><span class="num">18.</span>カスタムキーボード</h2></summary>
-  <p>ハンド記録の編集画面では、ポーカー専用のカスタムキーボードが表示されます。<code>CARD/ACT</code>トグルボタンでカードモードとアクションモードを切り替えて効率的に入力できます。トグルボタンには現在のモードが表示されます。</p>
-  <h3>Action Mode（アクションモード）</h3>
-  <p>デフォルトのモードです。ハンドのアクションを素早く入力するためのキーが並びます。</p>
+  <p>フルスクリーンエディタでは、ポーカー専用のカスタムキーボードが表示されます。3つのモードを切り替えて効率的に入力できます。</p>
+
+  <h3>Action Mode（デフォルト）</h3>
+  <p>ハンドのアクションを素早く入力するためのモードです。</p>
   <table class="m-card">
     <thead><tr><th>キー種別</th><th>キー</th></tr></thead>
     <tbody>
@@ -493,12 +563,12 @@ btn 9
     <tr><td>アクション</td><td><code>x</code>(check) <code>c</code>(call) <code>b</code>(bet) <code>r</code>(raise) <code>f</code>(fold) <code>ai</code>(allin) <code>win</code> <code>chop</code></td></tr>
     <tr><td>ナビゲーション</td><td><code>←</code> <code>→</code>（カーソル移動）</td></tr>
     <tr><td>編集</td><td><code>␣</code>(スペース) <code>⌫</code>(バックスペース) <code>↵</code>(改行)</td></tr>
-    <tr><td>モード切替</td><td><code>CARD</code>（カードモードへ） <code>ABC</code>（ABCモードへ）</td></tr>
+    <tr><td>モード切替</td><td><code>⇄ CARD</code>（カードモードへ） <code>ABC</code>（ABCモードへ）</td></tr>
     </tbody>
   </table>
 
-  <h3>Card Mode（カードモード）</h3>
-  <p><code>CARD</code>キーで切り替わります。カードのランクとスートを入力するためのモードです。</p>
+  <h3>Card Mode</h3>
+  <p><code>⇄ CARD</code>キーで切り替わります。カードのランクとスートを入力するためのモードです。</p>
   <table class="m-card">
     <thead><tr><th>キー種別</th><th>キー</th></tr></thead>
     <tbody>
@@ -509,17 +579,10 @@ btn 9
     </tbody>
   </table>
 
-  <h3>ABC Mode（ABCモード）</h3>
+  <h3>ABC Mode</h3>
   <p><code>ABC</code>キーで切り替わります。OS標準のソフトキーボードが表示され、日本語入力やプレイヤー名などの自由テキストを入力できます。</p>
-
-  <h3>キーボードレイアウト</h3>
-  <ul>
-    <li>全キーは固定幅（標準36px、ワイドキー52px）でレイアウトされます</li>
-    <li>ボタンは最大幅500pxで中央揃え</li>
-    <li>Save、Cancel、CARD、ABCボタンは誤タップ防止のためスペースが確保されています</li>
-  </ul>
   <div class="note">
-    <strong>ヒント:</strong> プレイヤー名を日本語で入力したい場合はABCモードに切り替えてください。入力が終わったらACTIONモードに戻すことで、再びポーカー専用キーボードが使えます。
+    <strong>ヒント:</strong> プレイヤー名を日本語で入力したい場合はABCモードに切り替えてください。入力が終わったらActionモードに戻すことで、再びポーカー専用キーボードが使えます。
   </div>
 </details>
 </section>
@@ -528,7 +591,7 @@ btn 9
 <section>
 <details>
   <summary><h2><span class="num">19.</span>オートスペース挿入</h2></summary>
-  <p>アクションモードで数字を入力した後にアクションキー（<code>c</code> <code>r</code> <code>b</code> <code>f</code> <code>x</code> <code>ai</code> <code>win</code> <code>chop</code>）を押すと、数字とアクションの間にスペースが自動挿入されます。</p>
+  <p>Actionモードで数字を入力した後にアクションキー（<code>c</code> <code>r</code> <code>b</code> <code>f</code> <code>x</code> <code>ai</code> <code>win</code> <code>chop</code>）を押すと、数字とアクションの間にスペースが自動挿入されます。</p>
   <h3>例</h3>
   <p><code>10</code> → <code>c</code> と押すと → <code>10 c</code> と入力されます。金額が続く場合は <code>10</code> → <code>c</code> → <code>2000</code> で <code>10 c2000</code> となります。</p>
   <div class="note">
@@ -545,7 +608,8 @@ btn 9
   <ul>
     <li>テキストエリアが画面全体に広がり、長いハンド記録でも見やすい</li>
     <li>カスタムキーボードが画面下部に固定表示される</li>
-    <li>編集完了後は「Save」でセッションに保存</li>
+    <li>テキストエリア下部のドラッグハンドルで高さを調整可能</li>
+    <li>編集完了後は「Save」でセッションに保存、「Cancel」で破棄</li>
   </ul>
 </details>
 </section>
@@ -553,66 +617,48 @@ btn 9
 <!-- 21 -->
 <section>
 <details>
-  <summary><h2><span class="num">21.</span>リサイズハンドル</h2></summary>
-  <p>テキストエリアの下部にドラッグハンドルが表示されます。モバイル端末でこのハンドルをドラッグすることで、テキストエリアの高さを自由に調整できます。</p>
-  <div class="note">
-    <strong>ヒント:</strong> ハンド記録が長くなった場合に、テキストエリアを広げて全体を見渡せるようにすると便利です。
-  </div>
-</details>
-</section>
-
-<!-- 22 -->
-<section>
-<details>
-  <summary><h2><span class="num">22.</span>カードピッカーキーボード</h2></summary>
-  <p>ヒーローカード（Hero Cards）やコミュニティボード（Flop / Turn / River）のカード入力欄では、専用のカードピッカーキーボードが表示されます。カスタムキーボードと同じスタイルの統一されたUIで、ランクとスートをタップしてカードを入力できます。</p>
+  <summary><h2><span class="num">21.</span>カードピッカー</h2></summary>
+  <p>Hero CardsやBoard Cardsのスロットをタップすると、カードピッカーが表示されます。</p>
   <h3>操作方法</h3>
   <ol>
-    <li>カード入力スロットをタップして選択</li>
-    <li>カードピッカーでランク（A, 2〜10, J, Q, K）を選択</li>
-    <li>スート（♠ ♣ ♥ ♦）を選択</li>
+    <li>カードスロットをタップして選択（選択中のスロットはハイライト表示）</li>
+    <li>ランク（A, 2〜9, T, J, Q, K）をタップ</li>
+    <li>スート（♠ ♣ ♥ ♦）をタップ</li>
     <li>カードが自動的にスロットに反映される</li>
   </ol>
-</details>
-</section>
-
-<!-- 23 -->
-<section>
-<details>
-  <summary><h2><span class="num">23.</span>カードスロットのハイライト &amp; 任意順序入力</h2></summary>
-  <p>カード入力時、現在選択中のカードスロットがハイライト表示されます。これにより、どのスロットにカードが入力されるかが一目で分かります。</p>
-  <p>ヒーローカードとコミュニティボードのカードスロットは、任意の順序で入力できます。左から順番に入力する必要はなく、好きなスロットをタップして先に入力することが可能です。</p>
-  <div class="note">
-    <strong>例:</strong> フロップの3枚目だけ先に入力したり、ヒーローカードの2枚目から入力したりできます。
-  </div>
+  <ul>
+    <li>スロットは任意の順序で入力可能（左から順番に入力する必要なし）</li>
+    <li>既に使用されたカードは重複して選択できない</li>
+    <li>入力済みスロットの「×」ボタンでカードを除去可能</li>
+  </ul>
 </details>
 </section>
 
 <!-- ====== カテゴリ: カラーカスタマイズ ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">カラーカスタマイズ</h3>
+<h3 class="cat-label">カラーカスタマイズ</h3>
 
-<!-- 24 -->
+<!-- 22 -->
 <section>
 <details>
-  <summary><h2><span class="num">24.</span>カラーカスタマイズ <span class="tag new">NEW</span></h2></summary>
+  <summary><h2><span class="num">22.</span>カラーカスタマイズ</h2></summary>
   <p>フッターのカラーパレットアイコンをタップすると、フルスクリーンのカラーカスタマイズ画面が開きます。アプリ全体の配色を自由に変更できます。</p>
   <h3>画面の構成</h3>
   <ul>
     <li><strong>上半分: ライブプレビュー</strong> — Journey・セッション・ハンドのサンプルが表示され、色の変更がリアルタイムで反映される</li>
-    <li><strong>下半分: カラーピッカー</strong> — 3つのカラー設定スライダーが表示される</li>
+    <li><strong>下半分: カラーピッカー</strong> — 3つのカラー設定が表示される</li>
   </ul>
   <h3>3つのカラー設定</h3>
   <table class="m-card">
     <thead><tr><th>カラー</th><th>用途</th><th>デフォルト</th></tr></thead>
     <tbody>
-    <tr><td><code>STANDARD</code></td><td>テキスト・ボーダー・アクセントカラー</td><td><code>#144d75</code></td></tr>
-    <tr><td><code>FILL</code></td><td>ヘッダー・ボタン・強調背景</td><td><code>#063b63</code></td></tr>
-    <tr><td><code>BG</code></td><td>ページ全体の背景色</td><td><code>#eff6f8</code></td></tr>
+    <tr><td><code>基調色 (STANDARD)</code></td><td>テキスト・ボーダー・アクセントカラー</td><td><code>#144d75</code></td></tr>
+    <tr><td><code>中間色 (FILL)</code></td><td>ヘッダー・ボタン・強調背景。透明度スライダー（5%〜100%）で濃さを調整可能</td><td><code>#063b63</code></td></tr>
+    <tr><td><code>背景色 (BG)</code></td><td>ページ全体の背景色</td><td><code>#eff6f8</code></td></tr>
     </tbody>
   </table>
   <h3>お気に入り（FAV）</h3>
   <ul>
-    <li>5つのお気に入りプリセットスロットが用意されています</li>
+    <li>5つのお気に入りプリセットスロットが用意されています（初期状態で4パターンがプリセット済み）</li>
     <li>現在の配色をスロットに保存可能</li>
     <li>スロットをタップで配色を読み込み</li>
     <li>スロットの <code>×</code> ボタンで削除</li>
@@ -620,49 +666,20 @@ btn 9
   </ul>
   <h3>操作ボタン</h3>
   <ul>
-    <li><strong>Apply</strong> — 選択した配色を適用し、localStorageに保存（ページリロード後も維持）</li>
+    <li><strong>Apply</strong> — 選択した配色を適用し保存（リロード後も維持）</li>
     <li><strong>Reset</strong> — デフォルトカラーに戻す</li>
     <li><strong>Close</strong> — 変更を適用せずに閉じる</li>
   </ul>
 </details>
 </section>
 
-<!-- ====== カテゴリ: デザインシステム ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">デザインシステム</h3>
-
-<!-- 25 -->
-<section>
-<details>
-  <summary><h2><span class="num">25.</span>2トーンカラースキーム</h2></summary>
-  <p>アプリはStandard・Fill・Backgroundの3色をベースとした2トーンカラースキームを採用しています。</p>
-  <h3>CSS変数</h3>
-  <table class="m-card">
-    <thead><tr><th>変数</th><th>役割</th></tr></thead>
-    <tbody>
-    <tr><td><code>--accent</code></td><td>メインのアクセントカラー（Standard色）</td></tr>
-    <tr><td><code>--border</code></td><td>ボーダー色（Fill色）</td></tr>
-    <tr><td><code>--bg</code></td><td>背景色（BG色）</td></tr>
-    <tr><td><code>--std</code></td><td>Fill色の10%ティント。ハンド項目の背景などに使用</td></tr>
-    <tr><td><code>--accent-bg</code></td><td>Fill色の10%透過。フォーカス時のハイライトに使用</td></tr>
-    </tbody>
-  </table>
-  <h3>カラールール</h3>
-  <ul>
-    <li>白色は使用せず、背景色（transparent / var(--bg)）を使用</li>
-    <li>グレーテキストは使用せず、すべてのテキストにStandard色を使用</li>
-    <li>ハンド項目は <code>var(--std)</code>（10%ティント）の背景</li>
-    <li>Editボタン: ティント背景上では <code>var(--bg)</code>、背景色上では <code>var(--std)</code> を使用</li>
-  </ul>
-</details>
-</section>
-
 <!-- ====== カテゴリ: 設定・その他 ====== -->
-<h3 style="color:var(--yellow);margin:12px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:3px">設定・その他</h3>
+<h3 class="cat-label">設定・その他</h3>
 
-<!-- 26 -->
+<!-- 23 -->
 <section>
 <details>
-  <summary><h2><span class="num">26.</span>デフォルト設定</h2></summary>
+  <summary><h2><span class="num">23.</span>デフォルト設定</h2></summary>
   <p>アクティブセッション画面で以下のデフォルト値を保存できます。</p>
   <table class="m-card">
     <thead><tr><th>項目</th><th>保存方法</th></tr></thead>
@@ -675,10 +692,10 @@ btn 9
 </details>
 </section>
 
-<!-- 27 -->
+<!-- 24 -->
 <section>
 <details>
-  <summary><h2><span class="num">27.</span>PWA（Progressive Web App）インストール</h2></summary>
+  <summary><h2><span class="num">24.</span>PWA（Progressive Web App）インストール</h2></summary>
   <p>このアプリはPWA対応です。PWA（Progressive Web App）とは、ウェブサイトをスマホやPCにアプリのようにインストールできる仕組みです。</p>
   <h3>インストールのメリット</h3>
   <ul>
@@ -701,16 +718,13 @@ btn 9
     <li>インターネット接続がなくても動作するため、データが外部に送られることはありません</li>
     <li>PWA自体はブラウザのブックマークに近い仕組みで、端末の連絡先・写真・位置情報などへのアクセス権限を持ちません</li>
   </ul>
-  <div class="note">
-    <strong>PWAの採用事例:</strong> X（旧Twitter）、Spotify、Starbucks、Pinterest、Uber など、世界的な大手サービスでもPWA技術が採用されています。安心してご利用ください。
-  </div>
 </details>
 </section>
 
-<!-- 28 -->
+<!-- 25 -->
 <section>
 <details>
-  <summary><h2><span class="num">28.</span>要望を投稿</h2></summary>
+  <summary><h2><span class="num">25.</span>要望を投稿</h2></summary>
   <p>フッターの「Feedback」ボタンから、匿名のフィードバックフォームに移動できます。</p>
   <ul>
     <li>「こんな機能がほしい」「ここが使いにくい」など、どんな小さなことでも大歓迎です</li>
@@ -722,32 +736,17 @@ btn 9
 
 </div>
 
+<footer>Sapiens Poker Logger &mdash; Manual</footer>
 
-<div id="__heightSentinel" style="height:0;clear:both"></div>
+<button class="back-to-top" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
 <script>
 (function(){
-  if(window.self===window.top) return;
-  var sentinel=document.getElementById('__heightSentinel');
-  function reportHeight(){
-    var h=sentinel.offsetTop+20;
-    parent.postMessage({type:'manualHeight',h:h},'*');
-  }
-  document.querySelectorAll('details').forEach(function(d){
-    d.addEventListener('toggle',function(){
-      setTimeout(reportHeight,0);
-      setTimeout(reportHeight,50);
-      setTimeout(reportHeight,200);
-      setTimeout(reportHeight,500);
-    });
+  var btn = document.getElementById('topBtn');
+  window.addEventListener('scroll', function(){
+    btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
   });
-  if(window.ResizeObserver){
-    new ResizeObserver(function(){reportHeight()}).observe(document.body);
-  }
-  reportHeight();
-  setTimeout(reportHeight,100);
-  setTimeout(reportHeight,500);
 })();
 </script>
-
 </body>
 </html>
